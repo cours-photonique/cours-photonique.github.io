@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Fiche de révision · Photonique intégrée</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Toutes les formules essentielles de photonique intégrée sur une page : relation de dispersion, coupure, abaques b-V, indice effectif, recouvrement, coupleur, Mach-Zehnder.">
+<meta property="og:title" content="Fiche de révision · Photonique intégrée">
+<meta property="og:description" content="Toutes les formules essentielles de photonique intégrée sur une page : relation de dispersion, coupure, abaques b-V, indice effectif, recouvrement, coupleur, Mach-Zehnder.">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Carnets scientifiques">
+<meta name="theme-color" content="#EFF2F4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E1317" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<link rel="preload" href="../assets/fonts/source-serif-4-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/fonts/polices.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+<script defer src="../assets/js/mathjax-config.js"></script>
+<script defer src="../assets/js/physique.js"></script>
+<script defer src="../assets/js/trace.js"></script>
+<script defer src="../assets/js/figures.js"></script>
+<script defer src="../assets/js/labos.js"></script>
+<script defer src="../assets/js/site.js"></script>
+<script defer id="MathJax-script" src="../assets/vendor/mathjax/tex-svg-full.js"></script>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<header class="topbar"><div class="topbar-in">
+  <a class="brand" href="../index.html"><svg viewBox="0 0 22 22" aria-hidden="true"><rect x="1" y="2.5" width="20" height="4.5" rx="1" style="fill:var(--rule)"/><rect x="1" y="8.75" width="20" height="4.5" rx="1" style="fill:var(--amber)"/><rect x="1" y="15" width="20" height="4.5" rx="1" style="fill:var(--ink)"/></svg>Carnets scientifiques</a>
+  <nav class="topnav" aria-label="Navigation du site">
+    <a href="../photonique-integree/index.html">Photonique intégrée</a>
+    <a href="../photonique-integree/labos.html">Labos</a>
+    <a href="../photonique-integree/fiche.html" aria-current="page">Fiche</a>
+    <a href="../a-propos.html">À propos</a>
+  </nav>
+  <button type="button" class="theme-btn" id="theme-toggle" aria-label="Changer de thème (automatique, clair, sombre)"><svg class="i-auto" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 2a6 6 0 0 1 0 12z" fill="currentColor"/></svg><svg class="i-sun" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3.2" fill="currentColor"/><g stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M8 1.2v1.6M8 13.2v1.6M1.2 8h1.6M13.2 8h1.6M3.2 3.2l1.1 1.1M11.7 11.7l1.1 1.1M3.2 12.8l1.1-1.1M11.7 4.3l1.1-1.1"/></g></svg><svg class="i-moon" viewBox="0 0 16 16" aria-hidden="true"><path d="M13.5 10.2A6 6 0 0 1 5.8 2.5a6 6 0 1 0 7.7 7.7z" fill="currentColor"/></svg><span>Thème : auto</span></button>
+</div></header>
+<div class="shell">
+<aside class="side" aria-label="Sommaire">
+  <p class="side-head"><a href="index.html">Photonique intégrée</a></p>
+  <ol class="course">
+    <li><a href="index.html"><span class="n">§</span><span>Sommaire du thème</span></a></li>
+    <li><a href="equations-propagation.html"><span class="n">1</span><span>Équations de propagation</span></a></li>
+    <li><a href="guide-plan.html"><span class="n">2</span><span>Le guide plan</span></a></li>
+    <li><a href="guide-canal-indice-effectif.html"><span class="n">3</span><span>Guide canal et indice effectif</span></a></li>
+    <li><a href="proprietes-des-modes.html"><span class="n">4</span><span>Propriétés des modes</span></a></li>
+    <li><a href="coupleur-directionnel.html"><span class="n">5</span><span>Le coupleur directionnel</span></a></li>
+    <li><a href="modulateur-electro-optique.html"><span class="n">6</span><span>Modulateur électro-optique</span></a></li>
+    <li class="sep" aria-hidden="true"></li>
+    <li class="cur"><a href="fiche.html" aria-current="page"><span class="n">Σ</span><span>Fiche de révision</span></a><ol class="toc" id="toc-list"></ol></li>
+    <li><a href="labos.html"><span class="n">L</span><span>Tous les labos</span></a></li>
+  </ol>
+</aside>
+<main id="contenu">
+<div class="col">
+<header class="hero">
+  <nav class="crumbs" aria-label="Fil d'Ariane"><a href="../index.html">Accueil</a><span aria-hidden="true">/</span><a href="index.html">Photonique intégrée</a><span aria-hidden="true">/</span><span>Fiche de révision</span></nav>
+  <div class="eyebrow">Révision</div>
+  <h1>Fiche de révision</h1>
+  <p class="lede">Les formules essentielles du thème sur une page. Chaque encadré renvoie à la section où la formule est démontrée.</p>
+  
+  
+</header>
+<div class="recap-grid">
+  <div class="box key"><span class="tag">Équations d'onde</span>
+  $$\nabla_T^2\vE + (k^2n^2 - \beta^2)\vE = -\nabla\left(\vE\cdot\tfrac{\nabla n^2}{n^2}\right)$$
+  <p>Problème aux valeurs propres : profil = vecteur propre, $\beta^2$ = valeur propre, $\neff = \beta/k$.</p>
+  <p class="small"><a href="equations-propagation.html#s-1-1c">§ I.1 c</a></p></div>
+
+  <div class="box key"><span class="tag">Conditions de passage</span>
+  <p><strong>TE</strong> : $E_y$ et $\partial_xE_y$ continus.</p>
+  <p><strong>TM</strong> : $H_y$ et $\frac{1}{n^2}\partial_xH_y$ continus.</p>
+  <p>Le facteur $1/n^2$ est à l'origine de toutes les différences TE/TM.</p>
+  <p class="small"><a href="guide-plan.html#s-1-2b">§ I.2 b</a></p></div>
+
+  <div class="box key"><span class="tag">Guide plan : dispersion</span>
+  $$k_cd - \arctan\tfrac{\asub}{k_c} - \arctan\tfrac{\asup}{k_c} = m\pi$$
+  <p>TM : $\alpha_i/k_c \to (n_c^2/n_i^2)\,\alpha_i/k_c$. Guidé si $\nsub \lt \neff \lt n_c$.</p>
+  <p class="small"><a href="guide-plan.html#s-1-2b">§ I.2 b</a></p></div>
+
+  <div class="box key"><span class="tag">Coupures</span>
+  $$d_{c,m} = \tfrac{\lambda\left[m\pi + \arctan\sqrt{a}\right]}{2\pi\sqrt{n_c^2 - \nsub^2}}$$
+  <p>Symétrique : $d_{c,0} = 0$. Monomode : $d_{c,0}(\lambda_2) \lt d \lt d_{c,1}(\lambda_1)$, pire cas sur les indices.</p>
+  <p class="small"><a href="guide-plan.html#s-1-2c">§ I.2 c</a></p></div>
+
+  <div class="box key"><span class="tag">Normalisation b-V</span>
+  $$V\sqrt{1-b} - \arctan\sqrt{\tfrac{b}{1-b}} - \arctan\sqrt{\tfrac{a+b}{1-b}} = p\pi$$
+  <p>$\neff^2 = \nsub^2 + b(n_g^2 - \nsub^2)$ ; coupure $V_{c,p} = p\pi + \arctan\sqrt a$.</p>
+  <p class="small"><a href="guide-plan.html#s-1-2f">§ I.2 f</a></p></div>
+
+  <div class="box key"><span class="tag">Puissance et confinement</span>
+  $$P_m = \tfrac{\beta_m}{2\omega\mu_0}\iint|E_y|^2,\quad d_{\text{eff}} = d + \tfrac{1}{\asub} + \tfrac{1}{\asup}$$
+  <p>$\Gamma$ = fraction de $|E|^2$ dans le cœur ; $\Gamma \to 0$ à la coupure.</p>
+  <p class="small"><a href="guide-plan.html#s-1-2d">§ I.2 d–e</a></p></div>
+
+  <div class="box key"><span class="tag">Méthode de l'indice effectif</span>
+  <p>$\psi = \varphi(x)\chi(y)$ ; tranches verticales → $\nslab(x)$, puis guide latéral symétrique → $\neff$. Commencer par la verticale (plus de contraste et d'asymétrie).</p>
+  <p>Quasi-TE : vertical en TE, latéral en TM. Quasi-TM : l'inverse.</p>
+  <p class="small"><a href="guide-canal-indice-effectif.html#s-1-3b">§ I.3 b</a></p></div>
+
+  <div class="box key"><span class="tag">Guidé ou rayonné</span>
+  <p>$\nsub \lt \neff \lt n_c$ : mode guidé, spectre discret.</p>
+  <p>$\neff \lt \nsub$ : mode rayonné, continuum. Modes guidés et rayonnés forment une base complète et orthogonale.</p>
+  <p class="small"><a href="proprietes-des-modes.html#s-1-4a">§ I.4 a–b</a></p></div>
+
+  <div class="box key"><span class="tag">Recouvrement</span>
+  $$\eta = \tfrac{\left|\iint\psi_{\text{exc}}\varphi_m^*\right|^2}{\iint|\psi_{\text{exc}}|^2\iint|\varphi_m|^2}$$
+  <p>$\eta \leqslant 1$, égalité si $\psi_{\text{exc}} \propto \varphi_m$.</p>
+  <p class="small"><a href="proprietes-des-modes.html#s-1-4c">§ I.4 c</a></p></div>
+
+  <div class="box key"><span class="tag">Coupleur directionnel</span>
+  $$L_c = \tfrac{\lambda}{2(n_e - n_o)},\quad P_2 = P_0\sin^2\tfrac{\pi z}{2L_c}$$
+  <p>Coupleur 3 dB : $L = L_c/2$, sorties déphasées de $\pi/2$.</p>
+  <p class="small"><a href="coupleur-directionnel.html#s-2-1c">§ II.1 c</a></p></div>
+
+  <div class="box key"><span class="tag">Mach-Zehnder</span>
+  $$P_{1,2} = \tfrac{P_0}{2}\left(1 \pm \sin\phi\right),\quad \phi = \tfrac{2\pi n\Delta L}{\lambda}$$
+  <p>Période spectrale $\Delta\lambda = \lambda^2/(n\Delta L)$.</p>
+  <p class="small"><a href="modulateur-electro-optique.html#s-td3-2">Problème, partie 2</a></p></div>
+
+  <div class="box key"><span class="tag">Modulateur à effet Pockels</span>
+  $$|\Delta n| = \tfrac12 n^3 r_{33}\tfrac{V}{g},\quad V_\pi = \tfrac{\lambda g}{n^3r_{33}L}$$
+  <p>$V_\pi$ baisse avec une électrode plus longue ou plus proche, au prix de la vitesse ou des pertes.</p>
+  <p class="small"><a href="modulateur-electro-optique.html#s-td3-3">Problème, partie 3</a></p></div>
+</div>
+
+<nav class="pager" aria-label="Pages voisines"><a class="prev" href="modulateur-electro-optique.html"><span class="pl">← Précédent</span><span class="pt">Modulateur électro-optique</span></a></nav>
+</div>
+</main>
+</div>
+<footer class="site-foot">
+  <span>Textes et figures sous licence <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr" rel="license">CC BY-NC-SA 4.0</a>. Aucun cookie, aucun traceur.</span>
+  <nav aria-label="Pied de page"><a href="../a-propos.html">À propos et mentions légales</a></nav>
+</footer>
+</body>
+</html>

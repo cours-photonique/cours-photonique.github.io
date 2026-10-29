@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Modes guidés et rayonnés, orthogonalité, injection · Photonique intégrée</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Modes guidés et modes rayonnés d&#x27;un guide d&#x27;onde, orthogonalité des modes, excitation par un faisceau extérieur et efficacité de couplage par intégrale de recouvrement, avec simulateur.">
+<meta property="og:title" content="Modes guidés et rayonnés, orthogonalité, injection · Photonique intégrée">
+<meta property="og:description" content="Modes guidés et modes rayonnés d&#x27;un guide d&#x27;onde, orthogonalité des modes, excitation par un faisceau extérieur et efficacité de couplage par intégrale de recouvrement, avec simulateur.">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Carnets scientifiques">
+<meta name="theme-color" content="#EFF2F4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E1317" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<link rel="preload" href="../assets/fonts/source-serif-4-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/fonts/polices.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+<script defer src="../assets/js/mathjax-config.js"></script>
+<script defer src="../assets/js/physique.js"></script>
+<script defer src="../assets/js/trace.js"></script>
+<script defer src="../assets/js/figures.js"></script>
+<script defer src="../assets/js/labos.js"></script>
+<script defer src="../assets/js/site.js"></script>
+<script defer id="MathJax-script" src="../assets/vendor/mathjax/tex-svg-full.js"></script>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<header class="topbar"><div class="topbar-in">
+  <a class="brand" href="../index.html"><svg viewBox="0 0 22 22" aria-hidden="true"><rect x="1" y="2.5" width="20" height="4.5" rx="1" style="fill:var(--rule)"/><rect x="1" y="8.75" width="20" height="4.5" rx="1" style="fill:var(--amber)"/><rect x="1" y="15" width="20" height="4.5" rx="1" style="fill:var(--ink)"/></svg>Carnets scientifiques</a>
+  <nav class="topnav" aria-label="Navigation du site">
+    <a href="../photonique-integree/index.html" aria-current="page">Photonique intégrée</a>
+    <a href="../photonique-integree/labos.html">Labos</a>
+    <a href="../photonique-integree/fiche.html">Fiche</a>
+    <a href="../a-propos.html">À propos</a>
+  </nav>
+  <button type="button" class="theme-btn" id="theme-toggle" aria-label="Changer de thème (automatique, clair, sombre)"><svg class="i-auto" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 2a6 6 0 0 1 0 12z" fill="currentColor"/></svg><svg class="i-sun" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3.2" fill="currentColor"/><g stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M8 1.2v1.6M8 13.2v1.6M1.2 8h1.6M13.2 8h1.6M3.2 3.2l1.1 1.1M11.7 11.7l1.1 1.1M3.2 12.8l1.1-1.1M11.7 4.3l1.1-1.1"/></g></svg><svg class="i-moon" viewBox="0 0 16 16" aria-hidden="true"><path d="M13.5 10.2A6 6 0 0 1 5.8 2.5a6 6 0 1 0 7.7 7.7z" fill="currentColor"/></svg><span>Thème : auto</span></button>
+</div></header>
+<div class="shell">
+<aside class="side" aria-label="Sommaire">
+  <p class="side-head"><a href="index.html">Photonique intégrée</a></p>
+  <ol class="course">
+    <li><a href="index.html"><span class="n">§</span><span>Sommaire du thème</span></a></li>
+    <li><a href="equations-propagation.html"><span class="n">1</span><span>Équations de propagation</span></a></li>
+    <li><a href="guide-plan.html"><span class="n">2</span><span>Le guide plan</span></a></li>
+    <li><a href="guide-canal-indice-effectif.html"><span class="n">3</span><span>Guide canal et indice effectif</span></a></li>
+    <li class="cur"><a href="proprietes-des-modes.html" aria-current="page"><span class="n">4</span><span>Propriétés des modes</span></a><ol class="toc" id="toc-list"></ol></li>
+    <li><a href="coupleur-directionnel.html"><span class="n">5</span><span>Le coupleur directionnel</span></a></li>
+    <li><a href="modulateur-electro-optique.html"><span class="n">6</span><span>Modulateur électro-optique</span></a></li>
+    <li class="sep" aria-hidden="true"></li>
+    <li><a href="fiche.html"><span class="n">Σ</span><span>Fiche de révision</span></a></li>
+    <li><a href="labos.html"><span class="n">L</span><span>Tous les labos</span></a></li>
+  </ol>
+</aside>
+<main id="contenu">
+<div class="col">
+<header class="hero">
+  <nav class="crumbs" aria-label="Fil d'Ariane"><a href="../index.html">Accueil</a><span aria-hidden="true">/</span><a href="index.html">Photonique intégrée</a><span aria-hidden="true">/</span><span>Propriétés des modes</span></nav>
+  <div class="eyebrow">Chapitre I · Guides d'onde · 4 / 6</div>
+  <h1>Propriétés des modes</h1>
+  <p class="lede">Ce qui se passe hors du régime guidé, pourquoi les modes ne se mélangent pas, et quelle fraction d'un faisceau extérieur entre réellement dans un guide.</p>
+  <div class="meta"><span>Guide plan : <b>x ⟂ couches</b></span><span>Propagation : <b>z</b></span><a href="index.html#notations">Notations</a></div>
+  <details class="toc-m"><summary>Dans cette page</summary><ol id="toc-list-m"></ol></details>
+</header>
+<div class="goals"><div><p class="gh">Objectifs</p><ul><li>Distinguer modes guidés et modes rayonnés à partir de la valeur de $\neff$.</li><li>Utiliser l'orthogonalité des modes pour décomposer un champ.</li><li>Calculer l'efficacité d'injection d'un faisceau par l'intégrale de recouvrement.</li></ul></div><div><p class="gh">Prérequis</p><ul><li><a href="guide-plan.html">Le guide plan</a> : profils des modes, puissance guidée.</li></ul></div></div>
+
+<h2 id="s-1-4a"><span class="num">I.4 a)</span>Modes guidés et modes rayonnés</h2>
+<p>Tant que $\nsub \lt \neff \lt n_c$, le champ est oscillant dans le cœur et évanescent des deux côtés : c'est un mode guidé. Si $\neff$ descend sous $\nsub$, le mode n'est plus confiné à l'interface avec le substrat : il y devient oscillant et l'énergie s'échappe. Le mode est <strong>rayonné</strong>.</p>
+<figure>
+  <div class="fig-scroll" id="fig-rad"></div>
+  <figcaption><b>FIG. 1</b>Trois régimes selon la position de $\neff$ (trait orange) par rapport au profil d'indice $n(x)$ (axe horizontal : x, normale aux couches). En haut : mode guidé. Au milieu : mode rayonné dans le substrat ($\nsup \lt \neff \lt \nsub$). En bas : mode rayonné des deux côtés ($\neff \lt \nsup \leqslant \nsub$).</figcaption>
+</figure>
+<p>Dans le cas $\neff \leqslant \nsup \leqslant \nsub$, la forme du mode devient oscillante partout :</p>
+$$E_y(x) = E_0\begin{cases}
+\Asup\cos\left(k_{\text{sup}}(x - d/2) + \psi_{\text{sup}}\right) & x \geqslant d/2\\
+A_c\cos\left(k_cx + \psi\right) & |x| \leqslant d/2\\
+\Asub\cos\left(k_{\text{sub}}(x + d/2) + \psi_{\text{sub}}\right) & x \leqslant -d/2
+\end{cases}
+\qquad k_i = \sqrt{k^2n_i^2 - \beta^2}$$
+<p>En $x = d/2$, la continuité de $E_y$ et de sa dérivée donne :</p>
+$$\begin{cases}
+A_c\cos\left(k_c\tfrac{d}{2} + \psi\right) = \Asup\cos\psi_{\text{sup}}\\
+-A_ck_c\sin\left(k_c\tfrac{d}{2} + \psi\right) = -\Asup k_{\text{sup}}\sin\psi_{\text{sup}}
+\end{cases}
+\quad\Longrightarrow\quad k_c\tan\left(k_c\frac{d}{2} + \psi\right) = k_{\text{sup}}\tan\psi_{\text{sup}}$$
+<p>Les phases $\psi_{\text{sup}}$ et $\psi_{\text{sub}}$ sont libres : on peut toujours satisfaire les conditions de passage, quel que soit $\beta$. On obtient un <strong>continuum de solutions</strong>. Les modes rayonnés se propagent librement dans le milieu, sans contrainte imposée par le guide.</p>
+<p>Question : peut-on écrire n'importe quel champ dans une base de modes guidés et rayonnés ? Oui, l'ensemble est complet :</p>
+$$\vE(x,y,z) = \sum_{\text{guidés}} C_m\,\vE_m(x,y)\,e^{-j\beta_mz} + \int_{\text{rayonnés}} r(\beta)\,\vE_{\beta}(x,y)\,e^{-j\beta z}\,\dd\beta$$
+<p>où $C_m$ et $r(\beta)$ sont des coefficients constants vis-à-vis de $z$, l'axe de propagation.</p>
+
+<h2 id="s-1-4b"><span class="num">I.4 b)</span>Orthogonalité des modes</h2>
+<p>Après un certain nombre d'intégrales (théorème de réciprocité de Lorentz), on montre que deux modes distincts sont orthogonaux. Avec une normalisation convenable :</p>
+$$\iint\left(\vE_m\times\vH_n^*\right)\cdot\vec{z}\;\dd S = \delta_{m,n}$$
+<p>Pour les guides à guidage faible, on peut utiliser l'approximation scalaire :</p>
+$$P_g = \frac{\beta}{2\omega\mu_0}\left[\iint E_m(x,y)\,E_n^*(x,y)\,\dd x\,\dd y\right]\delta_{m,n}$$
+<p>où $P_g$ est la puissance guidée. Conséquence pratique : la puissance totale est la somme des puissances de chaque mode, sans terme croisé.</p>
+
+<h2 id="s-1-4c"><span class="num">I.4 c)</span>Excitation des modes par une discontinuité</h2>
+<p>Un guide est excité par un champ $\psi_{\text{exc}}$ (faisceau d'une fibre, d'une lentille, d'un autre guide). Quelle part de son amplitude est couplée dans le mode guidé $\varphi_m$ ?</p>
+<figure>
+  <div class="fig-scroll" id="fig-exc"></div>
+  <figcaption><b>FIG. 2</b>La facette d'entrée est en $z = z_0$ (repère : x vertical, z propagation). Le champ incident se décompose sur les modes guidés et sur le continuum des modes rayonnés, qui emportent la puissance non couplée.</figcaption>
+</figure>
+<p>En $z = z_0$, la continuité du champ s'écrit :</p>
+$$\psi_{\text{exc}}(x,y) + \psi_{\text{ref}}(x,y) = \sum_{m=0}^{m_{\max}} C_m\,\varphi_m(x,y) + \int\text{modes rayonnés}$$
+<p>$\psi_{\text{ref}}$ est le champ réfléchi. Dans la plupart des cas $\psi_{\text{ref}} \ll \psi_{\text{exc}}$ et on le néglige. On multiplie par $\varphi_m^*$ et on intègre sur la section :</p>
+$$\iint\psi_{\text{exc}}\,\varphi_m^*\,\dd x\,\dd y = \sum_n C_n\underbrace{\iint\varphi_n\varphi_m^*\,\dd S}_{=\,0\ \text{si}\ n\,\neq\,m} + \underbrace{\iint\varphi_m^*\,(\text{rayonnés})\,\dd S}_{=\,0\ \text{(orthogonalité)}}$$
+$$\iint\psi_{\text{exc}}\,\varphi_m^*\,\dd x\,\dd y = C_m\iint|\varphi_m|^2\,\dd x\,\dd y \quad\Longrightarrow\quad C_m = \frac{\iint\psi_{\text{exc}}\,\varphi_m^*\,\dd x\,\dd y}{\iint|\varphi_m|^2\,\dd x\,\dd y}$$
+<p>$C_m$ est le <strong>coefficient de couplage en amplitude</strong> entre le mode $m$ et le champ d'excitation. Pour les puissances :</p>
+$$P_{\text{exc}} = \frac{\beta}{2\omega\mu_0}\iint|\psi_{\text{exc}}|^2\,\dd x\,\dd y \qquad P_{\varphi_m} = \frac{\beta}{2\omega\mu_0}\iint|C_m\varphi_m|^2\,\dd x\,\dd y$$
+<div class="box key">
+  <span class="tag">À retenir · efficacité de couplage (intégrale de recouvrement)</span>
+  $$\eta = \frac{P_{\varphi_m}}{P_{\text{exc}}} = \frac{\left|\iint\psi_{\text{exc}}\,\varphi_m^*\,\dd x\,\dd y\right|^2}{\iint|\psi_{\text{exc}}|^2\,\dd x\,\dd y\;\iint|\varphi_m|^2\,\dd x\,\dd y}$$
+  <p>$\eta$ donne la proportion du champ d'excitation qui devient un mode guidé. Par l'inégalité de Cauchy–Schwarz, $\eta \leqslant 1$ avec égalité seulement si $\psi_{\text{exc}} \propto \varphi_m$ : il faut adapter la forme du faisceau à celle du mode. Une excitation symétrique et centrée ne couple rien dans un mode impair ($\eta = 0$ par parité).</p>
+</div>
+
+<section class="lab mj-ignore" id="lab5">
+  <div class="lab-head"><span class="lab-id">Labo 5</span><span class="lab-name">Injection d'un faisceau gaussien</span></div>
+  <div class="lab-body" id="lab5-body"></div>
+</section>
+
+<h2 id="testez-vous">Testez-vous</h2>
+<p>Cherchez la réponse avant de déplier la question.</p>
+<div class="quiz">
+<details><summary>Un faisceau gaussien bien centré éclaire un guide symétrique bimode. Quelle fraction part dans le mode $m = 1$ ?</summary><div class="ans"><p>Aucune. Le mode 1 est impair et le faisceau centré est pair : leur intégrale de recouvrement est nulle. Décentrer le faisceau (labo 5) permet d'exciter ce mode.</p></div></details>
+<details><summary>Pourquoi l'efficacité de couplage $\eta$ ne peut-elle jamais dépasser 1 ?</summary><div class="ans"><p>C'est l'inégalité de Cauchy–Schwarz appliquée à l'intégrale de recouvrement. L'égalité $\eta = 1$ n'est atteinte que si le champ d'excitation a exactement la forme du mode.</p></div></details>
+<details><summary>Que devient un champ dont l'indice effectif est compris entre $\nsup$ et $\nsub$ ?</summary><div class="ans"><p>Il reste évanescent côté superstrat, mais devient oscillant dans le substrat : son énergie s'y échappe. C'est un mode rayonné dans le substrat, et ces modes forment un continuum.</p></div></details>
+<details><summary>Pourquoi la puissance totale d'un champ est-elle la somme des puissances de chacun de ses modes ?</summary><div class="ans"><p>Parce que les modes sont orthogonaux : dans le calcul de la puissance, les termes croisés entre deux modes différents s'annulent.</p></div></details>
+</div>
+<nav class="pager" aria-label="Pages voisines"><a class="prev" href="guide-canal-indice-effectif.html"><span class="pl">← Précédent</span><span class="pt">Guide canal et indice effectif</span></a><a class="next" href="coupleur-directionnel.html"><span class="pl">Suivant →</span><span class="pt">Le coupleur directionnel</span></a></nav>
+</div>
+</main>
+</div>
+<footer class="site-foot">
+  <span>Textes et figures sous licence <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr" rel="license">CC BY-NC-SA 4.0</a>. Aucun cookie, aucun traceur.</span>
+  <nav aria-label="Pied de page"><a href="../a-propos.html">À propos et mentions légales</a></nav>
+</footer>
+</body>
+</html>

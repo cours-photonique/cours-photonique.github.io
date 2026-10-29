@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Labos de photonique intégrée · simulateurs en ligne</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Sept simulateurs de photonique intégrée dans le navigateur : solveur de modes d&#x27;un guide plan, fenêtre monomode, abaque b-V, méthode de l&#x27;indice effectif, injection gaussienne, coupleur directionnel, Mach-Zehnder.">
+<meta property="og:title" content="Labos de photonique intégrée · simulateurs en ligne">
+<meta property="og:description" content="Sept simulateurs de photonique intégrée dans le navigateur : solveur de modes d&#x27;un guide plan, fenêtre monomode, abaque b-V, méthode de l&#x27;indice effectif, injection gaussienne, coupleur directionnel, Mach-Zehnder.">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Carnets scientifiques">
+<meta name="theme-color" content="#EFF2F4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E1317" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<link rel="preload" href="../assets/fonts/source-serif-4-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/fonts/polices.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+<script defer src="../assets/js/physique.js"></script>
+<script defer src="../assets/js/trace.js"></script>
+<script defer src="../assets/js/figures.js"></script>
+<script defer src="../assets/js/labos.js"></script>
+<script defer src="../assets/js/site.js"></script>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<header class="topbar"><div class="topbar-in">
+  <a class="brand" href="../index.html"><svg viewBox="0 0 22 22" aria-hidden="true"><rect x="1" y="2.5" width="20" height="4.5" rx="1" style="fill:var(--rule)"/><rect x="1" y="8.75" width="20" height="4.5" rx="1" style="fill:var(--amber)"/><rect x="1" y="15" width="20" height="4.5" rx="1" style="fill:var(--ink)"/></svg>Carnets scientifiques</a>
+  <nav class="topnav" aria-label="Navigation du site">
+    <a href="../photonique-integree/index.html">Photonique intégrée</a>
+    <a href="../photonique-integree/labos.html" aria-current="page">Labos</a>
+    <a href="../photonique-integree/fiche.html">Fiche</a>
+    <a href="../a-propos.html">À propos</a>
+  </nav>
+  <button type="button" class="theme-btn" id="theme-toggle" aria-label="Changer de thème (automatique, clair, sombre)"><svg class="i-auto" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 2a6 6 0 0 1 0 12z" fill="currentColor"/></svg><svg class="i-sun" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3.2" fill="currentColor"/><g stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M8 1.2v1.6M8 13.2v1.6M1.2 8h1.6M13.2 8h1.6M3.2 3.2l1.1 1.1M11.7 11.7l1.1 1.1M3.2 12.8l1.1-1.1M11.7 4.3l1.1-1.1"/></g></svg><svg class="i-moon" viewBox="0 0 16 16" aria-hidden="true"><path d="M13.5 10.2A6 6 0 0 1 5.8 2.5a6 6 0 1 0 7.7 7.7z" fill="currentColor"/></svg><span>Thème : auto</span></button>
+</div></header>
+<div class="shell">
+<aside class="side" aria-label="Sommaire">
+  <p class="side-head"><a href="index.html">Photonique intégrée</a></p>
+  <ol class="course">
+    <li><a href="index.html"><span class="n">§</span><span>Sommaire du thème</span></a></li>
+    <li><a href="equations-propagation.html"><span class="n">1</span><span>Équations de propagation</span></a></li>
+    <li><a href="guide-plan.html"><span class="n">2</span><span>Le guide plan</span></a></li>
+    <li><a href="guide-canal-indice-effectif.html"><span class="n">3</span><span>Guide canal et indice effectif</span></a></li>
+    <li><a href="proprietes-des-modes.html"><span class="n">4</span><span>Propriétés des modes</span></a></li>
+    <li><a href="coupleur-directionnel.html"><span class="n">5</span><span>Le coupleur directionnel</span></a></li>
+    <li><a href="modulateur-electro-optique.html"><span class="n">6</span><span>Modulateur électro-optique</span></a></li>
+    <li class="sep" aria-hidden="true"></li>
+    <li><a href="fiche.html"><span class="n">Σ</span><span>Fiche de révision</span></a></li>
+    <li class="cur"><a href="labos.html" aria-current="page"><span class="n">L</span><span>Tous les labos</span></a><ol class="toc" id="toc-list"></ol></li>
+  </ol>
+</aside>
+<main id="contenu">
+<div class="col">
+<header class="hero">
+  <nav class="crumbs" aria-label="Fil d'Ariane"><a href="../index.html">Accueil</a><span aria-hidden="true">/</span><a href="index.html">Photonique intégrée</a><span aria-hidden="true">/</span><span>Tous les labos</span></nav>
+  <div class="eyebrow">Simulateurs</div>
+  <h1>Les labos</h1>
+  <p class="lede">Les sept simulateurs du cours réunis sur une page. Ils calculent en direct, dans votre navigateur, avec les mêmes solveurs que les corrections d'exercices.</p>
+  
+  <details class="toc-m"><summary>Dans cette page</summary><ol id="toc-list-m"></ol></details>
+</header>
+<div class="lab-index">
+  <a href="#lab1"><span class="li-n">Labo 1</span><span class="li-t">Solveur de modes du guide plan</span><span class="li-d">Modes TE et TM d'un guide à trois couches : indices effectifs, profils, confinement, épaisseur effective.</span></a>
+  <a href="#lab2"><span class="li-n">Labo 2</span><span class="li-t">Fenêtre monomode et tolérances</span><span class="li-d">Épaisseur qui garantit un seul mode sur une gamme de longueurs d'onde, malgré les incertitudes de fabrication.</span></a>
+  <a href="#lab3"><span class="li-n">Labo 3</span><span class="li-t">Abaque b-V interactif</span><span class="li-d">Lecture automatique de b et de l'indice effectif pour n'importe quel guide plan.</span></a>
+  <a href="#lab4"><span class="li-n">Labo 4</span><span class="li-t">Méthode de l'indice effectif</span><span class="li-d">Modes d'un guide en arête, en ruban ou diffusé, avec leurs cartes de champ.</span></a>
+  <a href="#lab5"><span class="li-n">Labo 5</span><span class="li-t">Injection d'un faisceau gaussien</span><span class="li-d">Efficacité de couplage d'un faisceau vers chaque mode, et taille de faisceau optimale.</span></a>
+  <a href="#lab6"><span class="li-n">Labo 6</span><span class="li-t">Coupleur directionnel</span><span class="li-d">Supermodes, longueur de couplage et échange de puissance entre deux guides.</span></a>
+  <a href="#lab7"><span class="li-n">Labo 7</span><span class="li-t">Mach-Zehnder et modulateur</span><span class="li-d">Réponse spectrale et réponse en tension, tension demi-onde et tension de polarisation.</span></a>
+</div>
+
+<p class="lab-ctx">Théorie : <a href="guide-plan.html#s-1-2b">§ I.2 b · Mode guidé et indice effectif</a></p>
+<section class="lab mj-ignore" id="lab1">
+  <div class="lab-head"><span class="lab-id">Labo 1</span><span class="lab-name">Solveur de modes du guide plan</span></div>
+  <div class="lab-body" id="lab1-body"></div>
+</section>
+
+<p class="lab-ctx">Théorie : <a href="guide-plan.html#s-1-2c">§ I.2 c · Épaisseur de coupure</a></p>
+<section class="lab mj-ignore" id="lab2">
+  <div class="lab-head"><span class="lab-id">Labo 2</span><span class="lab-name">Fenêtre monomode et tolérances</span></div>
+  <div class="lab-body" id="lab2-body"></div>
+</section>
+
+<p class="lab-ctx">Théorie : <a href="guide-plan.html#s-1-2f">§ I.2 f · Diagrammes b-V</a></p>
+<section class="lab mj-ignore" id="lab3">
+  <div class="lab-head"><span class="lab-id">Labo 3</span><span class="lab-name">Abaque b-V interactif</span></div>
+  <div class="lab-body" id="lab3-body"></div>
+</section>
+
+<p class="lab-ctx">Théorie : <a href="guide-canal-indice-effectif.html#s-1-3b">§ I.3 b · Méthode de l'indice effectif</a></p>
+<section class="lab mj-ignore" id="lab4">
+  <div class="lab-head"><span class="lab-id">Labo 4</span><span class="lab-name">Méthode de l'indice effectif</span></div>
+  <div class="lab-body" id="lab4-body"></div>
+</section>
+
+<p class="lab-ctx">Théorie : <a href="proprietes-des-modes.html#s-1-4c">§ I.4 c · Excitation des modes</a></p>
+<section class="lab mj-ignore" id="lab5">
+  <div class="lab-head"><span class="lab-id">Labo 5</span><span class="lab-name">Injection d'un faisceau gaussien</span></div>
+  <div class="lab-body" id="lab5-body"></div>
+</section>
+
+<p class="lab-ctx">Théorie : <a href="coupleur-directionnel.html#s-2-1c">§ II.1 c · Longueur de couplage</a></p>
+<section class="lab mj-ignore" id="lab6">
+  <div class="lab-head"><span class="lab-id">Labo 6</span><span class="lab-name">Coupleur directionnel</span></div>
+  <div class="lab-body" id="lab6-body"></div>
+</section>
+
+<p class="lab-ctx">Théorie : <a href="modulateur-electro-optique.html#s-td3-2">Problème du modulateur, parties 2 et 3</a></p>
+<section class="lab mj-ignore" id="lab7">
+  <div class="lab-head"><span class="lab-id">Labo 7</span><span class="lab-name">Mach-Zehnder et modulateur</span></div>
+  <div class="lab-body" id="lab7-body"></div>
+</section>
+
+</div>
+</main>
+</div>
+<footer class="site-foot">
+  <span>Textes et figures sous licence <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr" rel="license">CC BY-NC-SA 4.0</a>. Aucun cookie, aucun traceur.</span>
+  <nav aria-label="Pied de page"><a href="../a-propos.html">À propos et mentions légales</a></nav>
+</footer>
+</body>
+</html>

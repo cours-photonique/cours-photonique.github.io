@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Équations de propagation dans un guide d&#x27;onde · Photonique intégrée</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Des équations de Maxwell au problème aux valeurs propres des modes guidés : équations d&#x27;onde en milieu inhomogène, invariance selon z, constante de propagation β. Démonstrations détaillées.">
+<meta property="og:title" content="Équations de propagation dans un guide d&#x27;onde · Photonique intégrée">
+<meta property="og:description" content="Des équations de Maxwell au problème aux valeurs propres des modes guidés : équations d&#x27;onde en milieu inhomogène, invariance selon z, constante de propagation β. Démonstrations détaillées.">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Carnets scientifiques">
+<meta name="theme-color" content="#EFF2F4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E1317" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<link rel="preload" href="../assets/fonts/source-serif-4-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/fonts/polices.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+<script defer src="../assets/js/mathjax-config.js"></script>
+<script defer src="../assets/js/physique.js"></script>
+<script defer src="../assets/js/trace.js"></script>
+<script defer src="../assets/js/figures.js"></script>
+<script defer src="../assets/js/labos.js"></script>
+<script defer src="../assets/js/site.js"></script>
+<script defer id="MathJax-script" src="../assets/vendor/mathjax/tex-svg-full.js"></script>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<header class="topbar"><div class="topbar-in">
+  <a class="brand" href="../index.html"><svg viewBox="0 0 22 22" aria-hidden="true"><rect x="1" y="2.5" width="20" height="4.5" rx="1" style="fill:var(--rule)"/><rect x="1" y="8.75" width="20" height="4.5" rx="1" style="fill:var(--amber)"/><rect x="1" y="15" width="20" height="4.5" rx="1" style="fill:var(--ink)"/></svg>Carnets scientifiques</a>
+  <nav class="topnav" aria-label="Navigation du site">
+    <a href="../photonique-integree/index.html" aria-current="page">Photonique intégrée</a>
+    <a href="../photonique-integree/labos.html">Labos</a>
+    <a href="../photonique-integree/fiche.html">Fiche</a>
+    <a href="../a-propos.html">À propos</a>
+  </nav>
+  <button type="button" class="theme-btn" id="theme-toggle" aria-label="Changer de thème (automatique, clair, sombre)"><svg class="i-auto" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 2a6 6 0 0 1 0 12z" fill="currentColor"/></svg><svg class="i-sun" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3.2" fill="currentColor"/><g stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M8 1.2v1.6M8 13.2v1.6M1.2 8h1.6M13.2 8h1.6M3.2 3.2l1.1 1.1M11.7 11.7l1.1 1.1M3.2 12.8l1.1-1.1M11.7 4.3l1.1-1.1"/></g></svg><svg class="i-moon" viewBox="0 0 16 16" aria-hidden="true"><path d="M13.5 10.2A6 6 0 0 1 5.8 2.5a6 6 0 1 0 7.7 7.7z" fill="currentColor"/></svg><span>Thème : auto</span></button>
+</div></header>
+<div class="shell">
+<aside class="side" aria-label="Sommaire">
+  <p class="side-head"><a href="index.html">Photonique intégrée</a></p>
+  <ol class="course">
+    <li><a href="index.html"><span class="n">§</span><span>Sommaire du thème</span></a></li>
+    <li class="cur"><a href="equations-propagation.html" aria-current="page"><span class="n">1</span><span>Équations de propagation</span></a><ol class="toc" id="toc-list"></ol></li>
+    <li><a href="guide-plan.html"><span class="n">2</span><span>Le guide plan</span></a></li>
+    <li><a href="guide-canal-indice-effectif.html"><span class="n">3</span><span>Guide canal et indice effectif</span></a></li>
+    <li><a href="proprietes-des-modes.html"><span class="n">4</span><span>Propriétés des modes</span></a></li>
+    <li><a href="coupleur-directionnel.html"><span class="n">5</span><span>Le coupleur directionnel</span></a></li>
+    <li><a href="modulateur-electro-optique.html"><span class="n">6</span><span>Modulateur électro-optique</span></a></li>
+    <li class="sep" aria-hidden="true"></li>
+    <li><a href="fiche.html"><span class="n">Σ</span><span>Fiche de révision</span></a></li>
+    <li><a href="labos.html"><span class="n">L</span><span>Tous les labos</span></a></li>
+  </ol>
+</aside>
+<main id="contenu">
+<div class="col">
+<header class="hero">
+  <nav class="crumbs" aria-label="Fil d'Ariane"><a href="../index.html">Accueil</a><span aria-hidden="true">/</span><a href="index.html">Photonique intégrée</a><span aria-hidden="true">/</span><span>Équations de propagation</span></nav>
+  <div class="eyebrow">Chapitre I · Guides d'onde · 1 / 6</div>
+  <h1>Équations de propagation dans les guides</h1>
+  <p class="lede">D'où viennent les modes d'un guide d'onde. On part des équations de Maxwell dans un milieu d'indice variable et on arrive à un problème aux valeurs propres : le profil du mode est un vecteur propre, sa constante de propagation une valeur propre.</p>
+  <div class="meta"><span>Convention temporelle <b>e<sup>j(ωt−βz)</sup></b></span><span>Propagation : <b>z</b></span><a href="index.html#notations">Notations</a></div>
+  <details class="toc-m"><summary>Dans cette page</summary><ol id="toc-list-m"></ol></details>
+</header>
+<div class="goals"><div><p class="gh">Objectifs</p><ul><li>Écrire les équations de Maxwell en régime harmonique dans un diélectrique sans source.</li><li>Établir les équations d'onde dans un milieu d'indice variable.</li><li>Expliquer pourquoi un guide invariant selon $z$ impose des champs en $e^{-j\beta z}$.</li><li>Formuler la recherche des modes comme un problème aux valeurs propres.</li></ul></div><div><p class="gh">Prérequis</p><ul><li>Équations de Maxwell et opérateurs vectoriels (rotationnel, divergence, laplacien).</li><li>Notation complexe des ondes monochromatiques.</li></ul></div></div>
+
+<h2 id="s-1-1a"><span class="num">I.1 a)</span>Équations de Maxwell dans un milieu non magnétique, sans source et sans courant</h2>
+<p>Le milieu est diélectrique, linéaire et isotrope : $\vD = \varepsilon_0 n^2 \vE$ et $\vB = \mu_0 \vH$ (non magnétique, $\mu = \mu_0$). Il n'y a ni charges libres ($\rho = 0$) ni courants ($\vec{j} = \vec 0$). L'indice $n$ peut varier dans l'espace : c'est précisément cette variation qui guide la lumière.</p>
+$$\nabla\times\vH = \frac{\partial \vD}{\partial t} \qquad \nabla\times\vE = -\mu_0\frac{\partial \vH}{\partial t} \qquad \nabla\cdot\vD = 0 = \nabla\cdot\left(\varepsilon_0 n^2\vE\right) \qquad \nabla\cdot\vB = 0$$
+
+<div class="box intu">
+  <span class="tag">Intuition du rotationnel</span>
+  <p>Quand on pousse un objet sur le côté, il se met à tourner. De même, un courant (ou un $\vD$ qui varie) fait « tourner » un champ $\vH$ autour de lui, et un $\vH$ qui varie fait circuler un champ $\vE$ autour de lui. Les deux équations rotationnelles décrivent cet échange permanent entre $\vE$ et $\vH$ qui constitue l'onde.</p>
+</div>
+<figure>
+  <div class="fig-scroll" id="fig-curl"></div>
+  <figcaption><b>FIG. 1</b>À gauche, Ampère–Maxwell : une variation de $\vD$ selon z crée un $\vH$ qui circule autour. À droite, Faraday : une variation de $\vH$ selon z crée un $\vE$ qui circule en sens inverse (signe −, loi de Lenz).</figcaption>
+</figure>
+
+<h3>Régime harmonique</h3>
+<p>On cherche des solutions monochromatiques à la pulsation $\omega$ :</p>
+$$\vE(x,y,z,t) = \vE(x,y,z)\,e^{j\omega t} \qquad \vH(x,y,z,t) = \vH(x,y,z)\,e^{j\omega t}$$
+<p>La dérivée temporelle devient une multiplication par $j\omega$ et le système s'écrit :</p>
+$$\boxed{\;\nabla\times\vH = j\omega\varepsilon_0 n^2\,\vE \qquad \nabla\times\vE = -j\omega\mu_0\,\vH \qquad \nabla\cdot\left(n^2\vE\right) = 0 \qquad \nabla\cdot\vH = 0\;}$$
+
+<h2 id="s-1-1b"><span class="num">I.1 b)</span>Équations d'onde dans un milieu inhomogène</h2>
+<h3>Pour le champ $\vE$</h3>
+<p>On prend le rotationnel de l'équation de Faraday et on utilise l'identité $\nabla\times\nabla\times\vE = \nabla(\nabla\cdot\vE) - \nabla^2\vE$ :</p>
+$$\nabla\times\left(-j\omega\mu_0\vH\right) = \nabla(\nabla\cdot\vE) - \nabla^2\vE$$
+$$\Longleftrightarrow\quad -j\omega\mu_0\left(j\omega\varepsilon_0 n^2\vE\right) = \omega^2\mu_0\varepsilon_0 n^2\,\vE = \nabla(\nabla\cdot\vE) - \nabla^2\vE$$
+$$\Longleftrightarrow\quad \nabla(\nabla\cdot\vE) = \nabla^2\vE + \omega^2\mu_0\varepsilon_0 n^2\,\vE$$
+<p>Dans un milieu inhomogène, $\nabla\cdot\vE$ n'est <em>pas</em> nul. On l'obtient à partir de $\nabla\cdot(n^2\vE) = 0$ :</p>
+$$\nabla\cdot(n^2\vE) = \nabla n^2\cdot\vE + n^2\,\nabla\cdot\vE = 0 \quad\Longrightarrow\quad \nabla\cdot\vE = -\frac{1}{n^2}\,\nabla n^2\cdot\vE$$
+<p>En réinjectant :</p>
+$$\nabla^2\vE + \omega^2\mu_0\varepsilon_0 n^2\,\vE = -\nabla\left(\frac{\nabla n^2}{n^2}\cdot\vE\right)$$
+
+<h3>Pour le champ $\vH$</h3>
+<p>Même démarche à partir d'Ampère–Maxwell, avec cette fois $\nabla\cdot\vH = 0$ :</p>
+$$\nabla\times\nabla\times\vH = \underbrace{\nabla(\nabla\cdot\vH)}_{=\,0} - \nabla^2\vH \quad\Longleftrightarrow\quad \nabla\times\left(j\varepsilon_0\omega n^2\vE\right) = -\nabla^2\vH$$
+<p>Le rotationnel d'un produit donne $\nabla\times(n^2\vE) = \nabla n^2\times\vE + n^2\,\nabla\times\vE$ :</p>
+$$j\varepsilon_0\omega\left(\nabla n^2\times\vE + n^2\,\nabla\times\vE\right) = -\nabla^2\vH$$
+$$\Longleftrightarrow\quad j\varepsilon_0\omega\,\nabla n^2\times\vE + j\varepsilon_0\omega n^2\left(-j\omega\mu_0\vH\right) = -\nabla^2\vH$$
+$$\Longleftrightarrow\quad \nabla^2\vH + \omega^2\mu_0\varepsilon_0 n^2\,\vH = -j\varepsilon_0\omega\left(\nabla n^2\times\vE\right)$$
+<p>On élimine $\vE$ grâce à $\vE = \dfrac{1}{j\varepsilon_0 n^2\omega}\,\nabla\times\vH$ :</p>
+$$-j\varepsilon_0\omega\,\nabla n^2\times\frac{\nabla\times\vH}{j\varepsilon_0 n^2\omega} = -\frac{\nabla n^2}{n^2}\times\left(\nabla\times\vH\right) = \left(\nabla\times\vH\right)\times\frac{\nabla n^2}{n^2}$$
+
+<h3>Forme finale</h3>
+<p>Avec $\varepsilon_0\mu_0 = 1/c^2$, on a $\varepsilon_0\mu_0\omega^2 = \omega^2/c^2 = k^2$, où $k = 2\pi/\lambda = \omega/c$ est la norme du vecteur d'onde dans le vide.</p>
+<div class="box key">
+  <span class="tag">À retenir · équations d'onde en milieu inhomogène</span>
+  $$\nabla^2\vE + k^2n^2\,\vE = -\nabla\left(\vE\cdot\frac{\nabla n^2}{n^2}\right) \qquad\qquad \nabla^2\vH + k^2n^2\,\vH = \left(\nabla\times\vH\right)\times\frac{\nabla n^2}{n^2}$$
+  <p>Les seconds membres n'existent que là où l'indice varie ($\nabla n^2 \neq \vec 0$). Ils couplent entre elles les composantes du champ. Dans une région d'indice uniforme ils s'annulent et on retrouve l'équation de Helmholtz $\nabla^2\psi + k^2n^2\psi = 0$ pour chaque composante.</p>
+</div>
+
+<h2 id="s-1-1c"><span class="num">I.1 c)</span>Définition d'un guide d'onde et conséquences</h2>
+<p>Un guide d'onde est une structure d'indice <strong>invariante selon un axe</strong>. Par convention cet axe est $z$ et on l'appelle l'axe de propagation :</p>
+$$\frac{\partial n^2}{\partial z} = \frac{\partial n}{\partial z} = 0$$
+<p>Le guide étant infini selon $z$, on peut séparer les variables : $\vE(x,y,z) = \vE(x,y)\,f(z)$. La fonction $f$ est la même partout parce que la physique en $z_1$ est identique à la physique en $z_2$. Quelle forme a $f(z)$ ?</p>
+<ul>
+  <li>la lumière se propage, donc quelque chose change avec $z$ : $f(z) \neq$ constante ;</li>
+  <li>on attend un déphasage dû à la propagation, sans gain ni perte : $f(z) = e^{-j\varphi(z)}$ avec $|f| = 1$ ;</li>
+  <li>la dépendance la plus simple vis-à-vis de la distance est linéaire : $\varphi(z) = \beta z$.</li>
+</ul>
+<p>L'onde est simplement <em>retardée</em> en avançant de $z_1$ à $z_2$ : on observe la même physique, la même information arrive avec un retard de phase $\beta(z_2 - z_1)$.</p>
+<figure>
+  <div class="fig-scroll" id="fig-inv"></div>
+  <figcaption><b>FIG. 2</b>Guide invariant selon z. Le profil transverse $\vE(x,y)$ est le même dans tous les plans de section ; seule la phase tourne, de $\beta(z_2-z_1)$ entre $z_1$ et $z_2$.</figcaption>
+</figure>
+<p>On cherche donc des champs de la forme :</p>
+$$\vE(x,y,z,t) = \vE(x,y)\,e^{j(\omega t - \beta z)} \qquad \vH(x,y,z,t) = \vH(x,y)\,e^{j(\omega t - \beta z)}$$
+<p>$\beta$ est la <strong>constante de propagation</strong>. Comme $\partial^2/\partial z^2 \to -\beta^2$, le laplacien devient :</p>
+$$\nabla^2\vE = \frac{\partial^2\vE}{\partial x^2} + \frac{\partial^2\vE}{\partial y^2} - \beta^2\vE = \nabla_T^2\vE - \beta^2\vE \qquad \text{avec}\quad \nabla_T^2 = \frac{\partial^2}{\partial x^2} + \frac{\partial^2}{\partial y^2}\ \text{(laplacien transverse)}$$
+<p>Les équations d'onde deviennent des équations sur le seul plan transverse :</p>
+$$\nabla_T^2\vE + \left(k^2n^2 - \beta^2\right)\vE = -\nabla\left(\vE\cdot\frac{\nabla n^2}{n^2}\right) \qquad \nabla_T^2\vH + \left(k^2n^2 - \beta^2\right)\vH = \left(\nabla\times\vH\right)\times\frac{\nabla n^2}{n^2}$$
+<p>En réarrangeant la première :</p>
+$$\underbrace{\nabla_T^2\vE + k^2n^2\,\vE + \nabla\left(\vE\cdot\frac{\nabla n^2}{n^2}\right)}_{\mathcal{L}\,[\vE]} = \beta^2\,\vE$$
+<div class="box key">
+  <span class="tag">À retenir · problème aux valeurs propres</span>
+  <p>Trouver les modes d'un guide revient à résoudre $\mathcal{L}[\vE] = \beta^2\vE$ : le profil transverse $\vE(x,y)$ est un <strong>vecteur propre</strong> de l'opérateur $\mathcal{L}$ et $\beta^2$ la <strong>valeur propre</strong> associée. Le champ cherche un équilibre avec le « potentiel » créé par $n(x,y)$.</p>
+</div>
+<div class="box intu">
+  <span class="tag">Analogie avec la mécanique quantique</span>
+  <p>L'équation scalaire $\nabla_T^2\psi + k^2n^2\psi = \beta^2\psi$ a la forme d'une équation de Schrödinger stationnaire où $-k^2n^2(x,y)$ joue le rôle du potentiel et $-\beta^2$ celui de l'énergie. Le cœur d'indice élevé est un <em>puits de potentiel</em> : les modes guidés sont les états liés (spectre discret), les modes rayonnés sont les états de diffusion (spectre continu, <a href="proprietes-des-modes.html#s-1-4a">§ I.4</a>).</p>
+</div>
+
+<h2 id="testez-vous">Testez-vous</h2>
+<p>Cherchez la réponse avant de déplier la question.</p>
+<div class="quiz">
+<details><summary>Dans un guide à saut d'indice, pourquoi les seconds membres des équations d'onde disparaissent-ils à l'intérieur de chaque couche ?</summary><div class="ans"><p>Ils contiennent $\nabla n^2$, qui est nul là où l'indice est uniforme. Ces termes n'agissent qu'aux interfaces. En pratique, on résout donc l'équation de Helmholtz dans chaque couche, puis on raccorde les solutions avec les conditions de passage.</p></div></details>
+<details><summary>Pourquoi cherche-t-on des champs en $e^{-j\beta z}$ et pas une autre fonction de $z$ ?</summary><div class="ans"><p>Le guide est invariant par translation selon $z$ : décaler l'observation d'une longueur $a$ ne change pas la physique, donc le champ est seulement multiplié par une constante, $f(z + a) = c(a)\,f(z)$. Les seules solutions continues de cette relation sont des exponentielles. Sans gain ni perte, le module reste constant, d'où $f(z) = e^{-j\beta z}$ avec $\beta$ réel.</p></div></details>
+<details><summary>Dans $\mathcal{L}[\vE] = \beta^2\vE$, que représentent le profil $\vE(x,y)$ et $\beta^2$ ?</summary><div class="ans"><p>Le profil transverse est un vecteur propre de l'opérateur $\mathcal{L}$, et $\beta^2$ la valeur propre associée. Pour les modes guidés, seules certaines valeurs de $\beta$ conviennent : le spectre est discret. On en déduit l'indice effectif $\neff = \beta/k$.</p></div></details>
+<details><summary>Dans l'analogie avec la mécanique quantique, à quoi correspond un mode guidé ?</summary><div class="ans"><p>À un état lié dans le puits de potentiel formé par le cœur d'indice élevé. Comme les états liés, les modes guidés forment un ensemble discret ; les modes rayonnés jouent le rôle des états de diffusion, qui forment un continuum.</p></div></details>
+</div>
+<nav class="pager" aria-label="Pages voisines"><a class="prev" href="index.html"><span class="pl">← Précédent</span><span class="pt">Sommaire du thème</span></a><a class="next" href="guide-plan.html"><span class="pl">Suivant →</span><span class="pt">Le guide plan</span></a></nav>
+</div>
+</main>
+</div>
+<footer class="site-foot">
+  <span>Textes et figures sous licence <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr" rel="license">CC BY-NC-SA 4.0</a>. Aucun cookie, aucun traceur.</span>
+  <nav aria-label="Pied de page"><a href="../a-propos.html">À propos et mentions légales</a></nav>
+</footer>
+</body>
+</html>

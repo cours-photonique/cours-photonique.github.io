@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Photonique intégrée · cours, exercices corrigés et labos</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Cours complet de photonique intégrée en français : guides d&#x27;onde plan et canal, méthode de l&#x27;indice effectif, coupleur directionnel, modulateur électro-optique. Démonstrations détaillées, exercices corrigés, simulateurs.">
+<meta property="og:title" content="Photonique intégrée · cours, exercices corrigés et labos">
+<meta property="og:description" content="Cours complet de photonique intégrée en français : guides d&#x27;onde plan et canal, méthode de l&#x27;indice effectif, coupleur directionnel, modulateur électro-optique. Démonstrations détaillées, exercices corrigés, simulateurs.">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Carnets scientifiques">
+<meta name="theme-color" content="#EFF2F4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E1317" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<link rel="preload" href="../assets/fonts/source-serif-4-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/fonts/polices.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+<script defer src="../assets/js/mathjax-config.js"></script>
+<script defer src="../assets/js/physique.js"></script>
+<script defer src="../assets/js/trace.js"></script>
+<script defer src="../assets/js/figures.js"></script>
+<script defer src="../assets/js/labos.js"></script>
+<script defer src="../assets/js/site.js"></script>
+<script defer id="MathJax-script" src="../assets/vendor/mathjax/tex-svg-full.js"></script>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<header class="topbar"><div class="topbar-in">
+  <a class="brand" href="../index.html"><svg viewBox="0 0 22 22" aria-hidden="true"><rect x="1" y="2.5" width="20" height="4.5" rx="1" style="fill:var(--rule)"/><rect x="1" y="8.75" width="20" height="4.5" rx="1" style="fill:var(--amber)"/><rect x="1" y="15" width="20" height="4.5" rx="1" style="fill:var(--ink)"/></svg>Carnets scientifiques</a>
+  <nav class="topnav" aria-label="Navigation du site">
+    <a href="../photonique-integree/index.html" aria-current="page">Photonique intégrée</a>
+    <a href="../photonique-integree/labos.html">Labos</a>
+    <a href="../photonique-integree/fiche.html">Fiche</a>
+    <a href="../a-propos.html">À propos</a>
+  </nav>
+  <button type="button" class="theme-btn" id="theme-toggle" aria-label="Changer de thème (automatique, clair, sombre)"><svg class="i-auto" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 2a6 6 0 0 1 0 12z" fill="currentColor"/></svg><svg class="i-sun" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3.2" fill="currentColor"/><g stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M8 1.2v1.6M8 13.2v1.6M1.2 8h1.6M13.2 8h1.6M3.2 3.2l1.1 1.1M11.7 11.7l1.1 1.1M3.2 12.8l1.1-1.1M11.7 4.3l1.1-1.1"/></g></svg><svg class="i-moon" viewBox="0 0 16 16" aria-hidden="true"><path d="M13.5 10.2A6 6 0 0 1 5.8 2.5a6 6 0 1 0 7.7 7.7z" fill="currentColor"/></svg><span>Thème : auto</span></button>
+</div></header>
+<div class="shell">
+<aside class="side" aria-label="Sommaire">
+  <p class="side-head"><a href="index.html">Photonique intégrée</a></p>
+  <ol class="course">
+    <li class="cur"><a href="index.html" aria-current="page"><span class="n">§</span><span>Sommaire du thème</span></a><ol class="toc" id="toc-list"></ol></li>
+    <li><a href="equations-propagation.html"><span class="n">1</span><span>Équations de propagation</span></a></li>
+    <li><a href="guide-plan.html"><span class="n">2</span><span>Le guide plan</span></a></li>
+    <li><a href="guide-canal-indice-effectif.html"><span class="n">3</span><span>Guide canal et indice effectif</span></a></li>
+    <li><a href="proprietes-des-modes.html"><span class="n">4</span><span>Propriétés des modes</span></a></li>
+    <li><a href="coupleur-directionnel.html"><span class="n">5</span><span>Le coupleur directionnel</span></a></li>
+    <li><a href="modulateur-electro-optique.html"><span class="n">6</span><span>Modulateur électro-optique</span></a></li>
+    <li class="sep" aria-hidden="true"></li>
+    <li><a href="fiche.html"><span class="n">Σ</span><span>Fiche de révision</span></a></li>
+    <li><a href="labos.html"><span class="n">L</span><span>Tous les labos</span></a></li>
+  </ol>
+</aside>
+<main id="contenu">
+<div class="col">
+<header class="hero">
+  <nav class="crumbs" aria-label="Fil d'Ariane"><a href="../index.html">Accueil</a><span aria-hidden="true">/</span><span>Photonique intégrée</span></nav>
+  <div class="eyebrow">Thématique · niveau master et école d'ingénieurs</div>
+  <h1>Photonique intégrée</h1>
+  <p class="lede">Comment la lumière se propage dans un circuit optique gravé sur une puce, et comment on la divise, la recombine et la module. Le cours part des équations de Maxwell et va jusqu'au dimensionnement complet d'un modulateur.</p>
+  <div class="meta"><span><b>6</b> pages de cours</span><span><b>3</b> exercices et problèmes corrigés</span><span><b>7</b> labos</span><span><b>1</b> fiche de révision</span></div>
+  <details class="toc-m"><summary>Dans cette page</summary><ol id="toc-list-m"></ol></details>
+</header>
+<h2 id="parcours">Le parcours</h2>
+<p>Les pages se lisent dans l'ordre : chacune s'appuie sur la précédente, et le dernier problème réunit tout le cours.</p>
+<ol class="path">
+  <li><a class="pt-title" href="equations-propagation.html">Équations de propagation dans les guides</a>
+    <p>Des équations de Maxwell au problème aux valeurs propres des modes. Pourquoi un guide impose des champs en $e^{-j\beta z}$.</p>
+    <div class="chips"><span class="chip">Cours</span></div></li>
+  <li><a class="pt-title" href="guide-plan.html">Le guide plan</a>
+    <p>Modes TE et TM, relation de dispersion, coupure, conception d'un guide monomode avec tolérances, puissance guidée, confinement, abaques b-V.</p>
+    <div class="chips"><span class="chip">Cours</span><span class="chip c-lab">Labos 1, 2 et 3</span></div></li>
+  <li><a class="pt-title" href="guide-canal-indice-effectif.html">Guide canal et méthode de l'indice effectif</a>
+    <p>Équations du guide canal, modes quasi-TE et quasi-TM, méthode de l'indice effectif appliquée à un guide en arête puis à un guide multimode.</p>
+    <div class="chips"><span class="chip">Cours</span><span class="chip c-ex">2 exercices corrigés</span><span class="chip c-lab">Labo 4</span></div></li>
+  <li><a class="pt-title" href="proprietes-des-modes.html">Propriétés des modes</a>
+    <p>Modes guidés et rayonnés, orthogonalité, injection d'un faisceau et intégrale de recouvrement.</p>
+    <div class="chips"><span class="chip">Cours</span><span class="chip c-lab">Labo 5</span></div></li>
+  <li><a class="pt-title" href="coupleur-directionnel.html">Le coupleur directionnel</a>
+    <p>Supermodes pair et impair, échange de puissance, longueur de couplage, coupleur 3 dB.</p>
+    <div class="chips"><span class="chip">Cours</span><span class="chip c-lab">Labo 6</span></div></li>
+  <li><a class="pt-title" href="modulateur-electro-optique.html">Problème : un modulateur électro-optique</a>
+    <p>Dimensionnement d'un guide Ti:LiNbO₃ monomode, interféromètre de Mach-Zehnder, effet Pockels et tension demi-onde.</p>
+    <div class="chips"><span class="chip c-ex">Problème corrigé</span><span class="chip c-lab">Labo 7</span></div></li>
+</ol>
+<div class="btns"><a class="btn" href="equations-propagation.html">Commencer le cours</a><a class="btn ghost" href="fiche.html">Fiche de révision</a><a class="btn ghost" href="labos.html">Tous les labos</a></div>
+
+<h2 id="prerequis">Niveau et prérequis</h2>
+<p>Le cours s'adresse aux étudiants de master de physique ou d'optique, d'école d'ingénieurs (deuxième ou troisième année) et aux doctorants qui débutent en optique intégrée. Il faut être à l'aise avec :</p>
+<ul>
+  <li>les équations de Maxwell et les opérateurs vectoriels (rotationnel, divergence, laplacien) ;</li>
+  <li>la notation complexe des ondes monochromatiques ;</li>
+  <li>les équations différentielles linéaires du second ordre à coefficients constants.</li>
+</ul>
+<p>Aucune connaissance préalable des guides d'onde n'est nécessaire.</p>
+
+<h2 id="notations">Notations et conventions</h2>
+<ul>
+  <li>Convention temporelle $e^{j(\omega t - \beta z)}$ : une onde qui avance selon $z$ s'écrit $e^{-j\beta z}$.</li>
+  <li>Guide plan : $x$ est normal aux couches, la structure est invariante selon $y$.</li>
+  <li>Guide canal : $x$ est latéral, $y$ vertical.</li>
+  <li>Dans tous les cas, $z$ est l'axe de propagation, et on choisit $\nsub \geqslant \nsup$.</li>
+</ul>
+<div class="box intu">
+  <span class="tag">Carte des notations</span>
+  <div class="tbl" style="margin-bottom:4px">
+  <table>
+    <thead><tr><th>Symbole</th><th>Signification</th><th>Définition</th></tr></thead>
+    <tbody>
+      <tr><td>$k$</td><td>nombre d'onde dans le vide</td><td>$k = \frac{2\pi}{\lambda} = \frac{\omega}{c}$, avec $\varepsilon_0\mu_0 = 1/c^2$</td></tr>
+      <tr><td>$\beta$</td><td>constante de propagation du mode</td><td>champ $\propto e^{-j\beta z}$</td></tr>
+      <tr><td>$\neff$</td><td>indice effectif</td><td>$\neff = \beta/k$</td></tr>
+      <tr><td>$n_c,\ \nsub,\ \nsup$</td><td>indices du cœur, du substrat, du superstrat</td><td>convention $\nsub \geqslant \nsup$</td></tr>
+      <tr><td>$k_c$</td><td>nombre d'onde transverse dans le cœur</td><td>$k_c = \sqrt{k^2 n_c^2 - \beta^2}$</td></tr>
+      <tr><td>$\asub,\ \asup$</td><td>constantes d'atténuation évanescentes</td><td>$\alpha_i = \sqrt{\beta^2 - k^2 n_i^2}$</td></tr>
+      <tr><td>$V,\ a,\ b$</td><td>fréquence normalisée, asymétrie, indice normalisé</td><td><a href="guide-plan.html#s-1-2f">§ I.2 f</a></td></tr>
+      <tr><td>$d_{c,m},\ \lambda_{c,m}$</td><td>épaisseur et longueur d'onde de coupure du mode $m$</td><td><a href="guide-plan.html#s-1-2c">§ I.2 c</a></td></tr>
+      <tr><td>$d_{\text{eff}},\ \Gamma$</td><td>épaisseur effective, facteur de confinement</td><td><a href="guide-plan.html#s-1-2d">§ I.2 d–e</a></td></tr>
+      <tr><td>$\nslab$</td><td>indice effectif d'une tranche (méthode de l'indice effectif)</td><td><a href="guide-canal-indice-effectif.html#s-1-3b">§ I.3 b</a></td></tr>
+      <tr><td>$\nabla_T^2$</td><td>laplacien transverse</td><td>$\frac{\partial^2}{\partial x^2} + \frac{\partial^2}{\partial y^2}$</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<h2 id="encadres">Comment lire les encadrés</h2>
+<p>Chaque type d'encadré a un rôle précis. En révision, lire seulement les encadrés « À retenir » donne le squelette du cours.</p>
+<div class="legend-grid">
+  <div class="box key"><span class="tag">À retenir</span><p>Le résultat à connaître, sous sa forme finale.</p></div>
+  <div class="box intu"><span class="tag">Intuition</span><p>Une image physique pour comprendre avant de calculer.</p></div>
+  <div class="box warn"><span class="tag">Attention</span><p>Un piège fréquent ou une limite de validité.</p></div>
+  <div class="box comp"><span class="tag">Complément</span><p>Un prolongement utile, qui va au-delà du strict nécessaire.</p></div>
+  <div class="box check"><span class="tag">Vérification</span><p>Un contrôle de cohérence, ou la comparaison d'une lecture d'abaque avec le calcul exact.</p></div>
+  <div class="box td"><span class="tag">Exercice</span><p>Un exercice corrigé pas à pas : ce qu'on cherche, l'idée, les étapes, la réponse.</p></div>
+  <div class="lab"><div class="lab-head"><span class="lab-id">Labo</span><span class="lab-name">Simulateur</span></div><div class="lab-body"><p class="lab-intro">Un calcul en direct : changez un paramètre, les courbes suivent.</p></div></div>
+  <div class="box"><span class="tag" style="padding-left:0;color:var(--muted)">Testez-vous</span><p>Quelques questions en fin de page, avec la réponse à déplier.</p></div>
+</div>
+
+<nav class="pager" aria-label="Pages voisines"><a class="next" href="equations-propagation.html"><span class="pl">Suivant →</span><span class="pt">Équations de propagation</span></a></nav>
+</div>
+</main>
+</div>
+<footer class="site-foot">
+  <span>Textes et figures sous licence <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr" rel="license">CC BY-NC-SA 4.0</a>. Aucun cookie, aucun traceur.</span>
+  <nav aria-label="Pied de page"><a href="../a-propos.html">À propos et mentions légales</a></nav>
+</footer>
+</body>
+</html>

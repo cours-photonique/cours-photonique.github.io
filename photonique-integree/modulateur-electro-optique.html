@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Modulateur électro-optique Mach-Zehnder en LiNbO₃ · Problème corrigé</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Problème corrigé pas à pas : dimensionnement d&#x27;un guide Ti:LiNbO3 monomode par la méthode de l&#x27;indice effectif, interféromètre de Mach-Zehnder, effet Pockels, tension demi-onde Vπ.">
+<meta property="og:title" content="Modulateur électro-optique Mach-Zehnder en LiNbO₃ · Problème corrigé">
+<meta property="og:description" content="Problème corrigé pas à pas : dimensionnement d&#x27;un guide Ti:LiNbO3 monomode par la méthode de l&#x27;indice effectif, interféromètre de Mach-Zehnder, effet Pockels, tension demi-onde Vπ.">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Carnets scientifiques">
+<meta name="theme-color" content="#EFF2F4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E1317" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<link rel="preload" href="../assets/fonts/source-serif-4-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/fonts/polices.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+<script defer src="../assets/js/mathjax-config.js"></script>
+<script defer src="../assets/js/physique.js"></script>
+<script defer src="../assets/js/trace.js"></script>
+<script defer src="../assets/js/figures.js"></script>
+<script defer src="../assets/js/labos.js"></script>
+<script defer src="../assets/js/site.js"></script>
+<script defer id="MathJax-script" src="../assets/vendor/mathjax/tex-svg-full.js"></script>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<header class="topbar"><div class="topbar-in">
+  <a class="brand" href="../index.html"><svg viewBox="0 0 22 22" aria-hidden="true"><rect x="1" y="2.5" width="20" height="4.5" rx="1" style="fill:var(--rule)"/><rect x="1" y="8.75" width="20" height="4.5" rx="1" style="fill:var(--amber)"/><rect x="1" y="15" width="20" height="4.5" rx="1" style="fill:var(--ink)"/></svg>Carnets scientifiques</a>
+  <nav class="topnav" aria-label="Navigation du site">
+    <a href="../photonique-integree/index.html" aria-current="page">Photonique intégrée</a>
+    <a href="../photonique-integree/labos.html">Labos</a>
+    <a href="../photonique-integree/fiche.html">Fiche</a>
+    <a href="../a-propos.html">À propos</a>
+  </nav>
+  <button type="button" class="theme-btn" id="theme-toggle" aria-label="Changer de thème (automatique, clair, sombre)"><svg class="i-auto" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 2a6 6 0 0 1 0 12z" fill="currentColor"/></svg><svg class="i-sun" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3.2" fill="currentColor"/><g stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M8 1.2v1.6M8 13.2v1.6M1.2 8h1.6M13.2 8h1.6M3.2 3.2l1.1 1.1M11.7 11.7l1.1 1.1M3.2 12.8l1.1-1.1M11.7 4.3l1.1-1.1"/></g></svg><svg class="i-moon" viewBox="0 0 16 16" aria-hidden="true"><path d="M13.5 10.2A6 6 0 0 1 5.8 2.5a6 6 0 1 0 7.7 7.7z" fill="currentColor"/></svg><span>Thème : auto</span></button>
+</div></header>
+<div class="shell">
+<aside class="side" aria-label="Sommaire">
+  <p class="side-head"><a href="index.html">Photonique intégrée</a></p>
+  <ol class="course">
+    <li><a href="index.html"><span class="n">§</span><span>Sommaire du thème</span></a></li>
+    <li><a href="equations-propagation.html"><span class="n">1</span><span>Équations de propagation</span></a></li>
+    <li><a href="guide-plan.html"><span class="n">2</span><span>Le guide plan</span></a></li>
+    <li><a href="guide-canal-indice-effectif.html"><span class="n">3</span><span>Guide canal et indice effectif</span></a></li>
+    <li><a href="proprietes-des-modes.html"><span class="n">4</span><span>Propriétés des modes</span></a></li>
+    <li><a href="coupleur-directionnel.html"><span class="n">5</span><span>Le coupleur directionnel</span></a></li>
+    <li class="cur"><a href="modulateur-electro-optique.html" aria-current="page"><span class="n">6</span><span>Modulateur électro-optique</span></a><ol class="toc" id="toc-list"></ol></li>
+    <li class="sep" aria-hidden="true"></li>
+    <li><a href="fiche.html"><span class="n">Σ</span><span>Fiche de révision</span></a></li>
+    <li><a href="labos.html"><span class="n">L</span><span>Tous les labos</span></a></li>
+  </ol>
+</aside>
+<main id="contenu">
+<div class="col">
+<header class="hero">
+  <nav class="crumbs" aria-label="Fil d'Ariane"><a href="../index.html">Accueil</a><span aria-hidden="true">/</span><a href="index.html">Photonique intégrée</a><span aria-hidden="true">/</span><span>Modulateur électro-optique</span></nav>
+  <div class="eyebrow">Problème de synthèse · 6 / 6</div>
+  <h1>Problème : un modulateur électro-optique</h1>
+  <p class="lede">Un problème qui réunit tout le cours : on dimensionne un guide Ti:LiNbO₃ monomode, on l'insère dans un interféromètre de Mach-Zehnder, puis on le module par effet Pockels. Chaque question est corrigée pas à pas.</p>
+  <div class="meta"><span>Guide canal : <b>x latéral</b>, <b>y vertical</b></span><span>Polarisation : <b>TM</b></span><a href="index.html#notations">Notations</a></div>
+  <details class="toc-m"><summary>Dans cette page</summary><ol id="toc-list-m"></ol></details>
+</header>
+<div class="goals"><div><p class="gh">Objectifs</p><ul><li>Dimensionner un guide monomode sur une gamme de longueurs d'onde (temps de diffusion $t$, largeur $W$).</li><li>Analyser un interféromètre de Mach-Zehnder avec les supermodes du coupleur.</li><li>Calculer la tension demi-onde $V_\pi$ d'un modulateur à effet Pockels.</li></ul></div><div><p class="gh">Prérequis</p><ul><li><a href="guide-canal-indice-effectif.html">Méthode de l'indice effectif</a> et ses deux exercices.</li><li><a href="coupleur-directionnel.html">Le coupleur directionnel</a>.</li></ul></div></div>
+<p class="note-src">Problème construit sur le modèle classique du modulateur Ti:LiNbO₃, avec des données réalistes propres à ce site. Toutes les valeurs des corrections sont recalculées par les solveurs du site.</p>
+<h2 id="s-td3-0">Énoncé</h2>
+<p>On veut réaliser un modulateur d'intensité pour les télécommunications optiques, sur un substrat de niobate de lithium (LiNbO<sub>3</sub>) en coupe Z. Les guides sont obtenus en diffusant à haute température une bande de titane déposée sur le substrat : le titane augmente localement l'indice. La largeur de la bande, $W$, et la durée de diffusion, $t$, fixent les dimensions du guide. Pour les calculs, on remplace le profil d'indice réel, gradué, par un modèle à saut d'indice.</p>
+<figure>
+  <div class="fig-scroll" id="fig-diff"></div>
+  <figcaption><b>FIG. 1</b>À gauche, profil d'indice diffusé sous l'ouverture W du masque. À droite, modèle simplifié : rectangle d'indice n + Δn, de largeur W + (Dt)<sup>1/2</sup> et de profondeur 2(Dt)<sup>1/2</sup> (x latéral, y vertical, surface en y = 0).</figcaption>
+</figure>
+<div class="tbl"><table>
+  <thead><tr><th>Donnée</th><th class="num">Valeur</th></tr></thead>
+  <tbody>
+    <tr><td>Bande de fonctionnement (monomode exigé)</td><td class="num">1,50 – 1,60 µm</td></tr>
+    <tr><td>Indice du substrat $n$ (indice extraordinaire, supposé constant sur la bande)</td><td class="num">2,14</td></tr>
+    <tr><td>Hausse d'indice due au titane $\Delta n$</td><td class="num">5 × 10<sup>−3</sup></td></tr>
+    <tr><td>Coefficient de diffusion du titane $D$</td><td class="num">0,6 µm²/h</td></tr>
+    <tr><td>Coefficient électro-optique $r_{33}$</td><td class="num">30,8 pm/V</td></tr>
+    <tr><td>Longueur des électrodes $L_{\text{elec}}$</td><td class="num">15 mm</td></tr>
+    <tr><td>Lithographie : motif minimal / précision</td><td class="num">1 µm / ±0,2 µm</td></tr>
+  </tbody>
+</table></div>
+<div class="box warn">
+  <span class="tag">Attention · polarisation</span>
+  <p>Le modulateur exploite le coefficient $r_{33}$, le plus grand du LiNbO<sub>3</sub>. Il agit sur la composante du champ parallèle à l'axe optique du cristal, vertical en coupe Z : le mode utile est donc <strong>TM</strong> (champ électrique vertical), et c'est l'indice extraordinaire qui le concerne. Toute la conception du guide qui suit se fait en TM.</p>
+</div>
+
+<h2 id="s-td3-1">Partie 1 — Conception du guide</h2>
+<p class="goal"><b>Le fil conducteur de la partie 1 :</b> c'est exactement la méthode des <a href="guide-canal-indice-effectif.html#td1">exercices sur l'EIM</a>. On découpe le guide en un guide plan <em>vertical</em> (qui dépend de la profondeur, donc de $t$) et un guide plan <em>latéral</em> (qui dépend de la largeur, donc de $W$). Pour chaque question, on se demande lequel des deux est concerné, puis on utilise la formule de coupure ou l'abaque b-V.</p>
+<figure>
+  <div class="fig-scroll" id="fig-mod-eim"></div>
+  <figcaption><b>FIG. 2</b>Le guide du modulateur découpé par l'EIM. À gauche, la section (x latéral, y vertical, z sortant) : en TM, le champ E est vertical. ① Le guide vertical est fortement asymétrique (air d'un côté), E y est perpendiculaire aux couches : on le traite en TM. ② Le guide latéral est symétrique, E y est parallèle aux flancs : on le traite en TE.</figcaption>
+</figure>
+
+<p class="qh"><span class="qn">Q1</span>Lequel des deux paramètres de fabrication, $W$ ou $t$, décide si le mode fondamental est guidé ?</p>
+<ol class="steps">
+  <li><span class="st">Qui règle quoi ?</span>
+    <p>$t$ fixe la profondeur $2\sqrt{Dt}$, donc le guide <em>vertical</em> ①. $W$ fixe la largeur $W + \sqrt{Dt}$, donc le guide <em>latéral</em> ②.</p></li>
+  <li><span class="st">Le guide vertical a une coupure pour son fondamental</span>
+    <p>Il est asymétrique (air $n = 1$ au-dessus, $n = 2{,}14$ en dessous). Dans la formule de coupure, le terme $\arctan(\dots)$ est non nul pour $m = 0$ : $d_{c,0} \gt 0$. Si la couche est trop fine (ou λ trop grande), même le fondamental n'est plus guidé.</p></li>
+  <li><span class="st">Le guide latéral n'en a pas</span>
+    <p>Il est symétrique ($n$ | $\nslab$ | $n$), donc $\nsub = \nsup$ et le $\arctan$ vaut $\arctan(0) = 0$ : $d_{c,0} = 0$. Le fondamental existe pour n'importe quelle largeur. $W$ ne sert qu'à décider quand le <em>deuxième</em> mode apparaît (c'est la Q3).</p></li>
+</ol>
+<div class="res">C'est $t$. La coupure du fondamental vient du guide vertical asymétrique, dont l'épaisseur $2\sqrt{Dt}$ dépend seulement de $t$.</div>
+
+<p class="qh"><span class="qn">Q2</span>Encadrer la durée de diffusion $t$ pour que le guide soit monomode sur toute la bande, puis retenir $t = t_{\min} + (t_{\max} - t_{\min})/4$.</p>
+<ol class="steps">
+  <li><span class="st">Traduire « monomode sur toute la bande » en deux inégalités</span>
+    <p>Sur la bande $1{,}50 \leqslant \lambda \leqslant 1{,}60$ µm, l'épaisseur $d = 2\sqrt{Dt}$ doit :</p>
+    <ul>
+      <li>guider le fondamental pour <em>toutes</em> les λ : $d \gt d_{c,0}(\lambda)$. Le cas le plus dur est la plus grande λ, car une grande longueur d'onde « voit » le guide plus petit. Donc $d \gt d_{c,0}(\lambda_{\max})$ ;</li>
+      <li>ne <em>jamais</em> guider le mode 1 : $d \lt d_{c,1}(\lambda)$. Le cas le plus dur est la plus petite λ, qui « voit » le guide plus grand. Donc $d \lt d_{c,1}(\lambda_{\min})$.</li>
+    </ul></li>
+  <li><span class="st">Appliquer la formule de coupure en TM</span>
+    <p>Avec $n_c = n + \Delta n = 2{,}145$, $\nsub = 2{,}14$, $\nsup = 1$ et le facteur TM $r = n_c^2/\nsup^2 = 4{,}60$ :</p>
+    $$d_{c,m} = \frac{\lambda}{2\pi\sqrt{n_c^2 - \nsub^2}}\left[m\pi + \arctan\left(\frac{n_c^2}{\nsup^2}\sqrt{\frac{\nsub^2 - \nsup^2}{n_c^2 - \nsub^2}}\right)\right] = 1{,}0873\,\lambda\left[m\pi + 1{,}5540\right]$$</li>
+  <li><span class="st">Prendre les deux valeurs utiles</span>
+    <div class="tbl"><table>
+      <thead><tr><th></th><th class="num">λ<sub>min</sub> = 1,50 µm</th><th class="num">λ<sub>max</sub> = 1,60 µm</th><th>Rôle</th></tr></thead>
+      <tbody>
+        <tr><td>$d_{c,0}$ (TM)</td><td class="num">2,535 µm</td><td class="num"><strong>2,703 µm</strong></td><td>épaisseur minimale</td></tr>
+        <tr><td>$d_{c,1}$ (TM)</td><td class="num"><strong>7,658 µm</strong></td><td class="num">8,169 µm</td><td>épaisseur maximale</td></tr>
+      </tbody>
+    </table></div>
+    $$2{,}703\ \text{µm} \lt 2\sqrt{Dt} \lt 7{,}658\ \text{µm}$$</li>
+  <li><span class="st">Passer de l'épaisseur au temps</span>
+    $$d = 2\sqrt{Dt} \iff t = \frac{d^2}{4D} \qquad t_{\min} = \frac{2{,}703^2}{4\times0{,}6} = 3{,}04\ \text{h} \qquad t_{\max} = \frac{7{,}658^2}{2{,}4} = 24{,}4\ \text{h}$$</li>
+  <li><span class="st">Choisir $t$</span>
+    <p>On se place dans le premier quart de l'intervalle : le fondamental est bien guidé, et on garde une large marge avant l'apparition du mode 1.</p>
+    $$t = 3{,}04 + \frac{24{,}44 - 3{,}04}{4} = 8{,}39\ \text{h}$$
+    <div class="res">$t \approx 8{,}4$ h (environ 8 h 25 min), soit une profondeur $2\sqrt{Dt} = 4{,}49$ µm et $\sqrt{Dt} = 2{,}24$ µm (valeur à réutiliser en Q3 et Q4).</div></li>
+</ol>
+<figure>
+  <div class="fig-scroll" id="fig-mod-dc"></div>
+  <figcaption><b>FIG. 3</b>Épaisseurs de coupure TM en fonction de λ (axe horizontal λ, axe vertical épaisseur d). Entre les deux courbes, un seul mode. La bande verte est la zone monomode sur <em>toute</em> la bande de fonctionnement : elle est bornée par le point bleu (bas, à λ<sub>max</sub>) et le point rose (haut, à λ<sub>min</sub>).</figcaption>
+</figure>
+<div class="box check">
+  <span class="tag">Piège · le facteur TM</span>
+  <p>Le facteur $n_c^2/\nsup^2$ s'oublie facilement dans $d_{c,1}$. Sans lui, on trouve 7,560 et 8,064 µm : ce sont les valeurs <strong>TE</strong>. En TM, les bonnes valeurs sont 7,658 et 8,169 µm. L'écart change peu le résultat ($t_{\max} = 23{,}8$ h au lieu de 24,4 h, puis $t = 8{,}24$ h au lieu de 8,39 h), mais la méthode serait fausse. Côté ordre de grandeur, on attend quelques heures de diffusion : un résultat en minutes ou en semaines signale une erreur d'unités ($D$ en µm²/h, $d$ en µm).</p>
+</div>
+
+<p class="qh"><span class="qn">Q3</span>Quelle largeur maximale $W_{\max}$ peut-on dessiner sur le masque ? Choisir $W$ en tenant compte de la précision de la lithographie.</p>
+<ol class="steps">
+  <li><span class="st">C'est le guide latéral qui est concerné</span>
+    <p>Le deuxième mode qui risque d'apparaître quand on élargit est un mode <em>latéral</em> (deux lobes côte à côte). On travaille donc sur le guide ② : $n$ | $\nslab$ | $n$, de largeur $W_{\text{eff}} = W + \sqrt{Dt}$.</p></li>
+  <li><span class="st">Il faut d'abord $\nslab$ : le guide vertical en TM</span>
+    <p>Avec $d = 4{,}49$ µm, le guide vertical air / 2,145 / 2,14 n'a qu'un mode (Q2). Son indice s'obtient en résolvant l'équation de dispersion TM (<a href="guide-plan.html#lab1">labo 1</a>, polarisation TM) :</p>
+    <div class="tbl"><table>
+      <thead><tr><th>λ (µm)</th><th class="num">1,50</th><th class="num">1,55</th><th class="num">1,60</th></tr></thead>
+      <tbody><tr><td>$\nslab$ (TM)</td><td class="num">2,14180</td><td class="num">2,14167</td><td class="num">2,14154</td></tr></tbody>
+    </table></div>
+    <p class="why">Ici on ne peut pas lire l'abaque, car il est tracé pour le TE (voir l'encadré « Attention » plus bas).</p></li>
+  <li><span class="st">Polarisation du guide latéral : TE</span>
+    <p>Le champ du mode TM est vertical. Dans le guide latéral, les « couches » sont les flancs verticaux : E leur est <strong>parallèle</strong>. C'est donc un problème TE, avec $r = 1$.</p></li>
+  <li><span class="st">Réutiliser la formule de coupure de la Q2</span>
+    <p>On reprend la même formule avec $n_c \to \nslab$, $\nsub = \nsup = n$, $r = 1$ et $m = 1$. Le guide étant symétrique, $\arctan\sqrt{(n^2 - n^2)/(\dots)} = \arctan 0 = 0$ et il ne reste que le terme $m\pi$ :</p>
+    $$W_{\text{eff},c1} = \frac{\lambda}{2\pi\sqrt{\nslab^2 - n^2}}\left[\pi + 0\right] = \frac{\lambda}{2\sqrt{\nslab^2 - n^2}}$$
+    <div class="tbl"><table>
+      <thead><tr><th>λ (µm)</th><th class="num">1,50</th><th class="num">1,55</th><th class="num">1,60</th></tr></thead>
+      <tbody><tr><td>$W_{\text{eff},c1}$ (µm)</td><td class="num"><strong>8,55</strong></td><td class="num">9,17</td><td class="num">9,86</td></tr></tbody>
+    </table></div></li>
+  <li><span class="st">Écrire l'inégalité : elle est stricte</span>
+    <p>Le mode 1 existe dès que $W_{\text{eff}} \gt W_{\text{eff},c1}$. Exactement à $W_{\text{eff}} = W_{\text{eff},c1}$, il est pile à la coupure ($b = 0$, champ infiniment étalé) : c'est la frontière, on l'exclut. On veut qu'il n'existe à <em>aucune</em> longueur d'onde de la bande, donc on prend la valeur la plus petite, à $\lambda_{\min}$ :</p>
+    $$W + \sqrt{Dt} \lt W_{\text{eff},c1}(\lambda_{\min}) = 8{,}55\ \text{µm} \quad\Longrightarrow\quad W \lt 8{,}55 - 2{,}24 = 6{,}30\ \text{µm}$$
+    <p class="why">$W_{\max} = 6{,}30$ µm est une borne qu'on ne doit pas atteindre. Toute largeur strictement inférieure convient, la borne elle-même non.</p></li>
+  <li><span class="st">Ajouter la précision de la lithographie</span>
+    <p>La lithographie dessine $W$ à ±0,2 µm près : la largeur réelle est entre $W - 0{,}2$ et $W + 0{,}2$. Le pire cas est $W + 0{,}2$, qui doit lui aussi respecter l'inégalité :</p>
+    $$W + 0{,}2 \lt 6{,}30 \quad\Longrightarrow\quad W \lt 6{,}10\ \text{µm}$$
+    <div class="res">$W_{\max} = 6{,}30$ µm (exclu). On choisit $W = 6{,}0$ µm : même à +0,2 µm, on reste à 6,2 µm &lt; 6,30 µm, avec 0,1 µm de marge. C'est largement au-dessus du motif minimal de 1 µm.</div></li>
+</ol>
+<figure>
+  <div class="fig-scroll" id="fig-mod-wc"></div>
+  <figcaption><b>FIG. 4</b>Largeur effective de coupure du second mode latéral en fonction de λ (axe horizontal λ, axe vertical $W_{\text{eff}}$). Sous la courbe, un seul mode latéral. La bande orange est la largeur réalisée avec $W = 6{,}0 \pm 0{,}2$ µm : elle reste sous la courbe sur toute la bande, y compris au point le plus contraignant (λ<sub>min</sub>).</figcaption>
+</figure>
+<figure>
+  <div class="fig-scroll" id="fig-mod-tol"></div>
+  <figcaption><b>FIG. 5</b>La tolérance de la lithographie sur l'axe des largeurs W (µm). Avec $W = 6{,}0$, tout l'intervalle de fabrication reste à gauche de la limite. Avec $W = 6{,}2$, une partie des puces serait bimode.</figcaption>
+</figure>
+<div class="box warn">
+  <span class="tag">Attention · pourquoi ne pas lire $\nslab$ sur l'abaque</span>
+  <p>L'abaque b-V est tracé pour le <strong>TE</strong>. Le guide vertical est TM et, à l'interface avec l'air, le facteur $n_c^2/\nsup^2 = 4{,}6$ n'est pas négligeable. Une lecture TE donnerait $b \approx 0{,}38$ au lieu de 0,36, $\nslab \approx 2{,}14189$, puis $W_{\max} \approx 6{,}10$ µm : 0,2 µm d'écart, autant que toute la tolérance de la lithographie. Pour le guide <em>latéral</em> en revanche (TE, symétrique), l'abaque est exact : c'est ce qu'on utilise en Q4.</p>
+</div>
+
+<p class="qh"><span class="qn">Q4</span>Calculer l'indice effectif $n_{00}$ du mode fondamental à 1,55 µm.</p>
+<ol class="steps">
+  <li><span class="st">Le guide à traiter</span>
+    <p>C'est le guide latéral de la Q3, à 1,55 µm : $n = 2{,}14$ | $\nslab = 2{,}14167$ | $n = 2{,}14$, de largeur $W_{\text{eff}} = 6{,}0 + 2{,}24 = 8{,}24$ µm. Symétrique et TE : $a = 0$, on peut utiliser l'abaque.</p></li>
+  <li><span class="st">Calculer $V$</span>
+    $$V = \frac{2\pi}{\lambda}\,W_{\text{eff}}\sqrt{\nslab^2 - n^2} = \frac{2\pi}{1{,}55}\times8{,}24\times\sqrt{2{,}14167^2 - 2{,}14^2} = 4{,}054\times8{,}24\times0{,}0845 = 2{,}82$$
+    <p>$V = 2{,}82 \lt \pi$ : la courbe $q = 1$ n'a pas encore démarré, il n'y a qu'un mode. C'est cohérent avec la Q3.</p></li>
+  <li><span class="st">Lire $b$ sur la courbe $a = 0$, $p = 0$</span>
+    <p>On monte depuis $V = 2{,}82$ jusqu'à la courbe et on lit $b \approx 0{,}60$ (FIG. 6 ; valeur exacte 0,603).</p></li>
+  <li><span class="st">Repasser en indice</span>
+    $$n_{00}^2 = n^2 + b\left(\nslab^2 - n^2\right) = 4{,}5796 + 0{,}603\times0{,}00714 = 4{,}58391$$
+    <div class="res">$n_{00} \approx 2{,}14101$ à 1,55 µm.</div></li>
+  <li><span class="st">Contrôles</span>
+    <p>$n = 2{,}14 \lt n_{00} \lt \nslab = 2{,}14167$ (FIG. 7) : le résultat est bien entre les deux indices qu'il combine. $b = 0{,}60$ signifie que $n_{00}^2$ a parcouru 60 % du chemin de $n^2$ à $\nslab^2$. Enfin, avec $W = 5{,}8$ ou $6{,}2$ µm on trouve 2,14099 et 2,14102 : l'imprécision de la lithographie ne change $n_{00}$ que de $2\times10^{-5}$.</p></li>
+</ol>
+<figure>
+  <div class="fig-scroll" id="fig-mod-bv"></div>
+  <figcaption><b>FIG. 6</b>Lecture de l'abaque pour le guide latéral ($a = 0$ ; axe horizontal V, axe vertical b). La courbe du mode $q = 1$ ne commence qu'à $V = \pi$ : avec $V = 2{,}82$, on est à gauche, donc monomode.</figcaption>
+</figure>
+<figure>
+  <div class="fig-scroll" id="fig-mod-lad"></div>
+  <figcaption><b>FIG. 7</b>Échelle des indices à 1,55 µm (axe horizontal : indice). Le cœur 2,145 est hors cadre, à droite. En rouge, la valeur fausse qu'aurait donnée l'abaque TE pour le guide vertical.</figcaption>
+</figure>
+
+<h2 id="s-td3-2">Partie 2 — Interféromètre de Mach-Zehnder</h2>
+<p>Le guide est inséré dans un interféromètre : une jonction Y partage la lumière entre deux bras, qu'un coupleur 3 dB recombine en sortie.</p>
+<figure>
+  <div class="fig-scroll" id="fig-mzi"></div>
+  <figcaption><b>FIG. 8</b>Mach-Zehnder : jonction Y, deux bras (longueurs L + ΔL et L), coupleur 3 dB de longueur L<sub>c</sub>/2. En version modulateur, une électrode de longueur L<sub>elec</sub> = 15 mm longe un bras à la distance e de son axe (x latéral, z propagation).</figcaption>
+</figure>
+<p class="goal"><b>Le fil conducteur de la partie 2 :</b> un coupleur 3 dB ne « voit » que deux choses, la part de lumière qui arrive <em>en phase</em> dans les deux guides (supermode pair) et la part qui arrive <em>en opposition</em> (supermode impair). Tout le calcul revient à dire combien il y a de chacune, puis comment le coupleur les recombine.</p>
+
+<p class="qh"><span class="qn">Q5</span>Les deux bras ont la même longueur ($\Delta L = 0$). Comment la puissance se répartit-elle entre les deux sorties ?</p>
+<ol class="steps">
+  <li><span class="st">La jonction Y coupe en deux moitiés égales et en phase</span>
+    <p>Chaque bras reçoit $A_0/\sqrt2$ (donc $P_0/2$), avec la même phase.</p></li>
+  <li><span class="st">Bras de même longueur : elles arrivent toujours en phase</span>
+    <p>Elles parcourent le même chemin, donc prennent le même déphasage.</p></li>
+  <li><span class="st">« En phase dans les deux guides », c'est le supermode pair</span>
+    <p>Or un supermode est un mode de la structure couplée : il se propage sans se déformer. Ce qui entre à 50/50 en phase ressort à 50/50, quelle que soit la longueur du coupleur.</p></li>
+</ol>
+<div class="res">$P_1 = P_2 = P_0/2$, indépendamment de λ (même si $L_c$ dépend de λ).</div>
+
+<p class="qh"><span class="qn">Q6</span>Exprimer l'amplitude $A_0$ du mode injecté en fonction de la puissance $P_0$.</p>
+<ol class="steps">
+  <li><span class="st">Partir de la puissance guidée (<a href="guide-plan.html#s-1-2d">§ I.2 d</a>)</span>
+    <p>Avec un mode normalisé, $\iint|\varphi_0|^2\dd x\,\dd y = 1$, et un champ $A_0\varphi_0$ :</p>
+    $$P_0 = \frac{\beta}{2\omega\mu_0}|A_0|^2$$</li>
+  <li><span class="st">Remplacer $\beta$ et isoler $A_0$</span>
+    <p>$\beta = n_{00}\,\omega/c$, donc $\beta/\omega = n_{00}/c$ :</p>
+    $$A_0 = \sqrt{\frac{2\omega\mu_0P_0}{\beta}} = \sqrt{\frac{2\mu_0c\,P_0}{n_{00}}}$$</li>
+</ol>
+
+<p class="qh"><span class="qn">Q7</span>Les bras diffèrent maintenant d'une longueur $\Delta L$. Décomposer le champ qui arrive sur le coupleur en supermodes.</p>
+<ol class="steps">
+  <li><span class="st">Ce qui arrive dans chaque guide</span>
+    <p>Bras long : $a_1 = \frac{A_0}{\sqrt2}e^{-j\beta(L + \Delta L)}$. Bras court : $a_2 = \frac{A_0}{\sqrt2}e^{-j\beta L}$. Même module, mais $a_1$ est en retard de phase de $\phi = \beta\Delta L = 2\pi n_{00}\Delta L/\lambda$.</p></li>
+  <li><span class="st">Somme et différence = supermodes</span>
+    <p>Avec $\varphi_{e,o} = (\varphi_1 \pm \varphi_2)/\sqrt2$, la part paire est la <strong>somme</strong> et la part impaire la <strong>différence</strong> (FIG. 9) :</p>
+    $$c_e = \frac{a_1 + a_2}{\sqrt2} = A_0\,e^{-j\beta L}e^{-j\phi/2}\cos\frac{\phi}{2} \qquad c_o = \frac{a_1 - a_2}{\sqrt2} = -j\,A_0\,e^{-j\beta L}e^{-j\phi/2}\sin\frac{\phi}{2}$$
+    <p class="why">Deux flèches de même longueur séparées d'un angle $\phi$ : leur somme vaut $2\cos(\phi/2)$ fois une flèche, leur différence $2\sin(\phi/2)$ fois. Si $\phi = 0$, tout est pair (Q5) ; si $\phi = \pi$, tout est impair.</p></li>
+</ol>
+<figure>
+  <div class="fig-scroll" id="fig-phasor"></div>
+  <figcaption><b>FIG. 9</b>Plan complexe (Re horizontal, Im vertical). À gauche, cas général : $a_2$ sert de référence, $a_1$ est tourné de $-\phi$. La somme (vert) mesure le supermode pair, la différence (rose) le supermode impair. À droite, les deux cas extrêmes.</figcaption>
+</figure>
+
+<p class="qh"><span class="qn">Q8</span>En déduire les puissances de sortie $P_1$ et $P_2$, puis la période de la réponse spectrale pour $\Delta L = 20$ µm.</p>
+<ol class="steps">
+  <li><span class="st">Ce que fait le coupleur 3 dB</span>
+    <p>Sur $L_c/2$, le supermode impair prend un retard de $\pi/2$ par rapport au pair : $(\beta_e - \beta_o)L_c/2 = \pi/2$. En repassant sur les guides, on additionne $c_e$ et $c_o$ avec ce quart de tour.</p></li>
+  <li><span class="st">Recombiner</span>
+    <p>Le quart de tour transforme le $-j$ de $c_o$ en un réel : dans le guide 1 on obtient $A_0(\cos\frac{\phi}{2} + \sin\frac{\phi}{2})/\sqrt2$, dans le guide 2 $A_0(\cos\frac{\phi}{2} - \sin\frac{\phi}{2})/\sqrt2$. On élève au carré avec $(\cos \pm \sin)^2 = 1 \pm \sin\phi$ :</p>
+    $$P_1 = \frac{P_0}{2}\left(1 + \sin\phi\right) \qquad P_2 = \frac{P_0}{2}\left(1 - \sin\phi\right) \qquad \phi = \frac{2\pi n_{00}\Delta L}{\lambda}$$</li>
+  <li><span class="st">Contrôles</span>
+    <p>$P_1 + P_2 = P_0$ (pas de perte) ; $\phi = 0$ redonne la Q5. L'attribution du + et du − dépend du bras le plus long et de la convention de signe du coupleur.</p></li>
+  <li><span class="st">Période spectrale</span>
+    <p>$\phi$ augmente de $2\pi$ quand λ varie de $\Delta\lambda = \lambda^2/(n_{00}\Delta L)$, en négligeant la dispersion de $n_{00}$ :</p>
+    $$\Delta\lambda = \frac{1{,}55^2}{2{,}141\times20} = 0{,}056\ \text{µm}$$
+    <div class="res">La réponse se répète tous les 56 nm environ : un MZI déséquilibré est un filtre périodique en longueur d'onde.</div></li>
+</ol>
+<figure>
+  <div class="fig-scroll" id="fig-mzi-resp"></div>
+  <figcaption><b>FIG. 10</b>Puissances de sortie normalisées en fonction du déphasage φ entre les bras (axe horizontal φ/π, axe vertical P/P<sub>0</sub>). Le point de départ φ = 0 est le MZI équilibré de la Q5.</figcaption>
+</figure>
+
+<h2 id="s-td3-3">Partie 3 — Moduler</h2>
+<p>Le LiNbO<sub>3</sub> est ferroélectrique et présente un fort effet Pockels : son indice varie sous un champ électrique quasi statique (fréquence &lt; 1 THz, très inférieure à la fréquence optique). On revient au MZI équilibré ($\Delta L = 0$) et on suppose :</p>
+$$n_{00}(E) = n_{00}(0) - \frac{1}{2}\,n_{00}^3\,r_{33}\,E$$
+
+<p class="qh"><span class="qn">Q9</span>À quelle distance $e$ de l'axe du guide faut-il placer l'électrode pour que le champ du mode y soit divisé par au moins $e^8$ ?</p>
+<ol class="steps">
+  <li><span class="st">Pourquoi éloigner l'électrode</span>
+    <p>Le métal absorbe la lumière. Il ne doit pas toucher la queue évanescente du mode, qui décroît comme $e^{-\alpha(x - W_{\text{eff}}/2)}$ à partir du bord du cœur.</p></li>
+  <li><span class="st">Longueur de décroissance</span>
+    $$\alpha = \frac{2\pi}{\lambda}\sqrt{n_{00}^2 - n^2} = \frac{2\pi}{1{,}55}\sqrt{2{,}14101^2 - 2{,}14^2} = 0{,}266\ \text{µm}^{-1} \quad\Longrightarrow\quad \frac{1}{\alpha} = 3{,}76\ \text{µm}$$
+    <p>Tous les 3,76 µm, le champ est divisé par $e \approx 2{,}7$.</p></li>
+  <li><span class="st">Appliquer le critère « champ divisé par $e^8$ »</span>
+    <p>Il faut 8 longueurs de décroissance, soit $8/\alpha = 30{,}1$ µm, comptées à partir du bord du cœur ($W_{\text{eff}}/2 = 4{,}12$ µm de l'axe) :</p>
+    $$e = \frac{W_{\text{eff}}}{2} + \frac{8}{\alpha} = 4{,}12 + 30{,}1$$
+    <div class="res">$e \approx 34$ µm.</div>
+    <p class="why">La distance est grande parce que le mode est très peu contrasté latéralement ($n_{00} - n \approx 10^{-3}$) : sa queue s'étend loin. Si l'on applique le critère $e^{-8}$ à l'intensité ($e^{-2\alpha(\dots)}$) plutôt qu'au champ, on trouve $e \approx 19$ µm.</p></li>
+</ol>
+<figure>
+  <div class="fig-scroll" id="fig-mod-decay"></div>
+  <figcaption><b>FIG. 11</b>Le champ latéral du mode en échelle logarithmique, $\ln(E/E_{\text{bord}})$, en fonction de la distance x à l'axe (µm). Hors du cœur, c'est une droite de pente −α : il suffit de descendre de 8 unités pour placer l'électrode.</figcaption>
+</figure>
+
+<p class="qh"><span class="qn">Q10</span>Les électrodes sont placées symétriquement, à la distance $e$ de part et d'autre du bras modulé : $g = 2e$. Calculer la tension demi-onde $V_\pi$, puis la tension $V_{\text{bias}}$ qui envoie toute la puissance sur la sortie 1.</p>
+<ol class="steps">
+  <li><span class="st">Suivre la chaîne tension → phase</span>
+    <p>La tension crée un champ, le champ change l'indice, l'indice change la phase accumulée sous l'électrode, et la phase change la répartition de puissance du MZI (FIG. 12). On suppose un champ uniforme $E = V/g$ entre les électrodes.</p>
+    $$\Delta\phi(V) = \frac{2\pi}{\lambda}\,\Delta n\,L_{\text{elec}} = \frac{2\pi}{\lambda}\cdot\frac{1}{2}n_{00}^3r_{33}\frac{V}{g}\cdot L_{\text{elec}} = \pi\,\frac{V}{V_\pi} \qquad\text{avec}\qquad V_\pi = \frac{\lambda\,g}{n_{00}^3\,r_{33}\,L_{\text{elec}}}$$</li>
+  <li><span class="st">Lire les tensions sur la courbe du MZI</span>
+    <p>Sans tension, le MZI équilibré est à 50/50 (Q5) : $P_1 = \frac{P_0}{2}\left(1 + \sin\Delta\phi\right)$. Pour envoyer toute la puissance sur la sortie 1, il faut $\Delta\phi = \pi/2$, soit $V_{\text{bias}} = V_\pi/2$. Pour la basculer ensuite entièrement sur la sortie 2, il faut $\pi$ de plus, soit $V_\pi$ de plus.</p></li>
+  <li><span class="st">Chiffrer</span>
+    <p>Avec $g = 2e = 68{,}4$ µm :</p>
+    $$V_\pi = \frac{1{,}55\times10^{-6}\times68{,}4\times10^{-6}}{2{,}14101^3\times30{,}8\times10^{-12}\times0{,}015} = \frac{1{,}060\times10^{-10}}{4{,}534\times10^{-12}}$$
+    <div class="res">$V_\pi \approx 23{,}4$ V et $V_{\text{bias}} \approx 11{,}7$ V (au signe près, qui dépend de l'orientation du cristal). Ces chiffres dépendent directement de l'hypothèse $g = 2e$.</div>
+    <p class="why">C'est une tension élevée : l'électrode est loin du guide pour ne pas absorber la lumière. Les modulateurs commerciaux atteignent quelques volts avec des électrodes plus proches du guide, placées au-dessus de lui avec une couche tampon isolante, et souvent plus longues.</p></li>
+</ol>
+<figure>
+  <div class="fig-scroll" id="fig-chain"></div>
+  <figcaption><b>FIG. 12</b>La chaîne de causes du modulateur, de la tension appliquée à la puissance de sortie.</figcaption>
+</figure>
+<figure>
+  <div class="fig-scroll" id="fig-mod-pv"></div>
+  <figcaption><b>FIG. 13</b>Puissance sur chaque sortie en fonction de la tension appliquée (axe horizontal V en volts, axe vertical P/P<sub>0</sub>), avec $V_\pi = 23{,}4$ V.</figcaption>
+</figure>
+
+<section class="lab mj-ignore" id="lab7">
+  <div class="lab-head"><span class="lab-id">Labo 7</span><span class="lab-name">Mach-Zehnder et modulateur</span></div>
+  <div class="lab-body" id="lab7-body"></div>
+</section>
+
+<h2 id="testez-vous">Testez-vous</h2>
+<p>Cherchez la réponse avant de déplier la question.</p>
+<div class="quiz">
+<details><summary>Pourquoi tout le dimensionnement se fait-il en polarisation TM ?</summary><div class="ans"><p>Le modulateur exploite $r_{33}$, le plus grand coefficient électro-optique du niobate de lithium. Il n'agit que sur la composante du champ parallèle à l'axe optique du cristal, ici vertical : le mode utile doit avoir un champ électrique vertical, c'est-à-dire être TM.</p></div></details>
+<details><summary>On double la longueur d'électrode. Que devient $V_\pi$ ?</summary><div class="ans"><p>Elle est divisée par deux, puisque $V_\pi = \lambda g/(n^3r_{33}L_{\text{elec}})$. En contrepartie, une électrode plus longue a une capacité plus grande, ce qui limite la vitesse de modulation.</p></div></details>
+<details><summary>Pourquoi ne pas rapprocher l'électrode du guide pour baisser $V_\pi$ ?</summary><div class="ans"><p>$V_\pi$ est proportionnelle à l'écart $g$ entre électrodes, donc rapprocher l'électrode la réduit. Mais le métal absorbe la queue évanescente du mode : trop près, les pertes deviennent importantes. Le critère de la Q9 fixe ce compromis.</p></div></details>
+<details><summary>Pourquoi un MZI équilibré sans tension partage-t-il la puissance à 50/50, quelle que soit la longueur d'onde ?</summary><div class="ans"><p>Les deux bras arrivent en phase au coupleur : c'est exactement le supermode pair, qui traverse le coupleur sans se déformer. Le résultat ne dépend donc pas de $L_c$, qui varie pourtant avec λ.</p></div></details>
+</div>
+<nav class="pager" aria-label="Pages voisines"><a class="prev" href="coupleur-directionnel.html"><span class="pl">← Précédent</span><span class="pt">Le coupleur directionnel</span></a><a class="next" href="fiche.html"><span class="pl">Suivant →</span><span class="pt">Fiche de révision</span></a></nav>
+</div>
+</main>
+</div>
+<footer class="site-foot">
+  <span>Textes et figures sous licence <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr" rel="license">CC BY-NC-SA 4.0</a>. Aucun cookie, aucun traceur.</span>
+  <nav aria-label="Pied de page"><a href="../a-propos.html">À propos et mentions légales</a></nav>
+</footer>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Le coupleur directionnel : supermodes et longueur de couplage · Photonique intégrée</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Coupleur directionnel en optique intégrée : supermodes pair et impair, échange de puissance, longueur de couplage, coupleur 3 dB et matrice de transfert, avec simulateur.">
+<meta property="og:title" content="Le coupleur directionnel : supermodes et longueur de couplage · Photonique intégrée">
+<meta property="og:description" content="Coupleur directionnel en optique intégrée : supermodes pair et impair, échange de puissance, longueur de couplage, coupleur 3 dB et matrice de transfert, avec simulateur.">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Carnets scientifiques">
+<meta name="theme-color" content="#EFF2F4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E1317" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<link rel="preload" href="../assets/fonts/source-serif-4-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/fonts/polices.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+<script defer src="../assets/js/mathjax-config.js"></script>
+<script defer src="../assets/js/physique.js"></script>
+<script defer src="../assets/js/trace.js"></script>
+<script defer src="../assets/js/figures.js"></script>
+<script defer src="../assets/js/labos.js"></script>
+<script defer src="../assets/js/site.js"></script>
+<script defer id="MathJax-script" src="../assets/vendor/mathjax/tex-svg-full.js"></script>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<header class="topbar"><div class="topbar-in">
+  <a class="brand" href="../index.html"><svg viewBox="0 0 22 22" aria-hidden="true"><rect x="1" y="2.5" width="20" height="4.5" rx="1" style="fill:var(--rule)"/><rect x="1" y="8.75" width="20" height="4.5" rx="1" style="fill:var(--amber)"/><rect x="1" y="15" width="20" height="4.5" rx="1" style="fill:var(--ink)"/></svg>Carnets scientifiques</a>
+  <nav class="topnav" aria-label="Navigation du site">
+    <a href="../photonique-integree/index.html" aria-current="page">Photonique intégrée</a>
+    <a href="../photonique-integree/labos.html">Labos</a>
+    <a href="../photonique-integree/fiche.html">Fiche</a>
+    <a href="../a-propos.html">À propos</a>
+  </nav>
+  <button type="button" class="theme-btn" id="theme-toggle" aria-label="Changer de thème (automatique, clair, sombre)"><svg class="i-auto" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 2a6 6 0 0 1 0 12z" fill="currentColor"/></svg><svg class="i-sun" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3.2" fill="currentColor"/><g stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M8 1.2v1.6M8 13.2v1.6M1.2 8h1.6M13.2 8h1.6M3.2 3.2l1.1 1.1M11.7 11.7l1.1 1.1M3.2 12.8l1.1-1.1M11.7 4.3l1.1-1.1"/></g></svg><svg class="i-moon" viewBox="0 0 16 16" aria-hidden="true"><path d="M13.5 10.2A6 6 0 0 1 5.8 2.5a6 6 0 1 0 7.7 7.7z" fill="currentColor"/></svg><span>Thème : auto</span></button>
+</div></header>
+<div class="shell">
+<aside class="side" aria-label="Sommaire">
+  <p class="side-head"><a href="index.html">Photonique intégrée</a></p>
+  <ol class="course">
+    <li><a href="index.html"><span class="n">§</span><span>Sommaire du thème</span></a></li>
+    <li><a href="equations-propagation.html"><span class="n">1</span><span>Équations de propagation</span></a></li>
+    <li><a href="guide-plan.html"><span class="n">2</span><span>Le guide plan</span></a></li>
+    <li><a href="guide-canal-indice-effectif.html"><span class="n">3</span><span>Guide canal et indice effectif</span></a></li>
+    <li><a href="proprietes-des-modes.html"><span class="n">4</span><span>Propriétés des modes</span></a></li>
+    <li class="cur"><a href="coupleur-directionnel.html" aria-current="page"><span class="n">5</span><span>Le coupleur directionnel</span></a><ol class="toc" id="toc-list"></ol></li>
+    <li><a href="modulateur-electro-optique.html"><span class="n">6</span><span>Modulateur électro-optique</span></a></li>
+    <li class="sep" aria-hidden="true"></li>
+    <li><a href="fiche.html"><span class="n">Σ</span><span>Fiche de révision</span></a></li>
+    <li><a href="labos.html"><span class="n">L</span><span>Tous les labos</span></a></li>
+  </ol>
+</aside>
+<main id="contenu">
+<div class="col">
+<header class="hero">
+  <nav class="crumbs" aria-label="Fil d'Ariane"><a href="../index.html">Accueil</a><span aria-hidden="true">/</span><a href="index.html">Photonique intégrée</a><span aria-hidden="true">/</span><span>Le coupleur directionnel</span></nav>
+  <div class="eyebrow">Chapitre II · Fonctions élémentaires · 5 / 6</div>
+  <h1>Le coupleur directionnel</h1>
+  <p class="lede">Deux guides proches échangent leur lumière par leurs queues évanescentes. Les supermodes expliquent cet échange et donnent la longueur de couplage, qui fixe le rapport de partage du coupleur.</p>
+  <div class="meta"><span>Vue de dessus : <b>x latéral</b>, <b>z propagation</b></span><a href="index.html#notations">Notations</a></div>
+  <details class="toc-m"><summary>Dans cette page</summary><ol id="toc-list-m"></ol></details>
+</header>
+<div class="goals"><div><p class="gh">Objectifs</p><ul><li>Décrire un coupleur avec ses supermodes pair et impair.</li><li>Établir l'échange de puissance et la longueur de couplage.</li><li>Dimensionner un coupleur 3 dB et écrire sa matrice de transfert.</li></ul></div><div><p class="gh">Prérequis</p><ul><li>Queues évanescentes et facteur de confinement (<a href="guide-plan.html#s-1-2e">§ I.2 e</a>).</li><li>Décomposition sur les modes (<a href="proprietes-des-modes.html">propriétés des modes</a>).</li></ul></div></div>
+
+<h2 id="s-2-1a"><span class="num">II.1 a)</span>Structure et intuition</h2>
+<p>Un coupleur directionnel est composé de deux guides monomodes identiques et parallèles. La séparation entre eux est assez petite pour permettre une interaction entre les modes guidés. Comme les modes ne sont pas entièrement confinés dans le cœur, une partie de leur énergie peut « fuir » dans l'autre guide par l'intermédiaire de la queue évanescente.</p>
+<figure>
+  <div class="fig-scroll" id="fig-coupler"></div>
+  <figcaption><b>FIG. 1</b>À gauche, vue de dessus (x latéral, z propagation) : la puissance injectée dans le guide 1 passe progressivement dans le guide 2. À droite, section transverse (x latéral, y vertical) : les queues évanescentes des deux modes se recouvrent dans l'espace entre les guides.</figcaption>
+</figure>
+<div class="box intu">
+  <span class="tag">Analogie · deux pendules couplés</span>
+  <p>Deux pendules identiques reliés par un ressort faible ont deux façons « propres » d'osciller : ensemble, en phase, ou l'un contre l'autre, en opposition. Ces deux mouvements ont des fréquences légèrement différentes. Si l'on lance un seul pendule, on excite en réalité les deux mouvements à la fois ; leur décalage progressif fait passer toute l'énergie dans le second pendule, puis la ramène. Le coupleur fait exactement la même chose, avec $z$ à la place du temps et les supermodes à la place des deux mouvements propres.</p>
+</div>
+
+<h2 id="s-2-1b"><span class="num">II.1 b)</span>Les supermodes</h2>
+<p>La structure couplée (deux cœurs côte à côte) est elle-même un guide, invariant selon $z$. Elle possède donc ses propres modes, appelés <strong>supermodes</strong> :</p>
+<ul>
+  <li>un mode <strong>pair</strong> $\varphi_e$ (de l'anglais <em>even</em>), d'indice effectif $n_e$ : les deux lobes sont en phase ;</li>
+  <li>un mode <strong>impair</strong> $\varphi_o$ (<em>odd</em>), d'indice effectif $n_o$ : les deux lobes sont en opposition de phase.</li>
+</ul>
+<p>On a toujours $n_o \lt n_e$. Le mode impair s'annule au milieu de l'écart entre les guides : il varie plus vite transversalement et place moins d'énergie dans la zone centrale. D'après l'<a href="guide-plan.html#s-1-2b">expression de $\neff^2$ comme moyenne pondérée</a>, ces deux effets abaissent son indice effectif.</p>
+<div class="box key">
+  <span class="tag">À retenir · modes des guides isolés et supermodes</span>
+  <p>Avec des supermodes normalisés, le mode du guide 1 seul et celui du guide 2 seul s'écrivent :</p>
+  $$\varphi_1 \approx \frac{\varphi_e + \varphi_o}{\sqrt2} \qquad\qquad \varphi_2 \approx \frac{\varphi_e - \varphi_o}{\sqrt2}$$
+  <p>Le signe ≈ rappelle que cette décomposition suppose un couplage faible : les guides ne doivent pas être trop proches, sinon chaque mode isolé est trop déformé par son voisin.</p>
+</div>
+
+<h2 id="s-2-1c"><span class="num">II.1 c)</span>Échange de puissance et longueur de couplage</h2>
+<p>On injecte une puissance $P_0$ dans le guide 1 en $z = 0$. Le champ d'entrée $\varphi_1$ se décompose en ses deux supermodes, qui se propagent chacun avec sa propre constante de propagation :</p>
+$$\psi(x,z) = \frac{1}{\sqrt2}\left(\varphi_e\,e^{-j\beta_ez} + \varphi_o\,e^{-j\beta_oz}\right)$$
+<p>On pose $\bar\beta = (\beta_e + \beta_o)/2$ et $\Delta\beta = \beta_e - \beta_o$, on met en facteur la phase moyenne $e^{-j\bar\beta z}$, puis on revient aux modes des guides isolés avec les relations ci-dessus :</p>
+$$\psi(x,z) = e^{-j\bar\beta z}\left[\varphi_1\cos\left(\frac{\Delta\beta\,z}{2}\right) - j\,\varphi_2\sin\left(\frac{\Delta\beta\,z}{2}\right)\right]$$
+<p>La puissance dans chaque guide est le carré du module de son amplitude :</p>
+$$P_1(z) = P_0\cos^2\left(\frac{\Delta\beta\,z}{2}\right) \qquad\qquad P_2(z) = P_0\sin^2\left(\frac{\Delta\beta\,z}{2}\right)$$
+<p>avec $\Delta\beta = \frac{2\pi}{\lambda}(n_e - n_o)$. Les deux supermodes se déphasent au fil de la propagation ; quand leur déphasage atteint $\pi$, toute la puissance est dans le guide 2.</p>
+<div class="box key">
+  <span class="tag">À retenir · longueur de couplage</span>
+  $$L_c = \frac{\pi}{\Delta\beta} = \frac{\lambda}{2\left(n_e - n_o\right)}$$
+  <p>Après $L_c$, la puissance est entièrement passée dans le guide 2 ; après $2L_c$, elle est revenue dans le guide 1. L'échange est périodique, de période $2L_c$.</p>
+</div>
+
+<h3>Coupleur 3 dB</h3>
+<p>Un coupleur de longueur $L_c/2$ partage la puissance en deux moitiés égales : c'est un <strong>coupleur 3 dB</strong> (diviser une puissance par deux, c'est la réduire de 3 dB). Les deux sorties ne sont pas en phase : le facteur $-j$ devant $\varphi_2$ indique un déphasage de $\pi/2$ entre elles. Ce quart de tour est ce qui fait fonctionner l'<a href="modulateur-electro-optique.html#s-td3-2">interféromètre de Mach-Zehnder</a>.</p>
+
+<h3>Forme matricielle</h3>
+<p>Pour enchaîner plusieurs composants, on écrit le coupleur comme une matrice qui relie les amplitudes en entrée et en sortie de chaque guide. Avec $\kappa = \Delta\beta/2 = \pi/(2L_c)$ et une longueur $L$ :</p>
+$$\begin{pmatrix}a_1\\a_2\end{pmatrix}_{\text{sortie}} = e^{-j\bar\beta L}\begin{pmatrix}\cos\kappa L & -j\sin\kappa L\\ -j\sin\kappa L & \cos\kappa L\end{pmatrix}\begin{pmatrix}a_1\\a_2\end{pmatrix}_{\text{entrée}}$$
+<p>Avec $a_1 = 1$ et $a_2 = 0$ en entrée, on retrouve $P_1 = \cos^2\kappa L$ et $P_2 = \sin^2\kappa L$.</p>
+
+<h3>Influence de l'écart entre les guides</h3>
+<p>$L_c$ augmente exponentiellement avec l'écart $g$ entre les guides, parce que le recouvrement des queues évanescentes décroît en $e^{-\alpha g}$. Pour deux guides de silice dopée (cœur 1 µm d'indice 1,50 dans une gaine 1,45, λ = 1,55 µm), le solveur du labo ci-dessous donne :</p>
+<div class="tbl"><table>
+  <thead><tr><th>Écart g (µm)</th><th class="num">0,5</th><th class="num">1</th><th class="num">1,5</th><th class="num">2</th><th class="num">2,5</th></tr></thead>
+  <tbody><tr><td>$L_c$ (µm)</td><td class="num">35</td><td class="num">56</td><td class="num">92</td><td class="num">149</td><td class="num">240</td></tr></tbody>
+</table></div>
+<p>Chaque demi-micron d'écart en plus multiplie $L_c$ par environ 1,6. Conséquence pratique : une petite erreur de fabrication sur $g$ change nettement le rapport de partage d'un coupleur. C'est pourquoi les coupleurs réels sont souvent caractérisés puis ajustés.</p>
+
+<section class="lab mj-ignore" id="lab6">
+  <div class="lab-head"><span class="lab-id">Labo 6</span><span class="lab-name">Coupleur directionnel</span></div>
+  <div class="lab-body" id="lab6-body"></div>
+</section>
+
+<h2 id="testez-vous">Testez-vous</h2>
+<p>Cherchez la réponse avant de déplier la question.</p>
+<div class="quiz">
+<details><summary>On double l'écart entre deux guides. La longueur de couplage double-t-elle ?</summary><div class="ans"><p>Non, elle augmente bien plus : la dépendance est exponentielle. Dans l'exemple du tableau, passer de 1 µm à 2 µm d'écart fait passer $L_c$ de 56 µm à 149 µm, soit presque un facteur 3.</p></div></details>
+<details><summary>Quelle longueur donner à un coupleur 3 dB, et quel déphasage sépare ses deux sorties ?</summary><div class="ans"><p>$L_c/2$. Les deux sorties portent chacune la moitié de la puissance, déphasées de $\pi/2$.</p></div></details>
+<details><summary>On injecte la lumière dans le guide 1. Que vaut $P_2$ après une longueur $2L_c$ ?</summary><div class="ans"><p>Zéro : $P_2 = P_0\sin^2(\pi z/2L_c)$ s'annule en $z = 2L_c$. Toute la puissance est revenue dans le guide 1.</p></div></details>
+<details><summary>Pourquoi le supermode impair a-t-il un indice effectif plus faible que le supermode pair ?</summary><div class="ans"><p>Il s'annule entre les deux guides : il varie plus vite transversalement et place moins d'énergie au centre. Les deux effets abaissent $\neff^2$, qui est une moyenne de $n^2$ pondérée par le champ, moins un terme de variation transverse.</p></div></details>
+</div>
+<nav class="pager" aria-label="Pages voisines"><a class="prev" href="proprietes-des-modes.html"><span class="pl">← Précédent</span><span class="pt">Propriétés des modes</span></a><a class="next" href="modulateur-electro-optique.html"><span class="pl">Suivant →</span><span class="pt">Modulateur électro-optique</span></a></nav>
+</div>
+</main>
+</div>
+<footer class="site-foot">
+  <span>Textes et figures sous licence <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr" rel="license">CC BY-NC-SA 4.0</a>. Aucun cookie, aucun traceur.</span>
+  <nav aria-label="Pied de page"><a href="../a-propos.html">À propos et mentions légales</a></nav>
+</footer>
+</body>
+</html>

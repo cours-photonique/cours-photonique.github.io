@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Le guide d&#x27;onde plan : modes TE/TM, coupure, abaques b-V · Photonique intégrée</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Guide d&#x27;onde plan à trois couches : modes TE et TM, relation de dispersion démontrée, épaisseur et longueur d&#x27;onde de coupure, puissance guidée, confinement et abaques b-V, avec solveur interactif.">
+<meta property="og:title" content="Le guide d&#x27;onde plan : modes TE/TM, coupure, abaques b-V · Photonique intégrée">
+<meta property="og:description" content="Guide d&#x27;onde plan à trois couches : modes TE et TM, relation de dispersion démontrée, épaisseur et longueur d&#x27;onde de coupure, puissance guidée, confinement et abaques b-V, avec solveur interactif.">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Carnets scientifiques">
+<meta name="theme-color" content="#EFF2F4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E1317" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<link rel="preload" href="../assets/fonts/source-serif-4-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/fonts/polices.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+<script defer src="../assets/js/mathjax-config.js"></script>
+<script defer src="../assets/js/physique.js"></script>
+<script defer src="../assets/js/trace.js"></script>
+<script defer src="../assets/js/figures.js"></script>
+<script defer src="../assets/js/labos.js"></script>
+<script defer src="../assets/js/site.js"></script>
+<script defer id="MathJax-script" src="../assets/vendor/mathjax/tex-svg-full.js"></script>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<header class="topbar"><div class="topbar-in">
+  <a class="brand" href="../index.html"><svg viewBox="0 0 22 22" aria-hidden="true"><rect x="1" y="2.5" width="20" height="4.5" rx="1" style="fill:var(--rule)"/><rect x="1" y="8.75" width="20" height="4.5" rx="1" style="fill:var(--amber)"/><rect x="1" y="15" width="20" height="4.5" rx="1" style="fill:var(--ink)"/></svg>Carnets scientifiques</a>
+  <nav class="topnav" aria-label="Navigation du site">
+    <a href="../photonique-integree/index.html" aria-current="page">Photonique intégrée</a>
+    <a href="../photonique-integree/labos.html">Labos</a>
+    <a href="../photonique-integree/fiche.html">Fiche</a>
+    <a href="../a-propos.html">À propos</a>
+  </nav>
+  <button type="button" class="theme-btn" id="theme-toggle" aria-label="Changer de thème (automatique, clair, sombre)"><svg class="i-auto" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 2a6 6 0 0 1 0 12z" fill="currentColor"/></svg><svg class="i-sun" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3.2" fill="currentColor"/><g stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M8 1.2v1.6M8 13.2v1.6M1.2 8h1.6M13.2 8h1.6M3.2 3.2l1.1 1.1M11.7 11.7l1.1 1.1M3.2 12.8l1.1-1.1M11.7 4.3l1.1-1.1"/></g></svg><svg class="i-moon" viewBox="0 0 16 16" aria-hidden="true"><path d="M13.5 10.2A6 6 0 0 1 5.8 2.5a6 6 0 1 0 7.7 7.7z" fill="currentColor"/></svg><span>Thème : auto</span></button>
+</div></header>
+<div class="shell">
+<aside class="side" aria-label="Sommaire">
+  <p class="side-head"><a href="index.html">Photonique intégrée</a></p>
+  <ol class="course">
+    <li><a href="index.html"><span class="n">§</span><span>Sommaire du thème</span></a></li>
+    <li><a href="equations-propagation.html"><span class="n">1</span><span>Équations de propagation</span></a></li>
+    <li class="cur"><a href="guide-plan.html" aria-current="page"><span class="n">2</span><span>Le guide plan</span></a><ol class="toc" id="toc-list"></ol></li>
+    <li><a href="guide-canal-indice-effectif.html"><span class="n">3</span><span>Guide canal et indice effectif</span></a></li>
+    <li><a href="proprietes-des-modes.html"><span class="n">4</span><span>Propriétés des modes</span></a></li>
+    <li><a href="coupleur-directionnel.html"><span class="n">5</span><span>Le coupleur directionnel</span></a></li>
+    <li><a href="modulateur-electro-optique.html"><span class="n">6</span><span>Modulateur électro-optique</span></a></li>
+    <li class="sep" aria-hidden="true"></li>
+    <li><a href="fiche.html"><span class="n">Σ</span><span>Fiche de révision</span></a></li>
+    <li><a href="labos.html"><span class="n">L</span><span>Tous les labos</span></a></li>
+  </ol>
+</aside>
+<main id="contenu">
+<div class="col">
+<header class="hero">
+  <nav class="crumbs" aria-label="Fil d'Ariane"><a href="../index.html">Accueil</a><span aria-hidden="true">/</span><a href="index.html">Photonique intégrée</a><span aria-hidden="true">/</span><span>Le guide plan</span></nav>
+  <div class="eyebrow">Chapitre I · Guides d'onde · 2 / 6</div>
+  <h1>Le guide plan</h1>
+  <p class="lede">Le guide le plus simple : trois couches planes. On y calcule tout à la main, des modes TE et TM à la relation de dispersion, aux épaisseurs de coupure et au confinement, puis on condense le résultat dans les abaques b-V.</p>
+  <div class="meta"><span>Convention temporelle <b>e<sup>j(ωt−βz)</sup></b></span><span>Guide plan : <b>x ⟂ couches</b>, y invariant</span><span>Propagation : <b>z</b></span><a href="index.html#notations">Notations</a></div>
+  <details class="toc-m"><summary>Dans cette page</summary><ol id="toc-list-m"></ol></details>
+</header>
+<div class="goals"><div><p class="gh">Objectifs</p><ul><li>Séparer les modes TE et TM d'un guide plan et écrire leurs conditions de passage.</li><li>Démontrer la relation de dispersion et la résoudre graphiquement ou numériquement.</li><li>Calculer épaisseur et longueur d'onde de coupure, et dimensionner un guide monomode avec ses tolérances.</li><li>Évaluer la puissance guidée, l'épaisseur effective et le facteur de confinement.</li><li>Lire un abaque b-V.</li></ul></div><div><p class="gh">Prérequis</p><ul><li><a href="equations-propagation.html">Équations de propagation dans les guides</a> (chapitre précédent).</li><li>Équations différentielles linéaires du second ordre.</li></ul></div></div>
+
+<h2 id="s-1-2a"><span class="num">I.2 a)</span>Description et conséquences</h2>
+<p>Un guide plan est composé d'un <strong>cœur</strong> d'épaisseur $d$ et d'indice $n_c$, déposé sur un <strong>substrat</strong> d'épaisseur infinie et d'indice $\nsub$. Au-dessus du cœur, un <strong>superstrat</strong> infiniment épais d'indice $\nsup$ complète la structure. Les trois couches sont infinies selon $y$, donc $\partial n/\partial y = 0$.</p>
+<figure>
+  <div class="fig-scroll" id="fig-slab"></div>
+  <figcaption><b>FIG. 1</b>Géométrie du guide plan. L'origine $x = 0$ est au milieu du cœur, les interfaces sont en $x = \pm d/2$. L'axe y sort de la feuille (⊙) : la structure y est invariante.</figcaption>
+</figure>
+<p>Le but est de déterminer comment la lumière se propage dans cette structure. Dans chaque couche, l'indice est constant : les seconds membres des équations d'onde sont nuls pour $|x| \neq d/2$ :</p>
+$$\nabla_T^2\vE + \left(k^2n^2 - \beta^2\right)\vE = 0 \qquad \nabla_T^2\vH + \left(k^2n^2 - \beta^2\right)\vH = 0 \qquad \text{pour } |x| \neq d/2$$
+<p>La méthode : on résout ces équations partout sauf en $|x| = d/2$, puis on utilise les <strong>relations de continuité</strong> des champs électromagnétiques aux interfaces pour sélectionner les bonnes solutions.</p>
+
+<h3>Séparation en deux familles TE et TM</h3>
+<p>La structure ne varie pas selon $y$, les champs non plus : $\partial\vE/\partial y = \partial\vH/\partial y = 0$. Par ailleurs $\partial/\partial z = -j\beta$. On écrit les équations de Maxwell composante par composante :</p>
+<div class="tbl"><table>
+<thead><tr><th>$\nabla\times\vE = -j\omega\mu_0\vH$</th><th>$\nabla\times\vH = j\omega\varepsilon_0 n^2\vE$</th></tr></thead>
+<tbody>
+<tr><td>$\underbrace{\partial_y E_z}_{0} - \partial_z E_y = -j\omega\mu_0 H_x \;\Rightarrow\; H_x = -\dfrac{\beta}{\omega\mu_0}E_y$</td><td>$\underbrace{\partial_y H_z}_{0} - \partial_z H_y = j\omega\varepsilon_0n^2E_x \;\Rightarrow\; E_x = \dfrac{\beta}{\omega\varepsilon_0n^2}H_y$</td></tr>
+<tr><td>$\partial_z E_x - \partial_x E_z = -j\omega\mu_0 H_y$</td><td>$\partial_z H_x - \partial_x H_z = j\omega\varepsilon_0n^2E_y$</td></tr>
+<tr><td>$\partial_x E_y - \underbrace{\partial_y E_x}_{0} = -j\omega\mu_0 H_z \;\Rightarrow\; H_z = \dfrac{j}{\omega\mu_0}\,\partial_x E_y$</td><td>$\partial_x H_y - \underbrace{\partial_y H_x}_{0} = j\omega\varepsilon_0n^2E_z \;\Rightarrow\; E_z = \dfrac{1}{j\omega\varepsilon_0n^2}\,\partial_x H_y$</td></tr>
+</tbody></table></div>
+<p>Les divergences donnent en plus $\partial_x E_x + \partial_z E_z = 0$ et $\partial_x H_x + \partial_z H_z = 0$ dans chaque couche. On n'a pas besoin de résoudre toutes ces équations : il suffit de remarquer que les six composantes se répartissent en <strong>deux groupes indépendants</strong>, chacun piloté par une seule composante selon $y$ :</p>
+<div class="tbl"><table>
+<thead><tr><th>Famille</th><th>Composantes</th><th>Composante pilote</th><th>Les autres s'en déduisent par</th></tr></thead>
+<tbody>
+<tr><td><strong>TE</strong> (transverse électrique)</td><td>$E_y,\ H_x,\ H_z$</td><td>$E_y$</td><td>$H_x = -\frac{\beta}{\omega\mu_0}E_y$, $\;H_z = \frac{j}{\omega\mu_0}\partial_x E_y$</td></tr>
+<tr><td><strong>TM</strong> (transverse magnétique)</td><td>$H_y,\ E_x,\ E_z$</td><td>$H_y$</td><td>$E_x = \frac{\beta}{\omega\varepsilon_0n^2}H_y$, $\;E_z = \frac{1}{j\omega\varepsilon_0n^2}\partial_x H_y$</td></tr>
+</tbody></table></div>
+<figure>
+  <div class="fig-scroll" id="fig-tetm"></div>
+  <figcaption><b>FIG. 2</b>Composantes non nulles des modes TE et TM du guide plan, dans le repère (x vertical, z propagation, y sortant). En TE, $\vE$ est entièrement selon y, parallèle aux couches.</figcaption>
+</figure>
+<div class="box warn">
+  <span class="tag">Attention · TE / TM</span>
+  <p>Les définitions de TE et TM ne sont pas les mêmes en photonique et en micro-ondes. En micro-ondes (guides métalliques), « TE » signifie seulement $E_z = 0$, quelle que soit l'orientation transverse de $\vE$. En optique intégrée, TE et TM désignent la <strong>polarisation par rapport au plan des couches</strong> : TE = $\vE$ parallèle aux couches (ici selon y), TM = $\vH$ parallèle aux couches. Dans un guide canal les modes deviennent hybrides et on parle de quasi-TE / quasi-TM (<a href="guide-canal-indice-effectif.html#s-1-3a">§ I.3</a>).</p>
+</div>
+<p>Il reste donc, pour le cas TE, à résoudre une équation scalaire sur $E_y(x)$ dans chacune des trois régions (même chose pour TM avec $H_y$) :</p>
+$$\begin{cases}
+\dfrac{\partial^2E_y}{\partial x^2} + \left(k^2\nsup^2 - \beta^2\right)E_y = 0 & x \gt d/2 \quad\text{(superstrat)}\\[2mm]
+\dfrac{\partial^2E_y}{\partial x^2} + \left(k^2n_c^2 - \beta^2\right)E_y = 0 & |x| \leqslant d/2 \quad\text{(cœur)}\\[2mm]
+\dfrac{\partial^2E_y}{\partial x^2} + \left(k^2\nsub^2 - \beta^2\right)E_y = 0 & x \lt -d/2 \quad\text{(substrat)}
+\end{cases}$$
+
+<h2 id="s-1-2b"><span class="num">I.2 b)</span>Mode guidé et indice effectif</h2>
+<h3>Condition de confinement</h3>
+<p>Hors du cœur, l'énergie doit s'annuler quand $|x| \to +\infty$ : $E_y$ doit décroître exponentiellement, ce qui impose que $k^2n_i^2 - \beta^2 \lt 0$ dans le substrat et le superstrat :</p>
+$$\beta^2 \geqslant k^2\nsub^2 \quad\text{et}\quad \beta^2 \geqslant k^2\nsup^2 \qquad\text{(condition de confinement)}$$
+<p>Pour alléger les notations on impose $\nsub \geqslant \nsup$, d'où $\beta^2 \geqslant k^2\nsub^2 \geqslant k^2\nsup^2$.</p>
+<h3>Borne haute : pourquoi $\beta \lt kn_c$</h3>
+<p>Dans le cœur, le champ $\cos(k_cx + \psi)\,e^{-j\beta z}$ est la somme de deux ondes planes de nombre d'onde $kn_c$, inclinées de $\pm\theta$ par rapport à $z$ : c'est l'image du rayon qui zigzague entre les deux interfaces par réflexion totale. Seule la composante selon $z$ du vecteur d'onde fait avancer le mode :</p>
+$$\beta = kn_c\cos\theta \qquad k_c = kn_c\sin\theta \qquad\Longrightarrow\qquad k_c^2 + \beta^2 = k^2n_c^2$$
+<p>On retrouve bien la définition $k_c = \sqrt{k^2n_c^2 - \beta^2}$. Un mode guidé a toujours un $\theta \gt 0$ (il faut un zigzag pour avoir un profil transverse), donc $\beta \lt kn_c$.</p>
+<p><strong>Que veut dire « $d$ tend vers l'infini » ?</strong> C'est une expérience de pensée, pas un guide réel : on épaissit le cœur indéfiniment et on regarde vers quoi tend le mode fondamental. Plus le cœur est épais, plus le rayon peut se propager presque parallèlement à $z$ ($\theta \to 0$, donc $\cos\theta \to 1$), et plus la part du champ dans les gaines devient négligeable ($\Gamma \to 1$). À la limite, le cœur remplit tout l'espace : il ne reste qu'un milieu homogène d'indice $n_c$, dans lequel une onde plane qui va selon $z$ a exactement $\beta = kn_c$. Pour tout $d$ fini, cette limite est approchée sans être atteinte.</p>
+<figure>
+  <div class="fig-scroll" id="fig-bound"></div>
+  <figcaption><b>FIG. 3</b>Mode fondamental d'un guide symétrique (n<sub>c</sub> = 1,50, gaines 1,45, λ = 1,55 µm) pour trois épaisseurs de cœur. En haut, $E_y(x)$ : la zone rose est la part du champ dans les gaines. Au milieu, le vecteur d'onde $kn_c$ dans le cœur, à l'angle réel $\theta$, et ses composantes $\beta$ (selon z) et $k_c$ (selon x). En bas, $\neff$ monte vers $n_c$ quand $d$ augmente, sans jamais l'atteindre.</figcaption>
+</figure>
+<div class="box intu">
+  <span class="tag">Une autre façon de le voir</span>
+  <p>On multiplie l'équation $E_y'' + (k^2n^2 - \beta^2)E_y = 0$ par $E_y$ et on intègre sur tout $x$ (intégration par parties : $\int E_yE_y'' = -\int E_y'^2$, les termes de bord s'annulent à l'infini). On obtient une identité exacte :</p>
+  $$\neff^2 = \frac{\int n^2(x)\,|E_y|^2\,\dd x}{\int |E_y|^2\,\dd x} - \frac{1}{k^2}\,\frac{\int |\partial_xE_y|^2\,\dd x}{\int |E_y|^2\,\dd x}$$
+  <p>$\neff^2$ est la moyenne de $n^2$ pondérée par l'endroit où se trouve le champ, moins une pénalité due à sa variation transverse. Les deux termes l'éloignent de $n_c^2$ : une partie du champ est dans des gaines d'indice plus faible, et le champ n'est pas uniforme. Quand $d \to \infty$, le champ est presque entièrement dans le cœur et varie de plus en plus lentement : les deux écarts tendent vers 0.</p>
+</div>
+<p>En résumé, $E_y(x)$ est <strong>exponentielle hors du cœur</strong> et <strong>harmonique dans le cœur</strong> :</p>
+$$E_y(x) = \begin{cases}
+\Asup\,e^{-\asup x} + \cancel{\Bsup\,e^{+\asup x}} & x \gt d/2\\
+A_c\cos\left(k_cx + \psi\right) & |x| \lt d/2\\
+\cancel{\Asub\,e^{-\asub x}} + \Bsub\,e^{+\asub x} & x \lt -d/2
+\end{cases}
+\qquad\text{avec}\qquad
+\begin{cases}
+\asub = \sqrt{\beta^2 - k^2\nsub^2}\\
+\asup = \sqrt{\beta^2 - k^2\nsup^2}\\
+k_c = \sqrt{k^2n_c^2 - \beta^2}
+\end{cases}$$
+<p>$A_i$, $B_i$ et $\psi$ sont des constantes d'intégration. Les termes barrés divergeraient en $|x| \to \infty$ : un champ guidé confiné impose $\Bsup = \Asub = 0$.</p>
+
+<h3>Conditions de passage aux interfaces</h3>
+<p>En $|x| = d/2$, les composantes <strong>tangentielles</strong> de $\vE$ et $\vH$ sont continues. La normale à l'interface est $x$ ; les directions tangentielles sont $y$ et $z$.</p>
+<figure>
+  <div class="fig-scroll narrow" id="fig-interf"></div>
+  <figcaption><b>FIG. 4</b>À l'interface $x = d/2$ : la normale est x, les directions tangentielles sont y (sortant) et z. Seules les composantes tangentielles sont continues pour un milieu sans charges ni courants surfaciques.</figcaption>
+</figure>
+<ul>
+  <li><strong>TE</strong> : $E_y$ et $H_z$ sont continus. Or $-j\omega\mu_0H_z = \partial E_y/\partial x$ et $\mu_0$ est le même partout, donc <strong>$E_y$ et $\partial E_y/\partial x$ sont continus</strong> en $x = \pm d/2$.</li>
+  <li><strong>TM</strong> : $H_y$ et $E_z$ sont continus. Or $j\omega\varepsilon_0n^2E_z = \partial H_y/\partial x$, donc <strong>$H_y$ et $\frac{1}{n^2}\,\partial H_y/\partial x$ sont continus</strong>. Le facteur $1/n^2$ change d'une couche à l'autre : c'est l'origine de toutes les différences TE/TM.</li>
+</ul>
+
+<h3>Démonstration de la relation de dispersion (TE)</h3>
+<p><strong>En $x = d/2$.</strong> Continuité de $E_y$ et de $\partial E_y/\partial x$ :</p>
+$$\Asup\,e^{-\asup d/2} = A_c\cos\left(k_c\tfrac{d}{2} + \psi\right) \qquad\qquad -\asup\Asup\,e^{-\asup d/2} = -A_ck_c\sin\left(k_c\tfrac{d}{2} + \psi\right)$$
+<p>On veut une équation qui ne contienne plus que $\beta$ et les paramètres du problème. On élimine $\Asup$ et $A_c$ en divisant la seconde par la première :</p>
+$$\tan\left(k_c\frac{d}{2} + \psi\right) = \frac{\asup}{k_c} \quad\Longrightarrow\quad k_c\frac{d}{2} + \psi = \arctan\left(\frac{\asup}{k_c}\right) + p\pi,\qquad p\in\mathbb{Z} \qquad\text{(1)}$$
+<p><strong>En $x = -d/2$.</strong> Continuité de $E_y$ et de $\partial E_y/\partial x$ :</p>
+$$\Bsub\,e^{-\asub d/2} = A_c\cos\left(k_c\tfrac{d}{2} - \psi\right) \qquad\qquad \asub\Bsub\,e^{-\asub d/2} = -A_ck_c\sin\left(-k_c\tfrac{d}{2} + \psi\right) = A_ck_c\sin\left(k_c\tfrac{d}{2} - \psi\right)$$
+$$\tan\left(k_c\frac{d}{2} - \psi\right) = \frac{\asub}{k_c} \quad\Longrightarrow\quad k_c\frac{d}{2} - \psi = \arctan\left(\frac{\asub}{k_c}\right) + q\pi,\qquad q\in\mathbb{Z} \qquad\text{(2)}$$
+<p>Par continuité, $\beta$ est le même dans les trois milieux : les conditions de passage doivent être vérifiées pour tout $z$, ce qui n'est possible que si le facteur $e^{-j\beta z}$ est commun aux trois couches. <strong>En additionnant (1) et (2)</strong>, $\psi$ disparaît :</p>
+$$k_cd - \arctan\left(\frac{\asub}{k_c}\right) - \arctan\left(\frac{\asup}{k_c}\right) = m\pi \qquad m = p + q$$
+<p>En remplaçant $k_c$, $\asub$ et $\asup$ par leurs expressions (on divise numérateur et dénominateur par $k$) :</p>
+$$\frac{2\pi}{\lambda}\,d\,\sqrt{n_c^2 - \beta^2/k^2} - \arctan\sqrt{\frac{\beta^2/k^2 - \nsup^2}{n_c^2 - \beta^2/k^2}} - \arctan\sqrt{\frac{\beta^2/k^2 - \nsub^2}{n_c^2 - \beta^2/k^2}} = m\pi$$
+<p>On introduit l'<strong>indice effectif</strong> $\neff = \beta/k$ :</p>
+<div class="box key">
+  <span class="tag">À retenir · relation de dispersion du guide plan (TE)</span>
+  $$\frac{2\pi}{\lambda}\,d\,\sqrt{n_c^2 - n_{\text{eff},m}^2} - \arctan\sqrt{\frac{n_{\text{eff},m}^2 - \nsub^2}{n_c^2 - n_{\text{eff},m}^2}} - \arctan\sqrt{\frac{n_{\text{eff},m}^2 - \nsup^2}{n_c^2 - n_{\text{eff},m}^2}} = m\pi,\qquad m\in\mathbb{N}$$
+  <p>Un mode guidé doit vérifier à la fois cette relation <em>et</em> la condition de confinement :</p>
+  $$k\nsup \leqslant k\nsub \leqslant \beta \lt kn_c \quad\Longleftrightarrow\quad \nsup \leqslant \nsub \lt n_{\text{eff},m} \lt n_c$$
+  <p>Cette équation fournit un ensemble <strong>discret</strong> de solutions $\beta_m$, $n_{\text{eff},m}$, indexées par l'entier $m$. Chaque solution est un <strong>mode de propagation</strong> ; le mode $m$ possède $m$ zéros dans le cœur.</p>
+</div>
+<div class="box comp">
+  <span class="tag">Complément · cas TM</span>
+  <p>Le même calcul se refait en TM. Avec $H_y$ et $\frac{1}{n^2}\partial_xH_y$ continus, chaque rapport $\alpha_i/k_c$ est multiplié par $n_c^2/n_i^2$ :</p>
+  $$\frac{2\pi}{\lambda}\,d\,\sqrt{n_c^2 - \neff^2} - \arctan\left[\frac{n_c^2}{\nsub^2}\sqrt{\frac{\neff^2 - \nsub^2}{n_c^2 - \neff^2}}\right] - \arctan\left[\frac{n_c^2}{\nsup^2}\sqrt{\frac{\neff^2 - \nsup^2}{n_c^2 - \neff^2}}\right] = m\pi$$
+  <p>Comme $n_c^2/n_i^2 \gt 1$, les arctangentes sont plus grandes qu'en TE : à $m$ égal, $n_{\text{eff}}^{TM} \lt n_{\text{eff}}^{TE}$ et le mode TM est coupé à une épaisseur plus grande.</p>
+</div>
+
+<h3>Expression complète du champ</h3>
+<p>En exprimant les constantes à partir de la continuité ($A_c = E_0$, $\psi$ donné par (1) avec $p = 0$) :</p>
+$$E_y(x,z) = E_0\,e^{-jk\,n_{\text{eff},m}\,z}\begin{cases}
+\cos\left(k_c\tfrac{d}{2} + \psi\right)e^{-\asup(x - d/2)} & x \geqslant d/2\\
+\cos\left(k_cx + \psi\right) & |x| \leqslant d/2\\
+\cos\left(k_c\tfrac{d}{2} - \psi\right)e^{+\asub(x + d/2)} & x \leqslant -d/2
+\end{cases}$$
+<figure>
+  <div class="fig-scroll" id="fig-modes"></div>
+  <figcaption><b>FIG. 5</b>Profils $E_y(x)$ des trois modes TE d'un guide asymétrique (λ = 1 µm, d = 4 µm, n<sub>c</sub> = 1,55, n<sub>sub</sub> = 1,50, n<sub>sup</sub> = 1,00), calculés par le solveur du labo 1. La queue évanescente est longue côté substrat ($1/\asub$ grand) et courte côté air ($1/\asup$ petit).</figcaption>
+</figure>
+<p>Ces graphes décrivent la distribution spatiale du champ dans le guide d'onde. Deux informations principales :</p>
+<ul>
+  <li>il n'existe que des modes de propagation <strong>discrets</strong>, dont le $\neff$ vérifie à la fois la relation de dispersion et la condition de confinement ;</li>
+  <li>l'empreinte du mode n'est pas celle du cœur : une partie de l'énergie se trouve <strong>à l'extérieur</strong>, dans les queues évanescentes de longueur $1/\asub$ et $1/\asup$. L'onde sort de son cœur.</li>
+</ul>
+<p>La résolution se fait numériquement, graphiquement (<a href="#lab1">labo 1</a>, second graphe) ou avec les abaques b-V (<a href="#s-1-2f">§ I.2 f</a>, <a href="#lab3">labo 3</a>).</p>
+
+<section class="lab mj-ignore" id="lab1">
+  <div class="lab-head"><span class="lab-id">Labo 1</span><span class="lab-name">Solveur de modes du guide plan</span></div>
+  <div class="lab-body" id="lab1-body"></div>
+</section>
+
+<h2 id="s-1-2c"><span class="num">I.2 c)</span>Épaisseur de coupure et longueur d'onde de coupure</h2>
+<p>À $\lambda$ donnée, quelle épaisseur minimale de cœur faut-il pour que le mode $m$ soit guidé ? La condition de guidage du mode $m$ est $n_{\text{eff},m} \gt \nsub \geqslant \nsup$. La limite est atteinte quand $n_{\text{eff},m} = \nsub$ : cela se produit pour $d = d_{c,m}$, l'<strong>épaisseur de coupure</strong> du mode $m$. En posant $\neff = \nsub$ dans la relation de dispersion, la première arctangente s'annule :</p>
+$$\frac{2\pi}{\lambda}\,d_{c,m}\sqrt{n_c^2 - \nsub^2} - \arctan\sqrt{\frac{\nsub^2 - \nsup^2}{n_c^2 - \nsub^2}} = m\pi$$
+<div class="box key">
+  <span class="tag">À retenir · épaisseur de coupure (TE)</span>
+  $$d_{c,m} = \frac{\lambda}{2\pi\sqrt{n_c^2 - \nsub^2}}\left[m\pi + \arctan\sqrt{\frac{\nsub^2 - \nsup^2}{n_c^2 - \nsub^2}}\,\right]$$
+  <p>En TM, l'argument de l'arctangente est multiplié par $n_c^2/\nsup^2$.</p>
+</div>
+<p>On en déduit :</p>
+<ul>
+  <li>si $d \gt d_{c,m}$, le mode $m$ est guidé ;</li>
+  <li>plus le contraste d'indice est grand, plus $d_{c,m}$ est petit (le dénominateur $\sqrt{n_c^2 - \nsub^2}$ augmente) ;</li>
+  <li>plus $\lambda$ est grande, plus $d_{c,m}$ est grand ($d_{c,m} \propto \lambda$) ;</li>
+  <li>pour le mode fondamental ($m = 0$) d'un guide <strong>symétrique</strong> ($\nsub = \nsup$), l'arctangente vaut 0 donc $d_{c,0} = 0$ : ce mode est <strong>toujours guidé</strong>. Dans un guide asymétrique, le fondamental a une vraie coupure.</li>
+</ul>
+
+<h3>Conception d'un guide monomode avec tolérances</h3>
+<p>On veut un guide monomode réalisé par dépôt d'une couche sur un substrat. L'homogénéité d'épaisseur de la couche est de 5 % sur la plaque, son indice vaut $n_c \pm \Delta n_c$ et elle est déposée sur un substrat d'indice $\nsub \pm \Delta\nsub$. La gamme de longueurs d'onde va de $\lambda_1$ à $\lambda_2$ ($\lambda_2 \gt \lambda_1$).</p>
+<p>Monomode signifie que seul le mode $m = 0$ est guidé, sur toute la gamme :</p>
+$$\begin{cases}
+d \gt d_{c,0}(\lambda_1)\ \text{et}\ d \gt d_{c,0}(\lambda_2)\\
+d \lt d_{c,1}(\lambda_1)\ \text{et}\ d \lt d_{c,1}(\lambda_2)
+\end{cases}
+\quad\Longrightarrow\quad d_{c,0}(\lambda_2) \lt d \lt d_{c,1}(\lambda_1)$$
+<p>puisque $d_c$ croît avec $\lambda$. Il faut ensuite prendre le <strong>pire cas</strong> sur les indices. L'épaisseur de coupure augmente quand le contraste diminue, c'est-à-dire pour le plus petit $n_c$ et le plus grand $\nsub$ :</p>
+$$d_{c,0}^{\max}(\lambda_2) = \frac{\lambda_2}{2\pi\sqrt{(n_c - \Delta n_c)^2 - (\nsub + \Delta\nsub)^2}}\arctan\sqrt{\frac{(\nsub + \Delta\nsub)^2 - \nsup^2}{(n_c - \Delta n_c)^2 - (\nsub + \Delta\nsub)^2}}$$
+$$d_{c,1}^{\min}(\lambda_1) = \frac{\lambda_1}{2\pi\sqrt{(n_c + \Delta n_c)^2 - (\nsub - \Delta\nsub)^2}}\left[\pi + \arctan\sqrt{\frac{(\nsub - \Delta\nsub)^2 - \nsup^2}{(n_c + \Delta n_c)^2 - (\nsub - \Delta\nsub)^2}}\,\right]$$
+<p>Première contrainte technologique : il faut $n_c - \Delta n_c \gt \nsub + \Delta\nsub$, sinon le guide peut ne pas guider du tout. Ici $\nsup = 1$ (air). Enfin l'épaisseur réelle varie de ±5 % sur la plaque : il faut choisir une épaisseur nominale $d_0$ telle que $0{,}95\,d_0 \geqslant d_{c,0}^{\max}$ et $1{,}05\,d_0 \leqslant d_{c,1}^{\min}$, ce qui n'est possible que si $d_{c,1}^{\min}/d_{c,0}^{\max} \geqslant 1{,}05/0{,}95 \approx 1{,}105$.</p>
+
+<section class="lab mj-ignore" id="lab2">
+  <div class="lab-head"><span class="lab-id">Labo 2</span><span class="lab-name">Fenêtre monomode et tolérances</span></div>
+  <div class="lab-body" id="lab2-body"></div>
+</section>
+
+<h3>Longueur d'onde de coupure et nombre de modes</h3>
+<p>Pour un guide donné (épaisseur $d$ fixée), on définit symétriquement la longueur d'onde de coupure du mode $m$ : au-delà de $\lambda_{c,m}$ le mode $m$ n'est plus guidé.</p>
+$$\frac{2\pi}{\lambda_{c,m}}\,d\sqrt{n_c^2 - \nsub^2} - \arctan\sqrt{\frac{\nsub^2 - \nsup^2}{n_c^2 - \nsub^2}} = m\pi$$
+<div class="box key">
+  <span class="tag">À retenir · longueur d'onde de coupure et nombre de modes</span>
+  $$\lambda_{c,m} = \frac{2\pi\,d\sqrt{n_c^2 - \nsub^2}}{m\pi + \arctan\sqrt{\dfrac{\nsub^2 - \nsup^2}{n_c^2 - \nsub^2}}}$$
+  $$N_{\text{modes}} = 1 + \left\lfloor\frac{1}{\pi}\left[\frac{2\pi}{\lambda}\,d\sqrt{n_c^2 - \nsub^2} - \arctan\sqrt{\frac{\nsub^2 - \nsup^2}{n_c^2 - \nsub^2}}\,\right]\right\rfloor$$
+  <p>La formule de $N$ suppose que le crochet est positif (sinon aucun mode n'est guidé). En notation normalisée : $N = 1 + \lfloor (V - \arctan\sqrt{a})/\pi \rfloor$.</p>
+</div>
+
+<h2 id="s-1-2d"><span class="num">I.2 d)</span>Puissance guidée</h2>
+<p>Le mode $m$ est défini par ses champs $\vE_m$, $\vH_m$ et sa constante de propagation $\beta_m$. Le flux de puissance qu'il transporte est donné par le vecteur de Poynting moyen :</p>
+$$\vP = \frac{1}{2}\Re\left(\vE\times\vH^*\right) \qquad\Longrightarrow\qquad P_m = \frac{1}{2}\Re\left[\iint_{-\infty}^{+\infty}\left(\vE\times\vH^*\right)\cdot\vec{z}\;\dd x\,\dd y\right]$$
+<p>Pour les modes TE, $\vE = E_y\,\vec{y}$ et $\vH = H_x\,\vec{x} + H_z\,\vec{z}$ :</p>
+$$\vE\times\vH = -E_yH_x\,\vec{z} + E_yH_z\,\vec{x} \quad\Longrightarrow\quad \left(\vE\times\vH^*\right)\cdot\vec{z} = -E_yH_x^*$$
+<p>D'après Faraday, $\partial E_z/\partial y - \partial E_y/\partial z = -j\omega\mu_0H_x$, avec $\partial E_z/\partial y = 0$. Or le champ varie en $e^{-j\beta z}$, donc $\partial E_y/\partial z = -j\beta E_y$ (c'est de là que vient le $-j\beta$) :</p>
+$$-\left(-j\beta E_y\right) = -j\omega\mu_0H_x \quad\Longleftrightarrow\quad H_x = -\frac{\beta}{\omega\mu_0}E_y$$
+<p>En injectant dans la formule de la puissance guidée :</p>
+$$P_m = \frac{\beta_m}{2\omega\mu_0}\iint_{-\infty}^{+\infty}|E_y|^2\,\dd x\,\dd y$$
+<p>Pour obtenir une valeur finie on considère que le guide a une largeur $W \gg \lambda$ selon $y$ (W est bien la largeur selon y) :</p>
+$$P_m = \frac{\beta_mW}{2\omega\mu_0}\int_{-\infty}^{+\infty}|E_y|^2\,\dd x$$
+<h3>Calcul pour un guide symétrique ($\nsub = \nsup$)</h3>
+<p>Pour un mode pair ($\psi = 0$), $E_y(x) = E_0\cos(k_cx)$ dans le cœur et $E_0\cos(k_cd/2)\,e^{-\asub(|x| - d/2)}$ à l'extérieur. La fonction est paire : on intègre de 0 à $+\infty$ et on multiplie par 2.</p>
+$$P_m = \frac{\beta_m}{\omega\mu_0}WE_0^2\left[\underbrace{\int_0^{d/2}\cos^2(k_cx)\,\dd x}_{I_1} + \underbrace{\cos^2\left(k_c\tfrac{d}{2}\right)\int_{d/2}^{+\infty}e^{-2\asub(x - d/2)}\,\dd x}_{I_2}\right]$$
+$$I_1 = \frac{d}{4} + \frac{\sin(k_cd)}{4k_c} = \frac{d}{4} + \frac{\sin(k_cd/2)\cos(k_cd/2)}{2k_c} \qquad\qquad I_2 = \frac{\cos^2(k_cd/2)}{2\asub}$$
+<p>La relation de dispersion d'un mode pair du guide symétrique s'écrit $\tan(k_cd/2) = \asub/k_c$, soit $\cos(k_cd/2) = \frac{k_c}{\asub}\sin(k_cd/2)$. Le second terme de $I_1$ devient $\frac{\sin^2(k_cd/2)}{2\asub}$ et :</p>
+$$I_1 + I_2 = \frac{d}{4} + \frac{\sin^2 + \cos^2}{2\asub} = \frac{d}{4} + \frac{1}{2\asub} = \frac{1}{4}\left(d + \frac{2}{\asub}\right)$$
+<div class="box key">
+  <span class="tag">À retenir · puissance guidée et épaisseur effective</span>
+  $$P_m = \frac{\beta_m}{4\omega\mu_0}\,E_0^2\,W\left(d + \frac{2}{\asub}\right) \qquad\qquad d_{\text{eff}} = d + \frac{2}{\asub}\quad\left(\text{asymétrique : } d + \frac{1}{\asub} + \frac{1}{\asup}\right)$$
+  <p>$d_{\text{eff}}$ est l'<strong>épaisseur effective</strong> du mode $m$ : l'épaisseur qu'occuperait le mode s'il avait partout l'amplitude $E_0$. Le calcul pour un mode impair ($\sin(k_cx)$, relation $-\cot(k_cd/2) = \asub/k_c$) donne exactement le même résultat.</p>
+</div>
+<ul>
+  <li><strong>Loin de la coupure</strong> : $\neff \to n_c$, donc $\asub \to \frac{2\pi}{\lambda}\sqrt{n_c^2 - \nsub^2}$, valeur maximale ; $d_{\text{eff}}$ est à peine plus grand que $d$.</li>
+  <li><strong>Près de la coupure</strong> : $\neff \to \nsub$, donc $\asub \to 0$ et $1/\asub \to +\infty$ ; le mode s'étale dans le substrat. À la coupure, l'onde n'est plus ni guidée ni confinée.</li>
+</ul>
+<figure>
+  <div class="fig-scroll" id="fig-deff"></div>
+  <figcaption><b>FIG. 6</b>Mode fondamental d'un guide symétrique (n<sub>c</sub> = 1,50, n<sub>sub</sub> = n<sub>sup</sub> = 1,45, λ = 1,55 µm) loin de la coupure (d = 3 µm) et près de la coupure (d = 0,4 µm). La zone grisée montre $d_{\text{eff}}$.</figcaption>
+</figure>
+
+<h2 id="s-1-2e"><span class="num">I.2 e)</span>Facteur de confinement</h2>
+<p>Pour évaluer la qualité du confinement de la lumière dans le cœur, on introduit le <strong>facteur de confinement</strong> $\Gamma$, fraction de la puissance qui circule dans le cœur :</p>
+$$\Gamma = \frac{\displaystyle\int_{-d/2}^{d/2}|E_y|^2\,\dd x}{\displaystyle\int_{-\infty}^{+\infty}|E_y|^2\,\dd x}$$
+<p>$\Gamma \to 1$ loin de la coupure et $\Gamma \to 0$ près de la coupure. La fraction complémentaire $1 - \Gamma$ est la partie évanescente du mode : c'est elle qui interagit avec l'environnement (capteurs, couplage vers un guide voisin, <a href="coupleur-directionnel.html">§ II.1</a>). Le <a href="#lab1">labo 1</a> affiche $\Gamma$ et $d_{\text{eff}}$ pour chaque mode.</p>
+
+<h2 id="s-1-2f"><span class="num">I.2 f)</span>Normalisation : diagrammes b-V</h2>
+<p>Pour éviter de résoudre la relation de dispersion à chaque fois, on la met sous une forme normalisée qui ne dépend que de trois nombres sans dimension. On part de la relation TE, en notant le cœur $n_g$ comme sur les abaques usuels :</p>
+$$\underbrace{\frac{2\pi}{\lambda}\,d\sqrt{n_g^2 - \neff^2}}_{\text{①}} - \arctan\underbrace{\sqrt{\frac{\neff^2 - \nsub^2}{n_g^2 - \neff^2}}}_{\text{②}} - \arctan\underbrace{\sqrt{\frac{\neff^2 - \nsup^2}{n_g^2 - \neff^2}}}_{\text{③}} = m\pi$$
+<p>On définit :</p>
+$$V = \frac{2\pi}{\lambda}\,d\sqrt{n_g^2 - \nsub^2} = k_0d\sqrt{n_g^2 - \nsub^2} \qquad b = \frac{\neff^2 - \nsub^2}{n_g^2 - \nsub^2} \qquad a = \frac{\nsub^2 - \nsup^2}{n_g^2 - \nsub^2}$$
+<p><strong>Terme ①.</strong> On fait apparaître $n_g^2 - \nsub^2$ :</p>
+$$k_0d\sqrt{n_g^2 - \neff^2} = k_0d\sqrt{n_g^2 - \nsub^2}\,\sqrt{1 - \frac{\neff^2 - \nsub^2}{n_g^2 - \nsub^2}} = V\sqrt{1 - b}$$
+<p><strong>Terme ②.</strong> On divise numérateur et dénominateur par $n_g^2 - \nsub^2$, sachant que $\frac{n_g^2 - \neff^2}{n_g^2 - \nsub^2} = 1 - b$ :</p>
+$$\sqrt{\frac{\neff^2 - \nsub^2}{n_g^2 - \neff^2}} = \sqrt{b}\cdot\frac{1}{\sqrt{1 - b}} = \sqrt{\frac{b}{1 - b}}$$
+<p><strong>Terme ③.</strong> On ajoute et retranche $\nsub^2$ au numérateur :</p>
+$$\frac{\neff^2 - \nsup^2}{n_g^2 - \nsub^2} = \frac{(\neff^2 - \nsub^2) + (\nsub^2 - \nsup^2)}{n_g^2 - \nsub^2} = b + a \quad\Longrightarrow\quad \sqrt{\frac{\neff^2 - \nsup^2}{n_g^2 - \neff^2}} = \sqrt{\frac{a + b}{1 - b}}$$
+<div class="box key">
+  <span class="tag">À retenir · relation de dispersion normalisée (TE)</span>
+  $$V\sqrt{1 - b} - \arctan\sqrt{\frac{b}{1 - b}} - \arctan\sqrt{\frac{a + b}{1 - b}} = p\pi \qquad\Longrightarrow\qquad \neff = \sqrt{\nsub^2 + b\left(n_g^2 - \nsub^2\right)}$$
+  <ul>
+    <li>$V$ : <strong>fréquence normalisée</strong> (épaisseur et longueur d'onde réunies) ;</li>
+    <li>$a$ : <strong>asymétrie</strong> du guide ($a = 0$ : guide symétrique ; $a \to \infty$ : superstrat d'indice très faible) ;</li>
+    <li>$b \in (0, 1)$ : <strong>indice effectif normalisé</strong> d'un mode guidé, puisque $\nsub \lt \neff \lt n_g$. À la coupure $\neff = \nsub$ donc $b = 0$. Quand $d \to \infty$, $\neff \to n_g$ parce que la lumière ne voit plus qu'un seul indice : $b \to 1$.</li>
+  </ul>
+  <p>Le numéro de mode s'écrit $p$ (ou $m$) sur les abaques. La coupure du mode $p$ correspond à $V_{c,p} = p\pi + \arctan\sqrt{a}$.</p>
+</div>
+<div class="box warn">
+  <span class="tag">Attention · domaine de validité</span>
+  <ul>
+    <li>si $\nsup \gt \nsub$, $a$ serait négatif : on échange les rôles de $\nsub$ et $\nsup$ ;</li>
+    <li>en polarisation TM, la normalisation n'est valable que si le contraste d'indice entre $\neff$ et $\nsub$ est faible (les facteurs $n_c^2/n_i^2$ restent alors proches de 1).</li>
+  </ul>
+</div>
+
+<section class="lab mj-ignore" id="lab3">
+  <div class="lab-head"><span class="lab-id">Labo 3</span><span class="lab-name">Abaque b-V interactif</span></div>
+  <div class="lab-body" id="lab3-body"></div>
+</section>
+
+<h2 id="testez-vous">Testez-vous</h2>
+<p>Cherchez la réponse avant de déplier la question.</p>
+<div class="quiz">
+<details><summary>Un guide symétrique peut-il perdre son mode fondamental si on l'amincit ?</summary><div class="ans"><p>Non : pour $\nsub = \nsup$, l'arctangente de la formule de coupure est nulle et $d_{c,0} = 0$. Le fondamental existe pour toute épaisseur. En revanche, quand $d \to 0$, $b \to 0$ : le mode s'étale très loin dans les gaines et son confinement $\Gamma$ tend vers 0, ce qui le rend inutilisable en pratique.</p></div></details>
+<details><summary>À ordre $m$ égal, quel mode a le plus grand indice effectif : TE ou TM ?</summary><div class="ans"><p>Le mode TE. En TM, les arguments des arctangentes sont multipliés par $n_c^2/n_i^2 \gt 1$, ce qui abaisse $\neff$. Le mode TM est aussi coupé à une épaisseur plus grande.</p></div></details>
+<details><summary>On augmente la longueur d'onde sans toucher au guide. Que deviennent $V$, le nombre de modes et le confinement ?</summary><div class="ans"><p>$V = \frac{2\pi}{\lambda}d\sqrt{n_c^2 - \nsub^2}$ diminue. Le nombre de modes diminue ou reste le même, et chaque mode se rapproche de sa coupure : $b$ et $\Gamma$ baissent, les queues évanescentes s'allongent.</p></div></details>
+<details><summary>Que vaut $b$ à la coupure, puis quand l'épaisseur tend vers l'infini ?</summary><div class="ans"><p>À la coupure, $\neff = \nsub$, donc $b = 0$. Quand $d \to \infty$, la lumière ne voit plus que le cœur : $\neff \to n_c$ et $b \to 1$.</p></div></details>
+<details><summary>Pourquoi la condition monomode s'écrit-elle $d_{c,0}(\lambda_2) \lt d \lt d_{c,1}(\lambda_1)$, avec deux longueurs d'onde différentes ?</summary><div class="ans"><p>Parce que $d_c \propto \lambda$. Le fondamental est le plus difficile à guider à la plus grande longueur d'onde $\lambda_2$, et le mode 1 apparaît le plus facilement à la plus petite, $\lambda_1$. Ce sont donc ces deux cas extrêmes qui bornent l'épaisseur.</p></div></details>
+</div>
+<nav class="pager" aria-label="Pages voisines"><a class="prev" href="equations-propagation.html"><span class="pl">← Précédent</span><span class="pt">Équations de propagation</span></a><a class="next" href="guide-canal-indice-effectif.html"><span class="pl">Suivant →</span><span class="pt">Guide canal et indice effectif</span></a></nav>
+</div>
+</main>
+</div>
+<footer class="site-foot">
+  <span>Textes et figures sous licence <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr" rel="license">CC BY-NC-SA 4.0</a>. Aucun cookie, aucun traceur.</span>
+  <nav aria-label="Pied de page"><a href="../a-propos.html">À propos et mentions légales</a></nav>
+</footer>
+</body>
+</html>

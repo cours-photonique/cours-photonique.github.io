@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Guide canal et méthode de l&#x27;indice effectif (EIM) · Photonique intégrée</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Guide d&#x27;onde canal : approximations semi-vectorielle et scalaire, modes quasi-TE et quasi-TM, méthode de l&#x27;indice effectif. Deux exercices corrigés pas à pas (guide en arête, guide multimode).">
+<meta property="og:title" content="Guide canal et méthode de l&#x27;indice effectif (EIM) · Photonique intégrée">
+<meta property="og:description" content="Guide d&#x27;onde canal : approximations semi-vectorielle et scalaire, modes quasi-TE et quasi-TM, méthode de l&#x27;indice effectif. Deux exercices corrigés pas à pas (guide en arête, guide multimode).">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Carnets scientifiques">
+<meta name="theme-color" content="#EFF2F4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E1317" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<link rel="preload" href="../assets/fonts/source-serif-4-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/fonts/polices.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+<script defer src="../assets/js/mathjax-config.js"></script>
+<script defer src="../assets/js/physique.js"></script>
+<script defer src="../assets/js/trace.js"></script>
+<script defer src="../assets/js/figures.js"></script>
+<script defer src="../assets/js/labos.js"></script>
+<script defer src="../assets/js/site.js"></script>
+<script defer id="MathJax-script" src="../assets/vendor/mathjax/tex-svg-full.js"></script>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<header class="topbar"><div class="topbar-in">
+  <a class="brand" href="../index.html"><svg viewBox="0 0 22 22" aria-hidden="true"><rect x="1" y="2.5" width="20" height="4.5" rx="1" style="fill:var(--rule)"/><rect x="1" y="8.75" width="20" height="4.5" rx="1" style="fill:var(--amber)"/><rect x="1" y="15" width="20" height="4.5" rx="1" style="fill:var(--ink)"/></svg>Carnets scientifiques</a>
+  <nav class="topnav" aria-label="Navigation du site">
+    <a href="../photonique-integree/index.html" aria-current="page">Photonique intégrée</a>
+    <a href="../photonique-integree/labos.html">Labos</a>
+    <a href="../photonique-integree/fiche.html">Fiche</a>
+    <a href="../a-propos.html">À propos</a>
+  </nav>
+  <button type="button" class="theme-btn" id="theme-toggle" aria-label="Changer de thème (automatique, clair, sombre)"><svg class="i-auto" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 2a6 6 0 0 1 0 12z" fill="currentColor"/></svg><svg class="i-sun" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3.2" fill="currentColor"/><g stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M8 1.2v1.6M8 13.2v1.6M1.2 8h1.6M13.2 8h1.6M3.2 3.2l1.1 1.1M11.7 11.7l1.1 1.1M3.2 12.8l1.1-1.1M11.7 4.3l1.1-1.1"/></g></svg><svg class="i-moon" viewBox="0 0 16 16" aria-hidden="true"><path d="M13.5 10.2A6 6 0 0 1 5.8 2.5a6 6 0 1 0 7.7 7.7z" fill="currentColor"/></svg><span>Thème : auto</span></button>
+</div></header>
+<div class="shell">
+<aside class="side" aria-label="Sommaire">
+  <p class="side-head"><a href="index.html">Photonique intégrée</a></p>
+  <ol class="course">
+    <li><a href="index.html"><span class="n">§</span><span>Sommaire du thème</span></a></li>
+    <li><a href="equations-propagation.html"><span class="n">1</span><span>Équations de propagation</span></a></li>
+    <li><a href="guide-plan.html"><span class="n">2</span><span>Le guide plan</span></a></li>
+    <li class="cur"><a href="guide-canal-indice-effectif.html" aria-current="page"><span class="n">3</span><span>Guide canal et indice effectif</span></a><ol class="toc" id="toc-list"></ol></li>
+    <li><a href="proprietes-des-modes.html"><span class="n">4</span><span>Propriétés des modes</span></a></li>
+    <li><a href="coupleur-directionnel.html"><span class="n">5</span><span>Le coupleur directionnel</span></a></li>
+    <li><a href="modulateur-electro-optique.html"><span class="n">6</span><span>Modulateur électro-optique</span></a></li>
+    <li class="sep" aria-hidden="true"></li>
+    <li><a href="fiche.html"><span class="n">Σ</span><span>Fiche de révision</span></a></li>
+    <li><a href="labos.html"><span class="n">L</span><span>Tous les labos</span></a></li>
+  </ol>
+</aside>
+<main id="contenu">
+<div class="col">
+<header class="hero">
+  <nav class="crumbs" aria-label="Fil d'Ariane"><a href="../index.html">Accueil</a><span aria-hidden="true">/</span><a href="index.html">Photonique intégrée</a><span aria-hidden="true">/</span><span>Guide canal et indice effectif</span></nav>
+  <div class="eyebrow">Chapitre I · Guides d'onde · 3 / 6</div>
+  <h1>Guide canal et méthode de l'indice effectif</h1>
+  <p class="lede">Un vrai guide confine la lumière dans deux directions et n'a pas de solution analytique. La méthode de l'indice effectif le ramène à deux guides plans successifs. Deux exercices corrigés pas à pas l'appliquent, d'un guide monomode à un guide multimode.</p>
+  <div class="meta"><span>Guide canal : <b>x latéral</b>, <b>y vertical</b></span><span>Propagation : <b>z</b></span><a href="index.html#notations">Notations</a></div>
+  <details class="toc-m"><summary>Dans cette page</summary><ol id="toc-list-m"></ol></details>
+</header>
+<div class="goals"><div><p class="gh">Objectifs</p><ul><li>Expliquer pourquoi le guide canal demande des approximations (semi-vectorielle, scalaire).</li><li>Distinguer les modes quasi-TE et quasi-TM.</li><li>Appliquer la méthode de l'indice effectif à un guide en arête ou en ruban.</li><li>Compter et nommer les modes TE<sub>pq</sub> d'un guide multimode.</li></ul></div><div><p class="gh">Prérequis</p><ul><li><a href="guide-plan.html">Le guide plan</a> : relation de dispersion, coupure, abaque b-V.</li></ul></div></div>
+
+<h2 id="s-1-3a"><span class="num">I.3 a)</span>Équation de propagation</h2>
+<p>Un guide canal confine la lumière dans les <strong>deux</strong> directions transverses. L'indice reste invariant selon $z$, mais il varie maintenant selon $x$ <em>et</em> selon $y$ :</p>
+$$\frac{\partial n}{\partial z} = \frac{\partial n^2}{\partial z} = 0 \qquad\qquad \frac{\partial n^2}{\partial x} \neq 0 \quad\text{et}\quad \frac{\partial n^2}{\partial y} \neq 0$$
+<figure>
+  <div class="fig-scroll" id="fig-channels"></div>
+  <figcaption><b>FIG. 1</b>Sections transverses des guides canaux usuels, dans le repère du guide canal : x latéral, y vertical, z sortant (⊙). Ruban (strip/ridge), arête (rib), enterré (buried) et diffusé (Ti:LiNbO<sub>3</sub>, voir le <a href="modulateur-electro-optique.html">modulateur électro-optique</a>).</figcaption>
+</figure>
+<p>Les équations de propagation s'écrivent (avec $\beta = k\neff$) :</p>
+$$\nabla_T^2\vE + k^2\left(n^2(x,y) - \neff^2\right)\vE = -\nabla\left(\vE\cdot\frac{\nabla n^2}{n^2}\right) \qquad \nabla_T^2\vH + k^2\left(n^2(x,y) - \neff^2\right)\vH = \left(\nabla\times\vH\right)\times\frac{\nabla n^2}{n^2}$$
+<h3>Composantes de $\vE$</h3>
+<p>$\nabla n^2$ n'a pas de composante selon $z$, donc $\vE\cdot\nabla n^2 = E_x\partial_xn^2 + E_y\partial_yn^2$ :</p>
+$$\frac{\partial^2E_x}{\partial x^2} + \frac{\partial^2E_x}{\partial y^2} + k^2\left(n^2(x,y) - \neff^2\right)E_x = -\frac{\partial}{\partial x}\left[\frac{E_x}{n^2}\frac{\partial n^2}{\partial x} + \frac{E_y}{n^2}\frac{\partial n^2}{\partial y}\right]$$
+$$\frac{\partial^2E_y}{\partial x^2} + \frac{\partial^2E_y}{\partial y^2} + k^2\left(n^2(x,y) - \neff^2\right)E_y = -\frac{\partial}{\partial y}\left[\frac{E_x}{n^2}\frac{\partial n^2}{\partial x} + \frac{E_y}{n^2}\frac{\partial n^2}{\partial y}\right]$$
+<h3>Composantes de $\vH$</h3>
+$$\nabla\times\vH = \begin{pmatrix}\partial_yH_z - \partial_zH_y\\ \partial_zH_x - \partial_xH_z\\ \partial_xH_y - \partial_yH_x\end{pmatrix} \qquad \frac{1}{n^2}\nabla n^2 = \begin{pmatrix}\frac{1}{n^2}\partial_xn^2\\ \frac{1}{n^2}\partial_yn^2\\ 0\end{pmatrix}$$
+$$\Longrightarrow\quad \left(\nabla\times\vH\right)\times\frac{\nabla n^2}{n^2} = \begin{pmatrix}-\frac{1}{n^2}\left(\partial_xH_y - \partial_yH_x\right)\partial_yn^2\\ \frac{1}{n^2}\left(\partial_xH_y - \partial_yH_x\right)\partial_xn^2\\ \cdots\end{pmatrix}$$
+$$\frac{\partial^2H_x}{\partial x^2} + \frac{\partial^2H_x}{\partial y^2} + k^2\left(n^2(x,y) - \neff^2\right)H_x = \frac{1}{n^2}\left[\frac{\partial H_x}{\partial y} - \frac{\partial H_y}{\partial x}\right]\frac{\partial n^2}{\partial y}$$
+$$\frac{\partial^2H_y}{\partial x^2} + \frac{\partial^2H_y}{\partial y^2} + k^2\left(n^2(x,y) - \neff^2\right)H_y = \frac{1}{n^2}\frac{\partial n^2}{\partial x}\left[\frac{\partial H_y}{\partial x} - \frac{\partial H_x}{\partial y}\right]$$
+<p>On obtient deux systèmes d'équations différentielles <strong>couplées</strong> avec valeurs propres : il n'y a pas de solution analytique. Ces équations vectorielles complètes sont la plupart du temps trop compliquées pour décrire un composant réel, d'où des approximations. Même un solveur numérique (Lumerical, par exemple) discrétise et approxime : ses résultats ne sont pas exacts.</p>
+
+<h3>Approximation semi-vectorielle : quasi-TE et quasi-TM</h3>
+<p>Premier niveau d'approximation : une composante transverse du champ domine, $E_x \gg E_y$ ou $E_y \gg E_x$. On néglige le terme de couplage croisé :</p>
+$$\frac{\partial^2E_x}{\partial x^2} + \frac{\partial^2E_x}{\partial y^2} + k^2\left(n^2(x,y) - \neff^2\right)E_x = -\frac{\partial}{\partial x}\left(\frac{1}{n^2}\frac{\partial n^2}{\partial x}\,E_x\right) \qquad (E_x \gg E_y)$$
+$$\frac{\partial^2E_y}{\partial x^2} + \frac{\partial^2E_y}{\partial y^2} + k^2\left(n^2(x,y) - \neff^2\right)E_y = -\frac{\partial}{\partial y}\left(\frac{1}{n^2}\frac{\partial n^2}{\partial y}\,E_y\right) \qquad (E_y \gg E_x)$$
+<p>Même chose pour $\vH$ (avec $H_y \approx 0$ ou $H_x \approx 0$ dans les crochets). Ces équations sont dites <strong>semi-vectorielles</strong> et leurs solutions sont appelées <strong>quasi-TE</strong> et <strong>quasi-TM</strong>. Le « T » s'entend par rapport au plan du substrat, comme pour le guide plan.</p>
+<figure>
+  <div class="fig-scroll" id="fig-frames"></div>
+  <figcaption><b>FIG. 2</b>Changement de repère entre le guide plan (x vertical) et le guide canal (x latéral, y vertical). Dans les deux cas, TE ou quasi-TE désigne un champ électrique parallèle au substrat.</figcaption>
+</figure>
+<div class="box warn">
+  <span class="tag">Attention · notations</span>
+  <p>Avec le repère du guide canal (x latéral, y vertical) : <strong>quasi-TE signifie $E_x \gg E_y$</strong> et <strong>quasi-TM signifie $E_y \gg E_x$</strong>. Dans le guide plan, x était vertical et le mode TE avait $E_y$ : la lettre de la composante change, la physique (E parallèle aux couches) reste la même.</p>
+</div>
+<h3>Guidage faible : équation scalaire</h3>
+<p>Si $\partial n^2/\partial x$ et $\partial n^2/\partial y$ sont petits (faible contraste d'indice), on est en condition de <strong>guidage faible</strong> et on peut négliger le second membre :</p>
+<div class="box key">
+  <span class="tag">À retenir · équation scalaire</span>
+  $$\frac{\partial^2\psi}{\partial x^2} + \frac{\partial^2\psi}{\partial y^2} + k^2\left[n^2(x,y) - \neff^2\right]\psi = 0 \qquad\text{avec}\quad \psi = E_x,\ E_y,\ H_x\ \text{ou}\ H_y$$
+</div>
+
+<h2 id="s-1-3b"><span class="num">I.3 b)</span>La méthode de l'indice effectif (EIM)</h2>
+<p>Le but de cette méthode est de trouver les modes guidés d'un guide canal en utilisant ce que l'on sait du guide plan. L'idée : un guide canal est équivalent à un guide plan vertical suivi d'un guide plan latéral.</p>
+<figure>
+  <div class="fig-scroll" id="fig-eim"></div>
+  <figcaption><b>FIG. 3</b>Principe de l'EIM sur un guide en arête. ① Dans chaque région latérale on résout un guide plan vertical, qui donne un indice effectif $\nslab$. ② On résout ensuite un guide plan latéral fictif formé par ces indices effectifs : son mode donne $\neff$.</figcaption>
+</figure>
+<p>On part de l'équation scalaire :</p>
+$$\frac{\partial^2\psi}{\partial x^2}(x,y) + \frac{\partial^2\psi}{\partial y^2}(x,y) + k^2\left[n^2(x,y) - \neff^2\right]\psi(x,y) = 0$$
+<p>L'hypothèse principale de l'EIM est que les variables $x$ et $y$ sont <strong>indépendantes</strong> dans $\psi$ :</p>
+$$\boxed{\psi(x,y) = \varphi(x)\,\chi(y)} \quad\Longrightarrow\quad \chi(y)\frac{\partial^2\varphi}{\partial x^2} + \varphi(x)\frac{\partial^2\chi}{\partial y^2} + k^2\left[n^2(x,y) - \neff^2\right]\varphi(x)\chi(y) = 0$$
+<div class="box intu">
+  <span class="tag">Intuition · la fabrication</span>
+  <p>Pour fabriquer ce guide : ① on conçoit et dépose la couche, ce qui donne un guide plan avec un indice effectif $\nslab$ pour le mode ; ② on définit la largeur $W$ et on grave le cœur. Là où la couche est plus épaisse, $\nslab$ est plus grand, et la lumière part vers là où l'indice (effectif) est le plus grand.</p>
+</div>
+<p><strong>Étape verticale.</strong> En chaque point $x$, on définit $\nslab(x)$ comme l'indice effectif du guide plan vertical local ; $\chi(y)$ vérifie :</p>
+$$\frac{\partial^2\chi}{\partial y^2} + k^2\left[n^2(x,y) - \nslab^2(x)\right]\chi(y) = 0$$
+<p>On injecte $\nslab(x)$ dans l'équation d'onde en ajoutant et retranchant $\nslab^2(x)$ :</p>
+$$\chi(y)\frac{\partial^2\varphi}{\partial x^2} + \varphi(x)\frac{\partial^2\chi}{\partial y^2} + k^2\left[n^2(x,y) - \nslab^2(x) + \nslab^2(x) - \neff^2\right]\chi(y)\varphi(x) = 0$$
+$$\varphi(x)\underbrace{\left[\frac{\partial^2\chi}{\partial y^2} + k^2\left(n^2 - \nslab^2\right)\chi\right]}_{=\,0} + \chi(y)\left[\frac{\partial^2\varphi}{\partial x^2} + k^2\left(\nslab^2(x) - \neff^2\right)\varphi\right] = 0$$
+<p><strong>Étape latérale.</strong> Il reste :</p>
+$$\boxed{\frac{\partial^2\varphi}{\partial x^2} + k^2\left[\nslab^2(x) - \neff^2\right]\varphi = 0}$$
+<p>C'est l'équation d'un guide plan <em>latéral</em> dont le profil d'indice est $\nslab(x)$. La résoudre fournit $\neff$.</p>
+<h3>Procédure sur un guide en arête (rib)</h3>
+<ol>
+  <li><strong>Confinement vertical.</strong> Pour $|x| \lt W/2$ le guide plan est $\nsup$ / $n_c$ (épaisseur $d_2$) / $\nsub$ : après calcul on obtient $n_{\text{slab,I}}$. Pour $|x| \gt W/2$ c'est $\nsup$ / $n_c$ (épaisseur $d_1$) / $\nsub$ : on obtient $n_{\text{slab,II}}$.</li>
+  <li><strong>Confinement latéral.</strong> On résout le guide plan symétrique $n_{\text{slab,II}}$ | $n_{\text{slab,I}}$ (largeur $W$) | $n_{\text{slab,II}}$, pour lequel $a = 0$. On obtient $\neff$, et les profils $\varphi(x)$ et $\chi(y)$.</li>
+</ol>
+<div class="box key">
+  <span class="tag">À retenir · pourquoi commencer par la verticale</span>
+  <p>On commence par la direction verticale parce que c'est là que la différence d'indice est la plus grande, et parce qu'il y a toujours bien plus d'asymétrie verticalement (air au-dessus, substrat en dessous) que latéralement. C'est l'étape verticale qui décide si le mode fondamental existe ; le guide latéral équivalent est symétrique ($a = 0$), son fondamental est toujours guidé.</p>
+</div>
+<div class="box comp">
+  <span class="tag">Complément · polarisation et limites de l'EIM</span>
+  <ul>
+    <li>Pour un mode <strong>quasi-TE</strong> (E horizontal), E est parallèle aux couches dans le problème vertical (on le résout en TE) mais perpendiculaire aux flancs dans le problème latéral (on le résout en TM). Pour un mode <strong>quasi-TM</strong>, c'est l'inverse. Les deux exercices ci-dessous utilisent la normalisation TE dans les deux directions, ce qui reste correct à faible contraste ; le <a href="#lab4">labo 4</a> permet de comparer les trois choix.</li>
+    <li>L'EIM est approchée : elle suppose $\psi$ séparable, ce qui est faux près des coins du cœur. Elle est fiable loin de la coupure et pour un faible contraste latéral, et tend à surestimer légèrement $\neff$. Près de la coupure ($b \to 0$), ses prédictions deviennent peu fiables.</li>
+  </ul>
+</div>
+
+<div class="box td" id="td1">
+  <span class="tag">Exercice 1 — guide en arête par l'EIM</span>
+  <p>λ = 0,8 µm. Superstrat air ($n = 1$), cœur $n_g = 2{,}234$, substrat $\nsub = 2{,}214$. Région B (sous l'arête, largeur 1 µm) : cœur de 1,8 µm. Régions A (de part et d'autre) : cœur de 1 µm. On cherche $\neff$ du mode fondamental.</p>
+  <figure>
+    <div class="fig-scroll" id="fig-td1"></div>
+    <figcaption><b>FIG. 4</b>Géométrie de l'exercice (x latéral, y vertical, z sortant).</figcaption>
+  </figure>
+  <p class="goal"><b>Ce qu'on cherche :</b> un seul nombre, le $\neff$ du mode fondamental. <b>L'idée :</b> un guide 2D ne se résout pas à la main. On le découpe donc en guides plans 1D, qu'on sait traiter avec l'abaque b-V (méthode de l'indice effectif, FIG. 3) : d'abord chaque tranche verticale, puis le guide latéral formé par ces tranches.</p>
+  <ol class="steps">
+    <li><span class="st">Découper en tranches verticales</span>
+      <p>On regarde le guide colonne par colonne. Sous l'arête (B) on voit air / 2,234 sur 1,8 µm / 2,214. À côté (A), la même chose mais avec 1 µm de cœur. Chaque colonne, prise seule et supposée infinie latéralement, est un guide plan : on lui calcule un indice $\nslab$.</p></li>
+    <li><span class="st">Calculer les deux nombres communs à A et B : $a$ et le « facteur de $V$ »</span>
+      <p>Les indices sont les mêmes dans les deux colonnes, seule l'épaisseur $d$ change. On calcule donc une fois pour toutes :</p>
+      $$a = \frac{\nsub^2 - \nsup^2}{n_g^2 - \nsub^2} = \frac{2{,}214^2 - 1}{2{,}234^2 - 2{,}214^2} = \frac{3{,}902}{0{,}0890} = 43{,}9 \qquad V = \underbrace{\frac{2\pi}{0{,}8}\sqrt{2{,}234^2 - 2{,}214^2}}_{=\ 2{,}343\ \text{µm}^{-1}}\times d$$
+      <p class="why">$a \approx 44$ est énorme : c'est l'air d'un côté et le substrat de l'autre, un guide très asymétrique. On lira donc la courbe $a \approx 44$ de l'abaque (presque confondue avec $a = \infty$).</p></li>
+    <li><span class="st">Compter les modes de chaque tranche avec la formule de coupure</span>
+      $$d_{c,m} = \frac{\lambda}{2\pi\sqrt{n_g^2 - \nsub^2}}\left[m\pi + \arctan\sqrt{a}\right] \quad\Longrightarrow\quad d_{c,0} = 0{,}61\ \text{µm}, \qquad d_{c,1} = 1{,}95\ \text{µm}$$
+      <p>On a $0{,}61 \lt 1 \lt 1{,}8 \lt 1{,}95$ : chaque tranche guide exactement un mode ($m = 0$). Sur l'abaque, on ne lira que la courbe $p = 0$.</p></li>
+    <li><span class="st">Lire $b$ sur l'abaque, puis repasser en indice</span>
+      <p>$V_A = 2{,}343\times1 = 2{,}34$ et $V_B = 2{,}343\times1{,}8 = 4{,}22$. On monte verticalement depuis $V$ jusqu'à la courbe, puis on lit $b$ à gauche (FIG. 5) : $b_A \approx 0{,}27$, $b_B \approx 0{,}67$. Puis, par la définition de $b$ :</p>
+      $$\nslab^2 = \nsub^2 + b\left(n_g^2 - \nsub^2\right) \quad\Longrightarrow\quad n_{\text{slab,A}} = 2{,}2195 \qquad n_{\text{slab,B}} = 2{,}2273$$
+      <p class="why">B est plus épais : le mode y « voit » davantage de cœur, donc son indice est plus élevé. Vue de côté, la colonne B joue le rôle d'un cœur entouré de deux colonnes A d'indice plus faible.</p></li>
+    <li><span class="st">Recoller les tranches : le guide latéral</span>
+      <p>On remplace chaque colonne par son $\nslab$. On obtient un nouveau guide plan, couché : 2,2195 | 2,2273 sur 1 µm | 2,2195. Il est <strong>symétrique</strong>, donc $a = 0$ et on lit la courbe $a = 0$ :</p>
+      $$V = \frac{2\pi}{0{,}8}\times1\times\sqrt{2{,}2273^2 - 2{,}2195^2} = 1{,}46 \lt \pi \quad\Longrightarrow\quad b \approx 0{,}32$$
+      <p>$V \lt \pi$ : le guide latéral n'a qu'un mode. On repasse en indice comme à l'étape 4, avec $n_{\text{slab,A}}$ et $n_{\text{slab,B}}$ à la place de $\nsub$ et $n_g$ :</p>
+      $$\neff^2 = n_{\text{slab,A}}^2 + b\left(n_{\text{slab,B}}^2 - n_{\text{slab,A}}^2\right)$$
+      <div class="res">$\neff \approx 2{,}222$</div></li>
+    <li><span class="st">Vérifier la cohérence avec une échelle d'indices</span>
+      <p>Chaque étape doit donner un indice compris entre les deux indices qu'elle combine : $\nsub \lt n_{\text{slab,A}} \lt \neff \lt n_{\text{slab,B}} \lt n_g$ (FIG. 6). Un résultat hors de cet intervalle signale une erreur de lecture ou de formule.</p></li>
+  </ol>
+  <figure>
+    <div class="fig-scroll" id="fig-td1-bv"></div>
+    <figcaption><b>FIG. 5</b>Les trois lectures de l'abaque (axe horizontal V, axe vertical b). La courbe $a \approx 44$, $p = 1$ (tirets) ne démarre qu'à $V = 4{,}56$ : la tranche B ($V = 4{,}22$) est bien sous la coupure du second mode.</figcaption>
+  </figure>
+  <figure>
+    <div class="fig-scroll" id="fig-td1-lad"></div>
+    <figcaption><b>FIG. 6</b>Échelle des indices (axe horizontal : indice). Chaque résultat tombe entre les deux indices qui l'encadrent.</figcaption>
+  </figure>
+  <div class="tbl"><table>
+    <thead><tr><th>Grandeur</th><th class="num">Lecture d'abaque</th><th class="num">Résolution exacte</th></tr></thead>
+    <tbody>
+      <tr><td>$b_A$ / $n_{\text{slab,A}}$</td><td class="num">0,27 / 2,2195</td><td class="num">0,275 / 2,2195</td></tr>
+      <tr><td>$b_B$ / $n_{\text{slab,B}}$</td><td class="num">0,67 / 2,227</td><td class="num">0,666 / 2,2273</td></tr>
+      <tr><td>$V$ latéral</td><td class="num">1,46</td><td class="num">1,464</td></tr>
+      <tr><td>$b$ latéral / $\neff$</td><td class="num">0,32 / 2,222</td><td class="num">0,322 / 2,2220</td></tr>
+    </tbody>
+  </table></div>
+  <div class="box check" style="margin-bottom:6px">
+    <span class="tag">Vérification</span>
+    <p>Une lecture d'abaque donne $b$ à 0,01 près environ ($b_A \approx 0{,}27$ au lieu de 0,275), mais l'erreur ne se propage presque pas : $\neff = 2{,}222$ est juste au millième. Attention aux arrondis intermédiaires : avec les indices tronqués à trois décimales (2,219 et 2,227), on trouverait $V = 1{,}48$ au lieu de 1,46.</p>
+  </div>
+  <div class="plots">
+    <div class="plot"><div class="pt">χ(y) — profil vertical dans la région B</div><div id="td1-chi"></div></div>
+    <div class="plot"><div class="pt">φ(x) — profil latéral (guide équivalent)</div><div id="td1-phi"></div></div>
+  </div>
+  <div class="maps" style="margin-top:12px;grid-template-columns:minmax(0,420px)">
+    <figure><canvas id="td1-map" width="420" height="300"></canvas><div class="mlab">Mode fondamental ψ(x,y) ≈ φ(x)χ(y) <span>— la tache est sous l'arête</span></div></figure>
+  </div>
+</div>
+
+<div class="box td" id="td2">
+  <span class="tag">Exercice 2 — guide multimode 2λ × 1,5λ</span>
+  <p>Guide ruban de cœur $n_g = 2{,}2$, épaisseur $1{,}5\lambda$, largeur $2\lambda$, dans un substrat $\nsub = 2{,}12$, air au-dessus. Hors du cœur (régions A), il n'y a pas de couche guidante : $n_{\text{slab,A}} = \nsub = 2{,}12$. Les longueurs étant données en λ, le résultat ne dépend pas de λ.</p>
+  <figure>
+    <div class="fig-scroll" id="fig-td2"></div>
+    <figcaption><b>FIG. 7</b>Géométrie du guide multimode (x latéral, y vertical, z sortant).</figcaption>
+  </figure>
+  <p class="goal"><b>Ce qu'on cherche :</b> combien de modes le guide porte, et leurs $\neff$. <b>L'idée :</b> même découpage qu'à l'exercice 1, mais chaque étape peut maintenant donner <em>plusieurs</em> solutions. Chaque mode vertical $p$ fabrique son propre guide latéral, qui a lui-même des modes $q$. Un couple $(p, q)$ donne un mode TE<sub>pq</sub>.</p>
+  <ol class="steps">
+    <li><span class="st">Découper en tranches</span>
+      <p>B (sous le ruban) : air / 2,2 sur $1{,}5\lambda$ / 2,12. A (à côté) : pas de cœur, donc rien à calculer, $n_{\text{slab,A}} = 2{,}12$.</p></li>
+    <li><span class="st">Tranche B : compter les modes verticaux</span>
+      $$V = \frac{2\pi}{\lambda}\,1{,}5\lambda\sqrt{2{,}2^2 - 2{,}12^2} = 5{,}54 \qquad a = \frac{2{,}12^2 - 1}{2{,}2^2 - 2{,}12^2} = 10{,}1$$
+      <p>Sur l'abaque, chaque courbe $p$ démarre à $V_{c,p} = p\pi + \arctan\sqrt{a}$, soit 1,27 ; 4,41 ; 7,55. Notre $V = 5{,}54$ a dépassé les deux premiers seuils mais pas le troisième : <strong>2 modes verticaux</strong>, $p = 0$ et $p = 1$.</p></li>
+    <li><span class="st">Tranche B : lire les deux $b$, repasser en indice</span>
+      <p>On monte depuis $V = 5{,}54$ et on coupe les deux courbes (FIG. 8, à gauche) : $b_0 \approx 0{,}79$ et $b_1 \approx 0{,}21$. Avec $\nslab^2 = 2{,}12^2 + b\,(2{,}2^2 - 2{,}12^2)$ :</p>
+      $$n_{\text{slab},0} = 2{,}1836 \qquad n_{\text{slab},1} = 2{,}1372$$</li>
+    <li><span class="st">Un guide latéral par mode vertical</span>
+      <p>On obtient deux guides couchés, tous deux symétriques ($a = 0$), de largeur $2\lambda$ :</p>
+      <ul>
+        <li>pour $p = 0$ : 2,12 | 2,1836 | 2,12, d'où $V_0 = \frac{2\pi}{\lambda}2\lambda\sqrt{2{,}1836^2 - 2{,}12^2} = 6{,}57$ ;</li>
+        <li>pour $p = 1$ : 2,12 | 2,1372 | 2,12, d'où $V_1 = 3{,}40$.</li>
+      </ul>
+      <p>Pour $a = 0$, les seuils sont simplement $V_{c,q} = q\pi$ : 0 ; 3,14 ; 6,28. $V_0 = 6{,}57$ dépasse $2\pi$ : <strong>3 modes latéraux</strong> ($q = 0, 1, 2$). $V_1 = 3{,}40$ dépasse $\pi$ : <strong>2 modes latéraux</strong> ($q = 0, 1$). Total : 5 modes.</p>
+      <p class="why">Le second mode vertical a un indice plus bas (2,1372), donc un contraste latéral plus faible avec 2,12 : son guide latéral est « plus faible » et porte moins de modes.</p></li>
+    <li><span class="st">Lire les cinq $b$ latéraux et repasser en indice</span>
+      <p>On lit sur la courbe $a = 0$ (FIG. 8, à droite), puis $\neff^2 = 2{,}12^2 + b\,(\nslab^2 - 2{,}12^2)$ avec le $\nslab$ du bon mode vertical. Résultats dans le tableau ci-dessous.</p></li>
+    <li><span class="st">Nommer et dessiner les modes</span>
+      <p>TE<sub>pq</sub> : $p$ = nombre de zéros verticaux, $q$ = nombre de zéros latéraux. Le mode a $(p + 1) \times (q + 1)$ lobes. Plus il a de lobes, plus son $\neff$ est bas (FIG. 9).</p>
+      <div class="res">5 modes guidés : TE<sub>00</sub> (2,175), TE<sub>01</sub> (2,151), TE<sub>10</sub> (2,132), TE<sub>02</sub> et TE<sub>11</sub> (≈ 2,121, à la limite de la coupure). Le guide est multimode.</div></li>
+  </ol>
+  <figure>
+    <div class="fig-scroll" id="fig-td2-bv"></div>
+    <figcaption><b>FIG. 8</b>À gauche, problème vertical ($a = 10$) : la verticale $V = 5{,}54$ coupe deux courbes. À droite, problèmes latéraux ($a = 0$) : $V_0 = 6{,}57$ coupe trois courbes, $V_1 = 3{,}40$ en coupe deux (axe horizontal V, axe vertical b).</figcaption>
+  </figure>
+  <figure>
+    <div class="fig-scroll" id="fig-td2-lad"></div>
+    <figcaption><b>FIG. 9</b>Échelle des indices des cinq modes, entre $\nsub = 2{,}12$ et $n_g = 2{,}2$. En tirets, les deux $\nslab$ verticaux : chaque famille de modes latéraux se range sous son propre $\nslab$.</figcaption>
+  </figure>
+  <div class="tbl"><table>
+    <thead><tr><th>Mode</th><th>Lobes (vertical × latéral)</th><th class="num">$\nslab$ vertical</th><th class="num">V latéral</th><th class="num">b latéral</th><th class="num">n<sub>eff</sub></th></tr></thead>
+    <tbody>
+      <tr><td>TE<sub>00</sub></td><td>1 × 1</td><td class="num">2,1836</td><td class="num">6,572</td><td class="num">0,867</td><td class="num">2,1752</td></tr>
+      <tr><td>TE<sub>01</sub></td><td>1 × 2</td><td class="num">2,1836</td><td class="num">6,572</td><td class="num">0,490</td><td class="num">2,1514</td></tr>
+      <tr><td>TE<sub>10</sub></td><td>2 × 1</td><td class="num">2,1372</td><td class="num">3,396</td><td class="num">0,677</td><td class="num">2,1316</td></tr>
+      <tr><td>TE<sub>02</sub></td><td>1 × 3</td><td class="num">2,1836</td><td class="num">6,572</td><td class="num">0,014</td><td class="num">2,1209</td></tr>
+      <tr><td>TE<sub>11</sub></td><td>2 × 2</td><td class="num">2,1372</td><td class="num">3,396</td><td class="num">0,013</td><td class="num">2,1202</td></tr>
+    </tbody>
+  </table></div>
+  <p class="small">Valeurs calculées par les solveurs du site (une lecture d'abaque donne les mêmes résultats à 0,01 près sur $b$). Étape verticale : $V = 5{,}541$, $b_0 = 0{,}791$, $b_1 = 0{,}211$.</p>
+  <div class="box check" style="margin-bottom:6px">
+    <span class="tag">Vérification · deux modes au bord de la coupure</span>
+    <p>TE<sub>02</sub> et TE<sub>11</sub> sont-ils vraiment guidés ? Dans le guide latéral symétrique ($a = 0$), le mode $q$ existe dès que $V \gt q\pi$ : $6{,}57 \gt 2\pi = 6{,}28$ et $3{,}40 \gt \pi$. L'EIM les prédit donc guidés, mais avec $b \approx 0{,}01$ ils sont collés à la coupure : très étalés, très sensibles aux défauts, et c'est précisément là que l'EIM n'est plus fiable. Le guide est clairement <strong>multimode</strong> (au moins TE<sub>00</sub>, TE<sub>01</sub>, TE<sub>10</sub>).</p>
+  </div>
+  <p><strong>Forme des modes.</strong> Le premier indice est l'ordre vertical, le second l'ordre latéral. La forme de TE<sub>10</sub> vient du fait que $b_1 \approx 0{,}21$ ($n_{\text{slab},1} = 2{,}1372$) : on passe au second mode vertical, et le profil vertical passe d'une bosse (∩) à une oscillation avec un zéro (∿). Les signes + et − indiquent l'opposition de phase entre lobes. Longueur de décroissance latérale : $1/\alpha = 1/\left(k_0\sqrt{\neff^2 - \nsub^2}\right)$.</p>
+  <div class="maps" id="td2-maps"></div>
+  <p class="small" style="margin-top:8px">Cartes de champ $\psi(x,y) \approx \varphi_q(x)\chi_p(y)$ calculées par EIM (rouge : positif, bleu : négatif). Le rectangle marque le cœur. Le carré inséré donne le repère (x latéral, y vertical).</p>
+</div>
+
+<section class="lab mj-ignore" id="lab4">
+  <div class="lab-head"><span class="lab-id">Labo 4</span><span class="lab-name">Méthode de l'indice effectif</span></div>
+  <div class="lab-body" id="lab4-body"></div>
+</section>
+
+<h2 id="testez-vous">Testez-vous</h2>
+<p>Cherchez la réponse avant de déplier la question.</p>
+<div class="quiz">
+<details><summary>Pourquoi commence-t-on la méthode de l'indice effectif par la direction verticale ?</summary><div class="ans"><p>Le contraste d'indice et l'asymétrie y sont les plus forts (air au-dessus, substrat en dessous). C'est donc l'étape verticale qui décide si le mode fondamental existe ; le guide latéral équivalent est symétrique et son fondamental n'est jamais coupé.</p></div></details>
+<details><summary>On cherche le mode quasi-TE d'un guide en arête. Dans quelle polarisation résout-on chaque étape ?</summary><div class="ans"><p>Le champ électrique est horizontal. Dans l'étape verticale, il est parallèle aux couches : on la résout en TE. Dans l'étape latérale, il est perpendiculaire aux flancs : on la résout en TM.</p></div></details>
+<details><summary>Combien de lobes a le mode TE<sub>12</sub>, et comment sont-ils disposés ?</summary><div class="ans"><p>$(1 + 1)\times(2 + 1) = 6$ lobes : deux rangées verticales de trois lobes latéraux. Deux lobes voisins sont toujours en opposition de phase.</p></div></details>
+<details><summary>Dans quelles situations la méthode de l'indice effectif devient-elle peu fiable ?</summary><div class="ans"><p>Près de la coupure ($b \to 0$), quand le contraste latéral est fort, et dès que le champ se concentre près des coins du cœur, où l'hypothèse $\psi = \varphi(x)\chi(y)$ est fausse. Elle a aussi tendance à surestimer légèrement $\neff$.</p></div></details>
+</div>
+<nav class="pager" aria-label="Pages voisines"><a class="prev" href="guide-plan.html"><span class="pl">← Précédent</span><span class="pt">Le guide plan</span></a><a class="next" href="proprietes-des-modes.html"><span class="pl">Suivant →</span><span class="pt">Propriétés des modes</span></a></nav>
+</div>
+</main>
+</div>
+<footer class="site-foot">
+  <span>Textes et figures sous licence <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr" rel="license">CC BY-NC-SA 4.0</a>. Aucun cookie, aucun traceur.</span>
+  <nav aria-label="Pied de page"><a href="../a-propos.html">À propos et mentions légales</a></nav>
+</footer>
+</body>
+</html>
