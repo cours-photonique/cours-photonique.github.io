@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Carnets scientifiques</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Cours de physique en français, démontrés pas à pas, avec exercices corrigés et simulateurs interactifs. Première thématique : la photonique intégrée.">
+<meta property="og:title" content="Carnets scientifiques">
+<meta property="og:description" content="Cours de physique en français, démontrés pas à pas, avec exercices corrigés et simulateurs interactifs. Première thématique : la photonique intégrée.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Carnets scientifiques">
+<meta name="theme-color" content="#EFF2F4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E1317" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<link rel="preload" href="assets/fonts/source-serif-4-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/fonts/polices.css">
+<link rel="stylesheet" href="assets/css/site.css">
+<script defer src="assets/js/physique.js"></script>
+<script defer src="assets/js/trace.js"></script>
+<script defer src="assets/js/figures.js"></script>
+<script defer src="assets/js/labos.js"></script>
+<script defer src="assets/js/site.js"></script>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<header class="topbar"><div class="topbar-in">
+  <a class="brand" href="index.html"><svg viewBox="0 0 22 22" aria-hidden="true"><rect x="1" y="2.5" width="20" height="4.5" rx="1" style="fill:var(--rule)"/><rect x="1" y="8.75" width="20" height="4.5" rx="1" style="fill:var(--amber)"/><rect x="1" y="15" width="20" height="4.5" rx="1" style="fill:var(--ink)"/></svg>Carnets scientifiques</a>
+  <nav class="topnav" aria-label="Navigation du site">
+    <a href="photonique-integree/index.html">Photonique intégrée</a>
+    <a href="photonique-integree/labos.html">Labos</a>
+    <a href="photonique-integree/fiche.html">Fiche</a>
+    <a href="a-propos.html">À propos</a>
+  </nav>
+  <button type="button" class="theme-btn" id="theme-toggle" aria-label="Changer de thème (automatique, clair, sombre)"><svg class="i-auto" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 2a6 6 0 0 1 0 12z" fill="currentColor"/></svg><svg class="i-sun" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3.2" fill="currentColor"/><g stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M8 1.2v1.6M8 13.2v1.6M1.2 8h1.6M13.2 8h1.6M3.2 3.2l1.1 1.1M11.7 11.7l1.1 1.1M3.2 12.8l1.1-1.1M11.7 4.3l1.1-1.1"/></g></svg><svg class="i-moon" viewBox="0 0 16 16" aria-hidden="true"><path d="M13.5 10.2A6 6 0 0 1 5.8 2.5a6 6 0 1 0 7.7 7.7z" fill="currentColor"/></svg><span>Thème : auto</span></button>
+</div></header>
+<main id="contenu" class="wide">
+<section class="home-hero">
+  <div>
+    <div class="eyebrow">Cours en accès libre · en français</div>
+    <h1>Des cours de physique démontrés pas à pas, avec leurs simulateurs</h1>
+    <p class="lede">Chaque page reprend les démonstrations ligne à ligne et dit pourquoi chaque étape est faite. Les exercices sont corrigés et vérifiés numériquement, et des labos interactifs permettent de manipuler les résultats directement dans le navigateur.</p>
+    <div class="btns" style="margin-top:22px"><a class="btn" href="photonique-integree/index.html">Commencer la photonique intégrée</a><a class="btn ghost" href="photonique-integree/labos.html">Essayer les labos</a></div>
+  </div>
+  <figure class="hero-fig">
+    <div id="fig-hero" style="aspect-ratio:600/346"></div>
+    <figcaption>Les trois modes TE d'un guide plan (cœur de 4 µm, λ = 1 µm), calculés à l'ouverture de cette page par le solveur du <a href="photonique-integree/guide-plan.html#lab1">labo 1</a>.</figcaption>
+  </figure>
+</section>
+
+<h2 class="sec-title">Thématiques</h2>
+<article class="theme-card">
+  <div>
+    <div class="eyebrow">Optique · niveau master</div>
+    <h3 class="tc-title"><a href="photonique-integree/index.html">Photonique intégrée</a></h3>
+    <p>Guides d'onde plan et canal, méthode de l'indice effectif, coupleur directionnel et modulateur électro-optique : des équations de Maxwell jusqu'au dimensionnement d'un composant.</p>
+    <div class="tc-stats"><span><b>6</b> pages de cours</span><span><b>3</b> exercices et problèmes corrigés</span><span><b>7</b> labos</span></div>
+    <div class="btns"><a class="btn" href="photonique-integree/equations-propagation.html">Commencer</a><a class="btn ghost" href="photonique-integree/fiche.html">Fiche de révision</a></div>
+  </div>
+  <ol class="mini" aria-label="Pages de la thématique">
+    <li><a href="photonique-integree/equations-propagation.html">Équations de propagation dans les guides</a><span class="chips"><span class="chip">Cours</span></span></li>
+    <li><a href="photonique-integree/guide-plan.html">Le guide plan</a><span class="chips"><span class="chip c-lab">3 labos</span></span></li>
+    <li><a href="photonique-integree/guide-canal-indice-effectif.html">Guide canal et indice effectif</a><span class="chips"><span class="chip c-ex">2 exercices</span></span></li>
+    <li><a href="photonique-integree/proprietes-des-modes.html">Propriétés des modes</a><span class="chips"><span class="chip c-lab">1 labo</span></span></li>
+    <li><a href="photonique-integree/coupleur-directionnel.html">Le coupleur directionnel</a><span class="chips"><span class="chip c-lab">1 labo</span></span></li>
+    <li><a href="photonique-integree/modulateur-electro-optique.html">Problème : un modulateur électro-optique</a><span class="chips"><span class="chip c-ex">Problème</span></span></li>
+  </ol>
+</article>
+
+<h2 class="sec-title">Comment les pages sont construites</h2>
+<div class="features">
+  <div><h3>Démonstrations complètes</h3><p>Aucune étape n'est sautée : chaque ligne de calcul dit ce qu'on fait et pourquoi on le fait.</p></div>
+  <div><h3>Corrigés vérifiés</h3><p>Les résultats des exercices sont recalculés par des solveurs numériques et comparés aux lectures d'abaque.</p></div>
+  <div><h3>Labos interactifs</h3><p>Les simulateurs tournent dans le navigateur : on change un paramètre, les modes et les courbes suivent.</p></div>
+  <div><h3>Fiches de révision</h3><p>Les formules à retenir sur une page, chacune reliée à sa démonstration.</p></div>
+</div>
+</main>
+<footer class="site-foot">
+  <span>Textes et figures sous licence <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr" rel="license">CC BY-NC-SA 4.0</a>. Aucun cookie, aucun traceur.</span>
+  <nav aria-label="Pied de page"><a href="a-propos.html">À propos et mentions légales</a></nav>
+</footer>
+</body>
+</html>
