@@ -681,10 +681,50 @@ function figHero() {
 /* ======================= Mise en place des figures ======================= */
 /* Chaque page ne contient qu'une partie des figures : on ne dessine que celles
    dont le conteneur existe dans la page. */
+/* ======================= Coupleur directionnel : supermodes et échange ======================= */
+const DC = { lam: 1.55, d: 1, g: 2, nc: 1.5, ncl: 1.45 };
+function dcModes() {
+  const c = PH.coupler(DC);
+  const m = PH.slabModes({ lam: DC.lam, d: DC.d, nc: DC.nc, nsub: DC.ncl, nsup: DC.ncl, pol: 'TE' })[0];
+  const xc = DC.g / 2 + DC.d / 2;
+  let n = 0; const N = 3000, Lx = 20;
+  for (let i = 0; i <= N; i++) { const v = m.f(-Lx + 2 * Lx * i / N); n += v * v * (2 * Lx / N); }
+  const k = 1 / Math.sqrt(n);
+  // convention du cours : φ_o = (φ1 − φ2)/√2, positif côté guide 1 (x < 0)
+  return { c, n0: m.neff, f1: x => k * m.f(x + xc), f2: x => k * m.f(x - xc), fe: x => c.fe.f(x), fo: x => -c.fo.f(x) };
+}
+function figDcModes() {
+  const M = dcModes(), xr = [-5, 5], xs = linspace(xr[0], xr[1], 500);
+  const a = DC.g / 2, b = DC.g / 2 + DC.d;
+  const bands = [{ x0: -b, x1: -a, cls: 'band-core', lab: 'guide 1' }, { x0: a, x1: b, cls: 'band-core', lab: 'guide 2' }];
+  const yr = [-0.95, 0.95];
+  const top = plot({ w: 640, h: 220, xr, yr, ystep: 0.5, m: { l: 54, r: 16, t: 10, b: 22 }, noxl: true, yl: 'guides isolés', bands,
+    hlines: [{ y: 0, cls: 's-mut' }],
+    series: [{ pts: xs.map(x => [x, M.f1(x)]), cls: 'c0', w: 2.2 }, { pts: xs.map(x => [x, M.f2(x)]), cls: 'c1', w: 2.2, dash: '6 4' }],
+    texts: [{ x: -4.8, y: -0.5, t: 'φ_1 : mode du guide 1 seul', cls: 't s b f' }, { x: -4.8, y: -0.72, t: 'φ_2 : mode du guide 2 seul', cls: 't s b', style: 'fill:var(--m1)' },
+      { x: 2.4, y: -0.62, t: `n_{eff} = ${fr(M.n0, 4)}`, cls: 't s m' }] });
+  const bot = plot({ w: 640, h: 250, xr, yr, ystep: 0.5, m: { l: 54, r: 16, t: 6, b: 40 }, xl: 'x (µm) — direction latérale, axe de symétrie en x = 0', yl: 'supermodes', bands,
+    hlines: [{ y: 0, cls: 's-mut' }], vlines: [{ x: 0, cls: 's-mut', dash: '3 3' }],
+    series: [{ pts: xs.map(x => [x, M.fe(x)]), cls: 'c2', w: 2.4 }, { pts: xs.map(x => [x, M.fo(x)]), cls: 'c3', w: 2.4 }],
+    texts: [{ x: -4.8, y: -0.5, t: `φ_e pair : n_e = ${fr(M.c.ne, 4)}`, cls: 't s b', style: 'fill:var(--m2)' }, { x: -4.8, y: -0.72, t: `φ_o impair : n_o = ${fr(M.c.no, 4)}`, cls: 't s b', style: 'fill:var(--m3)' },
+      { x: 0.12, y: 0.66, t: 'φ_o(0) = 0', cls: 't s m' }] });
+  return combine(640, 470, [{ x: 0, y: 0, svg: top }, { x: 0, y: 220, svg: bot }], 'Modes des guides isolés et supermodes du coupleur');
+}
+function figDcPower() {
+  const zs = linspace(0, 3, 400), P1 = z => Math.pow(Math.cos(PI * z / 2), 2), P2 = z => Math.pow(Math.sin(PI * z / 2), 2);
+  return plot({ w: 640, h: 300, xr: [0, 3], yr: [0, 1.14], xstep: 0.5, ystep: 0.25, xl: 'z / L_c', yl: 'P / P_0', aria: 'Échange de puissance entre les deux guides',
+    xfmt: t => ({ 0: '0', 0.5: 'L_c/2', 1: 'L_c', 1.5: '3L_c/2', 2: '2L_c', 2.5: '5L_c/2', 3: '3L_c' })[t] || tickFmt(t, 0.5),
+    series: [{ pts: zs.map(z => [z, P1(z)]), cls: 'c0', w: 2.4 }, { pts: zs.map(z => [z, P2(z)]), cls: 'c1', w: 2.4 }],
+    hlines: [{ y: 0.5, cls: 's-mut', dash: '4 3', lab: 'P_0/2', lx: 2.97 }],
+    dots: [{ x: 0.5, y: 0.5, cls: 'fc2' }, { x: 1, y: 1, cls: 'fc1' }, { x: 2, y: 1, cls: 'fc0' }, { x: 1.5, y: 0.5, cls: 'fc2' }],
+    texts: [{ x: 1, y: 1, t: 'P_2', dy: -9, anchor: 'middle', cls: 't b', style: 'fill:var(--m1)' }, { x: 2, y: 1, t: 'P_1', dy: -9, anchor: 'middle', cls: 't b f' }, { x: 0, y: 1, t: 'P_1', dx: 6, dy: -9, cls: 't b f' },
+      { x: 0.5, y: 0.5, t: 'coupleur 3 dB', dx: 8, dy: 18, cls: 't s b', style: 'fill:var(--m2)' }] });
+}
+
 const FIGURES = {
   'fig-curl': figCurl, 'fig-inv': figInv, 'fig-slab': figSlab, 'fig-tetm': figTETM, 'fig-interf': figInterf,
   'fig-channels': figChannels, 'fig-frames': figFrames, 'fig-eim': figEIM, 'fig-td1': figTD1, 'fig-td2': figTD2,
-  'fig-exc': figExc, 'fig-coupler': figCoupler, 'fig-diff': figDiff, 'fig-mzi': figMZI,
+  'fig-exc': figExc, 'fig-coupler': figCoupler, 'fig-diff': figDiff, 'fig-mzi': figMZI, 'fig-dc-modes': figDcModes, 'fig-dc-power': figDcPower,
   'fig-mod-eim': figModEIM, 'fig-mod-dc': figModDc, 'fig-mod-wc': figModWc, 'fig-mod-tol': figModTol,
   'fig-phasor': figPhasor, 'fig-mzi-resp': figMziResp, 'fig-mod-decay': figModDecay, 'fig-chain': figChain, 'fig-mod-pv': figModPV
 };

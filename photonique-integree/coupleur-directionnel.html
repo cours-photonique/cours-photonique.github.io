@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Le coupleur directionnel : supermodes et longueur de couplage · Photonique intégrée</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Coupleur directionnel en optique intégrée : supermodes pair et impair, échange de puissance, longueur de couplage, coupleur 3 dB et matrice de transfert, avec simulateur.">
+<meta name="description" content="Coupleur directionnel en optique intégrée : supermodes pair et impair par symétrie, normalisation, excitation, calcul pas à pas de l&#x27;échange de puissance, longueur de couplage, limites du couplage faible, coupleur 3 dB, avec simulateur.">
 <meta property="og:title" content="Le coupleur directionnel : supermodes et longueur de couplage · Photonique intégrée">
-<meta property="og:description" content="Coupleur directionnel en optique intégrée : supermodes pair et impair, échange de puissance, longueur de couplage, coupleur 3 dB et matrice de transfert, avec simulateur.">
+<meta property="og:description" content="Coupleur directionnel en optique intégrée : supermodes pair et impair par symétrie, normalisation, excitation, calcul pas à pas de l&#x27;échange de puissance, longueur de couplage, limites du couplage faible, coupleur 3 dB, avec simulateur.">
 <meta property="og:type" content="article">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:site_name" content="Carnets scientifiques">
@@ -60,61 +60,153 @@
   <nav class="crumbs" aria-label="Fil d'Ariane"><a href="../index.html">Accueil</a><span aria-hidden="true">/</span><a href="index.html">Photonique intégrée</a><span aria-hidden="true">/</span><span>Le coupleur directionnel</span></nav>
   <div class="eyebrow">Chapitre II · Fonctions élémentaires · 5 / 6</div>
   <h1>Le coupleur directionnel</h1>
-  <p class="lede">Deux guides proches échangent leur lumière par leurs queues évanescentes. Les supermodes expliquent cet échange et donnent la longueur de couplage, qui fixe le rapport de partage du coupleur.</p>
+  <p class="lede">Deux guides proches échangent leur lumière par leurs queues évanescentes. Un argument de symétrie donne les supermodes de la structure ; leur battement explique l'échange de puissance et fixe la longueur de couplage, donc le rapport de partage du coupleur.</p>
   <div class="meta"><span>Vue de dessus : <b>x latéral</b>, <b>z propagation</b></span><a href="index.html#notations">Notations</a></div>
   <details class="toc-m"><summary>Dans cette page</summary><ol id="toc-list-m"></ol></details>
 </header>
-<div class="goals"><div><p class="gh">Objectifs</p><ul><li>Décrire un coupleur avec ses supermodes pair et impair.</li><li>Établir l'échange de puissance et la longueur de couplage.</li><li>Dimensionner un coupleur 3 dB et écrire sa matrice de transfert.</li></ul></div><div><p class="gh">Prérequis</p><ul><li>Queues évanescentes et facteur de confinement (<a href="guide-plan.html#s-1-2e">§ I.2 e</a>).</li><li>Décomposition sur les modes (<a href="proprietes-des-modes.html">propriétés des modes</a>).</li></ul></div></div>
+<div class="goals"><div><p class="gh">Objectifs</p><ul><li>Montrer, par la symétrie, que les modes du coupleur sont un supermode pair et un supermode impair.</li><li>Normaliser ces supermodes et y décomposer le champ injecté.</li><li>Établir pas à pas $A_1(L)$, $A_2(L)$, l'échange de puissance et la longueur de couplage.</li><li>Savoir où l'hypothèse de couplage faible cesse d'être valable.</li><li>Dimensionner un coupleur 3 dB et écrire sa matrice de transfert.</li></ul></div><div><p class="gh">Prérequis</p><ul><li>Queues évanescentes et facteur de confinement (<a href="guide-plan.html#s-1-2e">§ I.2 e</a>).</li><li>Orthogonalité des modes et décomposition modale (<a href="proprietes-des-modes.html">propriétés des modes</a>).</li></ul></div></div>
 
-<h2 id="s-2-1a"><span class="num">II.1 a)</span>Structure et intuition</h2>
-<p>Un coupleur directionnel est composé de deux guides monomodes identiques et parallèles. La séparation entre eux est assez petite pour permettre une interaction entre les modes guidés. Comme les modes ne sont pas entièrement confinés dans le cœur, une partie de leur énergie peut « fuir » dans l'autre guide par l'intermédiaire de la queue évanescente.</p>
+<h2 id="s-2-1a"><span class="num">II.1 a)</span>Structure et hypothèses</h2>
+<p>Un coupleur directionnel est composé de deux guides monomodes parallèles. L'écart $g$ entre eux est assez petit pour que les modes guidés interagissent. Comme un mode n'est pas entièrement confiné dans son cœur, une partie de son énergie « déborde » dans l'autre guide par sa queue évanescente.</p>
 <figure>
   <div class="fig-scroll" id="fig-coupler"></div>
-  <figcaption><b>FIG. 1</b>À gauche, vue de dessus (x latéral, z propagation) : la puissance injectée dans le guide 1 passe progressivement dans le guide 2. À droite, section transverse (x latéral, y vertical) : les queues évanescentes des deux modes se recouvrent dans l'espace entre les guides.</figcaption>
+  <figcaption><b>FIG. 1</b>À gauche, vue de dessus (x latéral, z propagation) : la puissance injectée dans le guide 1 passe progressivement dans le guide 2. À droite, section transverse (x latéral, y vertical, z sortant) : les queues évanescentes des deux modes se recouvrent dans l'espace entre les guides.</figcaption>
 </figure>
+<p>Toute l'étude repose sur trois hypothèses, qu'on rappellera à chaque fois qu'elles servent :</p>
+<ul>
+  <li><strong>guides identiques</strong> : même section, même indice. Ils ont donc le même mode fondamental isolé, de constante de propagation $\beta_0$ ;</li>
+  <li><strong>guides monomodes</strong> : chaque branche, seule, ne guide que son mode fondamental. On note $\varphi_1(x)$ le mode du guide 1 seul et $\varphi_2(x)$ celui du guide 2 seul ;</li>
+  <li><strong>couplage faible</strong> : les branches sont assez séparées pour que le mode de l'une soit à peine déformé par la présence de l'autre. On le traduira par $\iint \varphi_1\varphi_2^*\,dS \approx 0$ (§ II.1 d discute cette approximation).</li>
+</ul>
 <div class="box intu">
   <span class="tag">Analogie · deux pendules couplés</span>
   <p>Deux pendules identiques reliés par un ressort faible ont deux façons « propres » d'osciller : ensemble, en phase, ou l'un contre l'autre, en opposition. Ces deux mouvements ont des fréquences légèrement différentes. Si l'on lance un seul pendule, on excite en réalité les deux mouvements à la fois ; leur décalage progressif fait passer toute l'énergie dans le second pendule, puis la ramène. Le coupleur fait exactement la même chose, avec $z$ à la place du temps et les supermodes à la place des deux mouvements propres.</p>
 </div>
 
-<h2 id="s-2-1b"><span class="num">II.1 b)</span>Les supermodes</h2>
-<p>La structure couplée (deux cœurs côte à côte) est elle-même un guide, invariant selon $z$. Elle possède donc ses propres modes, appelés <strong>supermodes</strong> :</p>
-<ul>
-  <li>un mode <strong>pair</strong> $\varphi_e$ (de l'anglais <em>even</em>), d'indice effectif $n_e$ : les deux lobes sont en phase ;</li>
-  <li>un mode <strong>impair</strong> $\varphi_o$ (<em>odd</em>), d'indice effectif $n_o$ : les deux lobes sont en opposition de phase.</li>
-</ul>
-<p>On a toujours $n_o \lt n_e$. Le mode impair s'annule au milieu de l'écart entre les guides : il varie plus vite transversalement et place moins d'énergie dans la zone centrale. D'après l'<a href="guide-plan.html#s-1-2b">expression de $\neff^2$ comme moyenne pondérée</a>, ces deux effets abaissent son indice effectif.</p>
+<h2 id="s-2-1b"><span class="num">II.1 b)</span>Les supermodes : un argument de symétrie</h2>
+<p>La structure couplée (deux cœurs côte à côte) est elle-même un guide invariant selon $z$. Elle possède donc ses propres modes guidés, appelés <strong>supermodes</strong>. On les cherche sans résoudre aucune équation, grâce à deux arguments.</p>
+
+<h3>1. La symétrie impose la parité</h3>
+<p>La structure est symétrique par rapport à l'axe situé à mi-distance des deux guides (on le place en $x = 0$). Le profil d'indice vérifie $n(-x) = n(x)$ : si $\varphi(x)$ est solution de l'équation de propagation, $\varphi(-x)$ l'est aussi, avec la même constante de propagation. Pour un mode non dégénéré, ces deux solutions ne peuvent différer que d'un facteur, et appliquer deux fois la réflexion impose que ce facteur vaille $\pm 1$. Les modes guidés sont donc <strong>symétriques</strong> ou <strong>antisymétriques</strong> par rapport à l'axe.</p>
+
+<h3>2. Le couplage faible impose la forme</h3>
+<p>Si les deux branches sont assez séparées, les supermodes s'écrivent comme une combinaison des modes des branches isolées :</p>
+$$\varphi_i(x) = a_i\,\varphi_1(x) + b_i\,\varphi_2(x)$$
+<p>où $a_i$ et $b_i$ sont les amplitudes portées par la branche 1 et par la branche 2. Comme $\varphi_2(x) = \varphi_1(-x)$, la parité trouvée au point 1 impose $a_i = b_i$ (mode symétrique) ou $a_i = -b_i$ (mode antisymétrique). On en déduit deux supermodes :</p>
+$$\varphi_e = a\,(\varphi_1 + \varphi_2) \quad\text{le mode pair} \qquad\qquad \varphi_o = b\,(\varphi_1 - \varphi_2) \quad\text{le mode impair}$$
+<p>À chacun est associée sa propre constante de propagation : $\beta_e$ pour le mode pair, $\beta_o$ pour le mode impair.</p>
+<figure>
+  <div class="fig-scroll" id="fig-dc-modes"></div>
+  <figcaption><b>FIG. 2</b>Calcul exact pour deux guides de silice dopée (cœurs de 1 µm d'indice 1,50, gaine 1,45, écart g = 2 µm, λ = 1,55 µm, polarisation TE). En haut, les modes des guides isolés $\varphi_1$ et $\varphi_2$. En bas, les supermodes : $\varphi_e$ est symétrique, $\varphi_o$ est antisymétrique et s'annule sur l'axe x = 0. Abscisse x latérale (µm), ordonnée champ normalisé ($\int|\varphi|^2dx = 1$).</figcaption>
+</figure>
+
+<h3>3. Pourquoi $n_o \lt n_e$</h3>
+<p>Le mode impair s'annule au milieu de l'écart : il varie plus vite transversalement et place moins d'énergie dans la zone centrale. D'après l'<a href="guide-plan.html#s-1-2b">expression de $\neff^2$ comme moyenne pondérée</a>, ces deux effets abaissent son indice effectif. On a donc toujours $\beta_o \lt \beta_0 \lt \beta_e$ (sur la Fig. 2, $n_o = 1{,}4645 \lt n_{eff} = 1{,}4675 \lt n_e = 1{,}4697$).</p>
+
+<h3>4. Normaliser les supermodes</h3>
+<p>On choisit des modes de norme unité :</p>
+$$\iint|\varphi_1|^2\,dS = \iint|\varphi_2|^2\,dS = 1 \qquad\qquad \iint|\varphi_e|^2\,dS = \iint|\varphi_o|^2\,dS = 1$$
+<p>Pour le mode pair :</p>
+$$\iint|\varphi_e|^2\,dS = a^2\iint(\varphi_1+\varphi_2)(\varphi_1^*+\varphi_2^*)\,dS = a^2\Big[\underbrace{\iint|\varphi_1|^2dS}_{=\,1} + \underbrace{\iint|\varphi_2|^2dS}_{=\,1} + \underbrace{\iint\varphi_1\varphi_2^*\,dS + \iint\varphi_1^*\varphi_2\,dS}_{\approx\,0\ \text{(couplage faible)}}\Big] = 2a^2$$
+<p>Les termes croisés mesurent le recouvrement des deux modes isolés ; l'hypothèse de couplage faible permet de les négliger. La condition $2a^2 = 1$ donne $a = 1/\sqrt2$, et le même calcul donne $b = 1/\sqrt2$.</p>
 <div class="box key">
-  <span class="tag">À retenir · modes des guides isolés et supermodes</span>
-  <p>Avec des supermodes normalisés, le mode du guide 1 seul et celui du guide 2 seul s'écrivent :</p>
-  $$\varphi_1 \approx \frac{\varphi_e + \varphi_o}{\sqrt2} \qquad\qquad \varphi_2 \approx \frac{\varphi_e - \varphi_o}{\sqrt2}$$
-  <p>Le signe ≈ rappelle que cette décomposition suppose un couplage faible : les guides ne doivent pas être trop proches, sinon chaque mode isolé est trop déformé par son voisin.</p>
+  <span class="tag">À retenir · supermodes normalisés</span>
+  $$\varphi_e = \frac{1}{\sqrt2}\left(\varphi_1 + \varphi_2\right) \qquad\qquad \varphi_o = \frac{1}{\sqrt2}\left(\varphi_1 - \varphi_2\right)$$
+  <p>Inversement, $\varphi_1 = (\varphi_e + \varphi_o)/\sqrt2$ et $\varphi_2 = (\varphi_e - \varphi_o)/\sqrt2$ : le mode d'une branche seule est la somme ou la différence des deux supermodes.</p>
 </div>
 
-<h2 id="s-2-1c"><span class="num">II.1 c)</span>Échange de puissance et longueur de couplage</h2>
-<p>On injecte une puissance $P_0$ dans le guide 1 en $z = 0$. Le champ d'entrée $\varphi_1$ se décompose en ses deux supermodes, qui se propagent chacun avec sa propre constante de propagation :</p>
-$$\psi(x,z) = \frac{1}{\sqrt2}\left(\varphi_e\,e^{-j\beta_ez} + \varphi_o\,e^{-j\beta_oz}\right)$$
-<p>On pose $\bar\beta = (\beta_e + \beta_o)/2$ et $\Delta\beta = \beta_e - \beta_o$, on met en facteur la phase moyenne $e^{-j\bar\beta z}$, puis on revient aux modes des guides isolés avec les relations ci-dessus :</p>
-$$\psi(x,z) = e^{-j\bar\beta z}\left[\varphi_1\cos\left(\frac{\Delta\beta\,z}{2}\right) - j\,\varphi_2\sin\left(\frac{\Delta\beta\,z}{2}\right)\right]$$
-<p>La puissance dans chaque guide est le carré du module de son amplitude :</p>
-$$P_1(z) = P_0\cos^2\left(\frac{\Delta\beta\,z}{2}\right) \qquad\qquad P_2(z) = P_0\sin^2\left(\frac{\Delta\beta\,z}{2}\right)$$
-<p>avec $\Delta\beta = \frac{2\pi}{\lambda}(n_e - n_o)$. Les deux supermodes se déphasent au fil de la propagation ; quand leur déphasage atteint $\pi$, toute la puissance est dans le guide 2.</p>
+<h2 id="s-2-1c"><span class="num">II.1 c)</span>Exciter, propager : longueur de couplage</h2>
+<p>Le coupleur est excité en $z = z_0$ par le mode guidé de la branche 1, d'amplitude $A_0$ (puissance $P_0$). Quelles puissances $P_1$ et $P_2$ trouve-t-on dans les branches 1 et 2 en sortie, après une longueur d'interaction $L$ ?</p>
+
+<h3>1. Puissance et amplitude</h3>
+<p>Pour un mode TE de champ électrique $A_0\varphi_1$, la puissance transportée s'écrit</p>
+$$P_0 = \frac{\beta_0}{2\omega\mu_0}\,A_0^2\iint|\varphi_1|^2\,dS$$
+<p>Avec la normalisation choisie, l'intégrale vaut 1 : $P_0 = \dfrac{\beta_0 A_0^2}{2\omega\mu_0}$, où $\beta_0$ est la constante de propagation du mode fondamental d'une branche isolée. En couplage faible, $\beta_e$ et $\beta_o$ sont très proches de $\beta_0$ : le même facteur relie puissance et carré de l'amplitude dans toute la structure. On peut donc raisonner sur les amplitudes et écrire à la fin $P \propto |A|^2$.</p>
+
+<h3>2. Exciter la structure</h3>
+<p>En $z = z_0$, la continuité du champ s'écrit :</p>
+$$A_0\,\varphi_1 = C_e\,\varphi_e + C_o\,\varphi_o$$
+<p>Pour obtenir $C_e$, on multiplie par $\varphi_e^*$ et on intègre sur la section :</p>
+$$A_0\iint\varphi_1\varphi_e^*\,dS = C_e\underbrace{\iint|\varphi_e|^2\,dS}_{=\,1} + C_o\underbrace{\iint\varphi_o\varphi_e^*\,dS}_{=\,0\ \text{(orthogonalité des modes)}}$$
+<p>L'orthogonalité des supermodes est <em>exacte</em> : ce sont deux modes distincts d'une même structure. En remplaçant $\varphi_e$ par son expression :</p>
+$$C_e = A_0\iint\varphi_1\varphi_e^*\,dS = \frac{A_0}{\sqrt2}\Big[\underbrace{\iint|\varphi_1|^2\,dS}_{=\,1} + \underbrace{\iint\varphi_1\varphi_2^*\,dS}_{\approx\,0\ \text{(couplage faible)}}\Big] \quad\Longrightarrow\quad C_e = \frac{A_0}{\sqrt2}$$
+<p>La même démarche avec $\varphi_o^*$ donne $C_o = A_0\iint\varphi_1\varphi_o^*\,dS = A_0/\sqrt2$.</p>
+<div class="box key">
+  <span class="tag">À retenir · excitation par une seule branche</span>
+  $$C_e = C_o = \frac{A_0}{\sqrt2}$$
+  <p>Injecter la lumière dans un seul guide excite les deux supermodes, avec la même amplitude. Chacun emporte la moitié de la puissance.</p>
+</div>
+
+<h3>3. Propager</h3>
+<p>Entre $z_0$ et $z_0 + L$, chaque supermode se propage avec sa propre constante : il accumule la phase $e^{-j\beta_eL}$ ou $e^{-j\beta_oL}$. En $z = z_0 + L$, le champ vaut :</p>
+$$\psi(x, z_0+L) = C_e\,\varphi_e\,e^{-j\beta_eL} + C_o\,\varphi_o\,e^{-j\beta_oL}$$
+<p>On revient aux modes des branches isolées, ce qui permet de lire ce que contient chaque guide :</p>
+$$\psi = \frac{A_0}{\sqrt2}\left[\frac{\varphi_1+\varphi_2}{\sqrt2}\,e^{-j\beta_eL} + \frac{\varphi_1-\varphi_2}{\sqrt2}\,e^{-j\beta_oL}\right] = \frac{A_0}{2}\left[\left(e^{-j\beta_eL}+e^{-j\beta_oL}\right)\varphi_1 + \left(e^{-j\beta_eL}-e^{-j\beta_oL}\right)\varphi_2\right]$$
+<p>On met en facteur la phase moyenne $e^{-j\frac{\beta_e+\beta_o}{2}L}$. Il reste dans les crochets $e^{\mp j\frac{\beta_e-\beta_o}{2}L}$ :</p>
+$$\psi = \frac{A_0}{2}\,e^{-j\frac{\beta_e+\beta_o}{2}L}\left[\left(e^{-j\frac{\beta_e-\beta_o}{2}L} + e^{\,j\frac{\beta_e-\beta_o}{2}L}\right)\varphi_1 + \left(e^{-j\frac{\beta_e-\beta_o}{2}L} - e^{\,j\frac{\beta_e-\beta_o}{2}L}\right)\varphi_2\right]$$
+<p>On reconnaît $e^{-ju} + e^{ju} = 2\cos u$ et $e^{-ju} - e^{ju} = -2j\sin u$. Avec $\Delta\beta = \beta_e - \beta_o$ :</p>
+$$\psi(x, z_0+L) = A_0\,e^{-j\frac{\beta_e+\beta_o}{2}L}\left[\cos\left(\frac{\Delta\beta}{2}L\right)\varphi_1 - j\,\sin\left(\frac{\Delta\beta}{2}L\right)\varphi_2\right]$$
+<p>L'amplitude dans chaque branche s'obtient par projection sur son mode, toujours avec $\iint\varphi_1\varphi_2^*\,dS \approx 0$ :</p>
+<div class="box key">
+  <span class="tag">À retenir · amplitudes en sortie</span>
+  $$A_1(L) = \iint\psi\,\varphi_1^*\,dS = A_0\,e^{-j\frac{\beta_e+\beta_o}{2}L}\cos\left(\frac{\Delta\beta}{2}L\right)$$
+  $$A_2(L) = \iint\psi\,\varphi_2^*\,dS = A_0\,e^{-j\frac{\beta_e+\beta_o}{2}L}\,e^{-j\frac{\pi}{2}}\sin\left(\frac{\Delta\beta}{2}L\right)$$
+  <p>On a écrit $-j = e^{-j\pi/2}$ : l'onde de la branche 2 est toujours en <strong>quadrature de phase</strong> (retard de $\pi/2$) par rapport à celle de la branche 1.</p>
+</div>
+<p>En prenant le carré du module :</p>
+$$P_1 = P_0\cos^2\left(\frac{\Delta\beta}{2}L\right) \qquad\qquad P_2 = P_0\sin^2\left(\frac{\Delta\beta}{2}L\right)$$
+<p>On vérifie que $P_1 + P_2 = P_0$ : la puissance ne se perd pas, elle passe d'une branche à l'autre.</p>
+
+<h3>4. Longueur de couplage</h3>
+<p>On appelle <strong>longueur de couplage</strong> $L_c$ la longueur de propagation nécessaire pour transférer entièrement la lumière d'une branche à l'autre. Elle correspond à $P_2 = P_0$, soit $\frac{\Delta\beta}{2}L_c = \frac{\pi}{2}$.</p>
 <div class="box key">
   <span class="tag">À retenir · longueur de couplage</span>
-  $$L_c = \frac{\pi}{\Delta\beta} = \frac{\lambda}{2\left(n_e - n_o\right)}$$
-  <p>Après $L_c$, la puissance est entièrement passée dans le guide 2 ; après $2L_c$, elle est revenue dans le guide 1. L'échange est périodique, de période $2L_c$.</p>
+  $$L_c = \frac{\pi}{\Delta\beta} = \frac{\lambda}{2\left(n_e - n_o\right)} \qquad\qquad P_1(z) = P_0\cos^2\left(\frac{\pi}{2}\frac{z}{L_c}\right) \qquad P_2(z) = P_0\sin^2\left(\frac{\pi}{2}\frac{z}{L_c}\right)$$
+  <p>Après $L_c$, toute la puissance est dans le guide 2 ; après $2L_c$, elle est revenue dans le guide 1. L'échange est périodique, de période $2L_c$. Physiquement : $L_c$ est la distance au bout de laquelle les deux supermodes ont accumulé un déphasage de $\pi$.</p>
+</div>
+<figure>
+  <div class="fig-scroll" id="fig-dc-power"></div>
+  <figcaption><b>FIG. 3</b>Puissance dans chaque branche en fonction de la distance parcourue $z$ dans la zone de couplage (origine en $z_0$), normalisée par $L_c$. Les deux courbes se croisent à $P_0/2$ aux longueurs $L_c/2$, $3L_c/2$… : c'est le point de fonctionnement du coupleur 3 dB.</figcaption>
+</figure>
+<p>Pour l'exemple de la Fig. 2 : $\Delta n = n_e - n_o = 0{,}0052$, d'où $L_c = 1{,}55/(2 \times 0{,}0052) \approx 149$ µm.</p>
+
+<h2 id="s-2-1d"><span class="num">II.1 d)</span>Jusqu'où le couplage faible tient-il ?</h2>
+<p>Le calcul a négligé à trois reprises le recouvrement des modes isolés, qu'on note</p>
+$$C_{12} = \iint\varphi_1\varphi_2^*\,dS$$
+<p>Il est réel et positif pour deux guides identiques. Sans le négliger, la normalisation donne $a = 1/\sqrt{2(1+C_{12})}$ et $b = 1/\sqrt{2(1-C_{12})}$, et la projection de l'entrée devient :</p>
+$$C_e = A_0\sqrt{\frac{1+C_{12}}{2}} \qquad\qquad C_o = A_0\sqrt{\frac{1-C_{12}}{2}} \qquad\qquad C_e^2 + C_o^2 = A_0^2$$
+<p>Quand les guides se rapprochent, l'entrée excite davantage le mode pair que le mode impair. Pour les guides de la Fig. 2, en faisant varier l'écart (supermodes calculés exactement) :</p>
+<div class="tbl"><table>
+  <thead><tr><th>Écart g (µm)</th><th class="num">0,5</th><th class="num">1</th><th class="num">2</th><th class="num">3</th><th class="num">4</th></tr></thead>
+  <tbody>
+    <tr><td>Recouvrement $C_{12}$</td><td class="num">0,64</td><td class="num">0,48</td><td class="num">0,26</td><td class="num">0,13</td><td class="num">0,06</td></tr>
+    <tr><td>$C_e/A_0$ (couplage faible : 0,707)</td><td class="num">0,90</td><td class="num">0,86</td><td class="num">0,79</td><td class="num">0,75</td><td class="num">0,73</td></tr>
+    <tr><td>$|C_o|/A_0$ (couplage faible : 0,707)</td><td class="num">0,40</td><td class="num">0,50</td><td class="num">0,61</td><td class="num">0,66</td><td class="num">0,69</td></tr>
+  </tbody>
+</table></div>
+<p>Les valeurs exactes suivent les formules ci-dessus à 1 % près. Avec ces guides peu confinants (la queue évanescente s'étend sur environ 1,1 µm), il faut plusieurs microns d'écart pour que $C_e \approx C_o$.</p>
+<div class="box intu">
+  <span class="tag">Ce qui reste vrai même en couplage fort</span>
+  <p>Pour deux guides <strong>identiques</strong>, $L_c = \pi/\Delta\beta$ reste exact. En $z_0 + L_c$, le déphasage entre supermodes vaut $\pi$ et le champ devient $C_e\varphi_e - C_o\varphi_o$ : c'est exactement l'image miroir du champ d'entrée, puisque $\varphi_e$ est pair et $\varphi_o$ impair. Toute la lumière est passée de l'autre côté. De même, en $L_c/2$, la puissance est partagée en deux moitiés exactes entre les demi-espaces $x \lt 0$ et $x \gt 0$.</p>
+  <p>Ce qui devient approximatif : la forme en $\cos^2$ et $\sin^2$ entre ces points, et l'idée de « puissance dans un guide », car $\varphi_1$ et $\varphi_2$ ne sont plus orthogonaux. Il faut alors des $\beta_e$ et $\beta_o$ issus d'un vrai calcul de supermodes (comme dans le labo 6), pas d'une formule approchée.</p>
+</div>
+<div class="box warn">
+  <span class="tag">Attention · guides différents</span>
+  <p>Si les deux guides n'ont pas le même $\beta_0$ (largeurs ou indices différents), la symétrie est perdue : les supermodes ne sont plus pairs ou impairs, et le transfert n'est plus total. Il faut alors la théorie des modes couplés, avec un désaccord de phase entre les guides.</p>
 </div>
 
+<h2 id="s-2-1e"><span class="num">II.1 e)</span>Utilisations du coupleur directionnel</h2>
+
 <h3>Coupleur 3 dB</h3>
-<p>Un coupleur de longueur $L_c/2$ partage la puissance en deux moitiés égales : c'est un <strong>coupleur 3 dB</strong> (diviser une puissance par deux, c'est la réduire de 3 dB). Les deux sorties ne sont pas en phase : le facteur $-j$ devant $\varphi_2$ indique un déphasage de $\pi/2$ entre elles. Ce quart de tour est ce qui fait fonctionner l'<a href="modulateur-electro-optique.html#s-td3-2">interféromètre de Mach-Zehnder</a>.</p>
+<p>Un coupleur de longueur $L_c/2$ partage la puissance en deux moitiés égales : $P_1 = P_2 = P_0/2$. C'est un <strong>coupleur 3 dB</strong>, puisque diviser une puissance par deux revient à la réduire de 3 dB. Les deux sorties ne sont pas en phase : le facteur $e^{-j\pi/2}$ de $A_2$ indique un déphasage de $\pi/2$ entre elles. Ce quart de tour est ce qui fait fonctionner l'<a href="modulateur-electro-optique.html#s-td3-2">interféromètre de Mach-Zehnder</a>. Plus généralement, choisir $L$ entre 0 et $L_c$ donne n'importe quel rapport de partage $\sin^2(\pi L/2L_c)$ : 1 %, 10 % (prélèvement pour un photodétecteur de contrôle), 50 %…</p>
 
 <h3>Forme matricielle</h3>
-<p>Pour enchaîner plusieurs composants, on écrit le coupleur comme une matrice qui relie les amplitudes en entrée et en sortie de chaque guide. Avec $\kappa = \Delta\beta/2 = \pi/(2L_c)$ et une longueur $L$ :</p>
+<p>Pour enchaîner plusieurs composants, on écrit le coupleur comme une matrice qui relie les amplitudes en entrée et en sortie de chaque guide. Avec $\kappa = \Delta\beta/2 = \pi/(2L_c)$, $\bar\beta = (\beta_e + \beta_o)/2$ et une longueur $L$ :</p>
 $$\begin{pmatrix}a_1\\a_2\end{pmatrix}_{\text{sortie}} = e^{-j\bar\beta L}\begin{pmatrix}\cos\kappa L & -j\sin\kappa L\\ -j\sin\kappa L & \cos\kappa L\end{pmatrix}\begin{pmatrix}a_1\\a_2\end{pmatrix}_{\text{entrée}}$$
-<p>Avec $a_1 = 1$ et $a_2 = 0$ en entrée, on retrouve $P_1 = \cos^2\kappa L$ et $P_2 = \sin^2\kappa L$.</p>
+<p>Avec $a_1 = A_0$ et $a_2 = 0$ en entrée, on retrouve exactement $A_1(L)$ et $A_2(L)$ du § II.1 c. La matrice est unitaire : elle conserve la puissance totale, pour toute combinaison d'entrées.</p>
 
 <h3>Influence de l'écart entre les guides</h3>
-<p>$L_c$ augmente exponentiellement avec l'écart $g$ entre les guides, parce que le recouvrement des queues évanescentes décroît en $e^{-\alpha g}$. Pour deux guides de silice dopée (cœur 1 µm d'indice 1,50 dans une gaine 1,45, λ = 1,55 µm), le solveur du labo ci-dessous donne :</p>
+<p>$L_c$ augmente exponentiellement avec l'écart $g$ entre les guides, parce que le recouvrement des queues évanescentes décroît en $e^{-\alpha g}$, où $\alpha$ est le coefficient de décroissance dans la gaine. Pour les guides de la Fig. 2, le solveur du labo ci-dessous donne :</p>
 <div class="tbl"><table>
   <thead><tr><th>Écart g (µm)</th><th class="num">0,5</th><th class="num">1</th><th class="num">1,5</th><th class="num">2</th><th class="num">2,5</th></tr></thead>
   <tbody><tr><td>$L_c$ (µm)</td><td class="num">35</td><td class="num">56</td><td class="num">92</td><td class="num">149</td><td class="num">240</td></tr></tbody>
@@ -129,9 +221,13 @@ $$\begin{pmatrix}a_1\\a_2\end{pmatrix}_{\text{sortie}} = e^{-j\bar\beta L}\begin
 <h2 id="testez-vous">Testez-vous</h2>
 <p>Cherchez la réponse avant de déplier la question.</p>
 <div class="quiz">
+<details><summary>Pourquoi les supermodes d'un coupleur à deux guides identiques sont-ils forcément pairs ou impairs ?</summary><div class="ans"><p>Le profil d'indice est symétrique par rapport à l'axe entre les guides. Si $\varphi(x)$ est un mode, $\varphi(-x)$ en est un aussi, avec la même constante de propagation. Pour un mode non dégénéré, les deux ne diffèrent que d'un facteur $\pm 1$ : le mode est pair ou impair.</p></div></details>
+<details><summary>On injecte la lumière dans le guide 1. Pourquoi $C_e = C_o$ ?</summary><div class="ans"><p>Parce que $\varphi_1 = (\varphi_e + \varphi_o)/\sqrt2$ : le mode d'une seule branche est la demi-somme des deux supermodes. En projetant, et en négligeant le recouvrement $\iint\varphi_1\varphi_2^*\,dS$, on trouve $C_e = C_o = A_0/\sqrt2$.</p></div></details>
+<details><summary>Que signifie le facteur $e^{-j\pi/2}$ dans $A_2(L)$ ?</summary><div class="ans"><p>L'onde transférée dans la branche 2 est en retard de $\pi/2$ (quadrature) sur celle restée dans la branche 1, quelle que soit la longueur $L$. Dans un coupleur 3 dB, les deux sorties ont la même puissance mais sont déphasées de $\pi/2$.</p></div></details>
 <details><summary>On double l'écart entre deux guides. La longueur de couplage double-t-elle ?</summary><div class="ans"><p>Non, elle augmente bien plus : la dépendance est exponentielle. Dans l'exemple du tableau, passer de 1 µm à 2 µm d'écart fait passer $L_c$ de 56 µm à 149 µm, soit presque un facteur 3.</p></div></details>
 <details><summary>Quelle longueur donner à un coupleur 3 dB, et quel déphasage sépare ses deux sorties ?</summary><div class="ans"><p>$L_c/2$. Les deux sorties portent chacune la moitié de la puissance, déphasées de $\pi/2$.</p></div></details>
 <details><summary>On injecte la lumière dans le guide 1. Que vaut $P_2$ après une longueur $2L_c$ ?</summary><div class="ans"><p>Zéro : $P_2 = P_0\sin^2(\pi z/2L_c)$ s'annule en $z = 2L_c$. Toute la puissance est revenue dans le guide 1.</p></div></details>
+<details><summary>Les guides sont très proches et le couplage n'est plus faible. Le transfert est-il encore total après $L_c = \pi/\Delta\beta$ ?</summary><div class="ans"><p>Oui, si les guides sont identiques : après un déphasage de $\pi$ entre supermodes, le champ est l'image miroir du champ d'entrée. Ce qui change, c'est que $C_e \ne C_o$ et que l'évolution entre $0$ et $L_c$ ne suit plus exactement un $\sin^2$. Il faut aussi calculer $\beta_e$ et $\beta_o$ exactement.</p></div></details>
 <details><summary>Pourquoi le supermode impair a-t-il un indice effectif plus faible que le supermode pair ?</summary><div class="ans"><p>Il s'annule entre les deux guides : il varie plus vite transversalement et place moins d'énergie au centre. Les deux effets abaissent $\neff^2$, qui est une moyenne de $n^2$ pondérée par le champ, moins un terme de variation transverse.</p></div></details>
 </div>
 <nav class="pager" aria-label="Pages voisines"><a class="prev" href="proprietes-des-modes.html"><span class="pl">← Précédent</span><span class="pt">Propriétés des modes</span></a><a class="next" href="modulateur-electro-optique.html"><span class="pl">Suivant →</span><span class="pt">Modulateur électro-optique</span></a></nav>
